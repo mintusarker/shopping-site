@@ -21,14 +21,13 @@ const Dashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu w-auto p-8 mx-auto text-center min-h-screen bg-[#ebae34] text-base-content flex items-center flex-col">
+          <ul className="menu w-auto p-8 text-center min-h-screen bg-[#ebae34] text-base-content flex items-center flex-col">
             {/* Sidebar content here */}
             <div className="text-lg my-4">
              <li className="text-[#FFFFFF] text-xl shadow-md bg-slate-600 rounded-full shadow-white"> Dashboard</li>
               <li className="text-white mt-8 rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                  to={""}
                 >
                   <FaStore></FaStore>
                   Manage Product
@@ -37,7 +36,7 @@ const Dashboard = () => {
               <li className="text-center my-5 text-white rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                  to={""}
+                 
                 >
                   <FaCartPlus></FaCartPlus>
                   My Bookings
@@ -46,7 +45,7 @@ const Dashboard = () => {
               <li className="text-white rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                  to={""}
+                  to="/dashboard/add_product"
                 >
                   <FaShop></FaShop>
                   Add Product
@@ -56,7 +55,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 };
