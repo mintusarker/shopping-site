@@ -46,8 +46,8 @@ const AddProduct = () => {
   };
 
   return (
-    <div className=" mt-14 mb-28">
-      <h2 className="text-2xl mb-6">Add A Product</h2>
+    <div className="mt-8 mb-28">
+      <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">Add Product</h2>
 
       <form className="w-full" onSubmit={handleSubmit(handleAddProduct)}>
         <div>
@@ -58,10 +58,12 @@ const AddProduct = () => {
               </label>
               <input
                 type="text"
-                defaultValue={user?.email}
+                defaultValue={user?.email} 
                 readOnly
                 className="input input-bordered w-60"
-                {...register("email")}
+                {...register("email", {
+                    required: "Email is required",
+                })}
               />
             </div>
             <div className="form-control">

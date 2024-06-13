@@ -28,6 +28,7 @@ const Dashboard = () => {
               <li className="text-white mt-8 rounded-md">
                 <Link
                   className="flex items-center gap-2"
+                   to="/dashboard/my_product"
                 >
                   <FaStore></FaStore>
                   Manage Product
