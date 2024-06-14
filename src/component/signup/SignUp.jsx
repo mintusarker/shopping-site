@@ -135,7 +135,7 @@ const SignUp = () => {
           </div>
 
           <input
-            className="btn btn-accent my-3 w-full max-w-xs"
+            className="btn btn-accent text-base my-3 w-full max-w-xs"
             value="Sign Up"
             type="submit"
           />

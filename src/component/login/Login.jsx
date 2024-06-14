@@ -114,7 +114,7 @@ const Login = () => {
             </div>
             <div className="form-control mt-2">
               <input
-                className="btn btn-success text-lg  w-96"
+                className="btn btn-accent text-lg  w-96"
                 type="submit"
                 value="Login"
               />
@@ -123,7 +123,7 @@ const Login = () => {
           </form>
           <p className="text-center">
             New to Here ! Please
-            <Link className="text-orange-600 font-bold ml-2" to="/sign_up">
+            <Link className="text-secondary font-bold ml-2" to="/sign_up">
               Sign Up
             </Link>
           </p>
