@@ -10,7 +10,8 @@ import UpdateProduct from "../component/dashboard/update/UpdateProduct";
 import AllProducts from "../component/dashboard/AllProducts/AllProducts";
 import BookingPage from "../component/Booking/BookingPage";
 import MyOrders from "../component/dashboard/MyOrder/MyOrders";
-// import Payment from "../component/payment/Payment";
+import Payment from "../component/payment/Payment";
+import PrivateRoute from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "/dashboard",
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
         element: <AddProduct></AddProduct>,
       },
       {
-        path: "/dashboard/my_product",
+        path: "/dashboard/my_products",
         element: <MyProducts></MyProducts>,
       },
       {
@@ -63,12 +64,12 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(` http://localhost:5000/products/${params?.id}`),
       },
-      //   {
-      //     path: "/dashboard/payment/:id",
-      //     element: <Payment></Payment>,
-      //     loader: ({ params }) =>
-      //       fetch(`http://localhost:5000/bookings/${params.id}`),
-      //   },
+        {
+          path: "/dashboard/payment/:id",
+          element: <Payment></Payment>,
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/bookings/${params.id}`),
+        },
     ],
   },
 ]);

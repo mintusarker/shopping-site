@@ -31,7 +31,7 @@ const UpdateProduct = () => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
-        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(updateProduct),
     })
@@ -39,7 +39,7 @@ const UpdateProduct = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("product updated");
-          navigate("/dashboard/my-product");
+          navigate('/dashboard/my_products');
           console.log(data);
         }
       });

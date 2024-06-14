@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const {
@@ -32,7 +32,7 @@ const AddProduct = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        // authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(product),
     })
@@ -40,8 +40,8 @@ const AddProduct = () => {
       .then((result) => {
         console.log(result);
         toast.success("Product added successfully");
-        // reset()
-        navigate("/dashboard/my-product");
+        reset()
+        navigate('/dashboard/my_products');
       });
   };
 

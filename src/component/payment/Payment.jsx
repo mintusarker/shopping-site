@@ -1,10 +1,10 @@
 import React from 'react';
 import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import { useLoaderData, useNavigation } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
+import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
+const stripePromise = loadStripe(import.meta.env.VITE_APP_STRIPE_KEY);
 
 console.log(stripePromise)
 

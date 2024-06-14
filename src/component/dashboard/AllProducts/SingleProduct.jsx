@@ -26,7 +26,7 @@ const SingleProduct = ({ product }) => {
         <p>Only left {product?.quantity} {product?.quantity > 1 ? "items" : product?.quantity == 1 ? "item" : ''} </p>
         <div className="card-actions justify-end">
         <Link to={`/dashboard/booking_product/${product?._id}`}>
-            <button className="btn btn-sm btn-error">Buy</button>
+            <button className="btn btn-sm btn-outline">Buy</button>
           </Link>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { FaBuyNLarge, FaCartPlus, FaGoogle, FaStore } from "react-icons/fa";
+import { FaBuyNLarge, FaCartPlus, FaStore } from "react-icons/fa";
 import Navbar from "../component/share/Navbar";
 import Footer from "../component/share/Footer";
 import { FaShop } from "react-icons/fa6";
@@ -49,7 +49,7 @@ const Dashboard = () => {
               <li className="text-white rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                   to="/dashboard/my_product"
+                   to="/dashboard/my_products"
                 >
                   <FaStore></FaStore>
                   Manage Product

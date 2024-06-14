@@ -18,8 +18,7 @@ const SignUp = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -37,11 +36,10 @@ const SignUp = () => {
           .then(() => {
             const email = data.email;
             console.log(email);
-            // getToken(email);
+            token(email);
+            navigate(from, { replace: true });
           })
           .catch((err) => console.log(err));
-        // navigate("/");
-        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -49,18 +47,32 @@ const SignUp = () => {
       });
   };
 
-
   const handleGoogleSignIn = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user)
-        // getToken(email);
+        const email= user.email;
+        token(email);
         navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
   };
 
+  //jwt token
+  const token = (email) => {
+    fetch("http://localhost:5000/jwt", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("accessToken", data.token);
+      });
+  };
 
   return (
     <div className="h-[800px] flex justify-center items-center">
@@ -131,7 +143,7 @@ const SignUp = () => {
         </form>
         <p>
           Already have an account ! Please
-          <Link to="/login" className="text-secondary font-bold">
+          <Link to="/login" className="text-secondary font-bold ml-2">
             Login
           </Link>
         </p>

@@ -35,6 +35,10 @@ const MyProducts = () => {
   const handleDeleteProduct = (id) => {
     fetch(` http://localhost:5000/products/${id}`, {
       method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -49,7 +53,7 @@ const MyProducts = () => {
   return (
     <div className="">
       <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
-      My Products: {products?.length}
+        My Products: {products?.length}
       </h2>
 
       <div className="gap-5 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">

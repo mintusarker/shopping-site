@@ -30,18 +30,18 @@ const BookingPage = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        // authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(product),
     })
       .then((res) => res.json())
       .then((result) => {
         console.log(result);
+        navigate("/dashboard/my_bookings");
         toast.success("Product Booked, Please ensure your payment", {
           duration: 1500,
         });
-        // reset()
-        // navigate("/dashboard/my-order");
+        
       });
   };
 
@@ -60,7 +60,7 @@ const BookingPage = () => {
             <p>Only left {data[0]?.quantity} {data[0]?.quantity > 1 ? "items" : data[0]?.quantity == 1 ? "item" : ''} </p>
              <p className="break-words text-wrap text-amber-500">Easy return in 3 days , one year guarantee & we provide original product 
              </p>
-            <button onClick={handleBookingProduct} className="btn btn-md">
+            <button onClick={handleBookingProduct} className="btn text-xl btn-md btn-accent">
               Confirm
             </button>
           </div>

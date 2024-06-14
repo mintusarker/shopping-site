@@ -6,7 +6,7 @@ import { AuthContext } from "../../../auth/AuthProvider";
 
 const MyOrders = () => {
   const { user, loading } = useContext(AuthContext);
-  
+
   if (loading) {
     return <span className="loading loading-ring loading-lg"></span>;
   }
@@ -25,16 +25,18 @@ const MyOrders = () => {
   const handleRemove = (id) => {
     fetch(`http://localhost:5000/bookings/${id}`, {
       method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        toast.success("Order deleted");
+        toast.success("Booking deleted");
         refetch();
       });
   };
-
- 
 
   return (
     <div>

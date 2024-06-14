@@ -27,7 +27,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // getToken(email);
+        token(email);
         toast.success("User Login successfully");
         navigate(from, { replace: true });
       })
@@ -52,6 +52,23 @@ const Login = () => {
         toast.success("please check your email");
       })
       .catch((err) => console.log(err));
+  };
+
+
+  //jwt token
+  const token = (email) => {
+    fetch("http://localhost:5000/jwt", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        localStorage.setItem("accessToken", data.token);
+      });
   };
 
 
@@ -106,7 +123,7 @@ const Login = () => {
           </form>
           <p className="text-center">
             New to Here ! Please
-            <Link className="text-orange-600 font-bold ml-2" to="/signup">
+            <Link className="text-orange-600 font-bold ml-2" to="/sign_up">
               Sign Up
             </Link>
           </p>
