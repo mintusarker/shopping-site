@@ -6,41 +6,71 @@ import SignUp from "../component/signup/SignUp";
 import Main from "../layout/Main";
 import AddProduct from "../component/dashboard/AddProduct";
 import MyProducts from "../component/dashboard/myProduct/MyProducts";
+import UpdateProduct from "../component/dashboard/update/UpdateProduct";
+import AllProducts from "../component/dashboard/AllProducts/AllProducts";
+import BookingPage from "../component/Booking/BookingPage";
+import MyOrders from "../component/dashboard/MyOrder/MyOrders";
+// import Payment from "../component/payment/Payment";
 
 const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Main></Main>,
-      children: [
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/sign_up',
-            element: <SignUp></SignUp>
-        },
-      ]
-    },
-    {
-        path: '/dashboard',
-        element: <Dashboard></Dashboard>,
-        children: [
-            {
-                path: '/dashboard',
-                element: <UserDashboard></UserDashboard>
-            },
-            {
-                path: '/dashboard/add_product',
-                element: <AddProduct></AddProduct>
-            },
-            {
-                path: '/dashboard/my_product',
-                element: <MyProducts></MyProducts>
-            }
-        ]
-    }
-])
-
+  {
+    path: "/",
+    element: <Main></Main>,
+    children: [
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/sign_up",
+        element: <SignUp></SignUp>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <UserDashboard></UserDashboard>,
+      },
+      {
+        path: "/dashboard/add_product",
+        element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/my_product",
+        element: <MyProducts></MyProducts>,
+      },
+      {
+        path: "/dashboard/all_product",
+        element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/dashboard/booking_product/:id",
+        element: <BookingPage></BookingPage>,
+        loader: ({ params }) =>
+          fetch(` http://localhost:5000/products/${params?.id}`),
+      },
+      {
+        path: "/dashboard/my_bookings",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/update-product/:id",
+        element: <UpdateProduct></UpdateProduct>,
+        loader: ({ params }) =>
+          fetch(` http://localhost:5000/products/${params?.id}`),
+      },
+      //   {
+      //     path: "/dashboard/payment/:id",
+      //     element: <Payment></Payment>,
+      //     loader: ({ params }) =>
+      //       fetch(`http://localhost:5000/bookings/${params.id}`),
+      //   },
+    ],
+  },
+]);
 
 export default router;

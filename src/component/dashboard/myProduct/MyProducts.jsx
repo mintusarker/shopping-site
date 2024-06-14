@@ -7,18 +7,11 @@ import Products from "./Products";
 const MyProducts = () => {
   const { user, loading } = useContext(AuthContext);
 
-  console.log(user?.email);
-
   if (loading) {
     return <span className="loading loading-ring loading-lg"></span>;
   }
 
-
-  const {
-    data: products = [],
-    isLoading,
-    refetch,
-  } = useQuery({
+  const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
@@ -34,7 +27,10 @@ const MyProducts = () => {
     },
   });
 
- 
+  if (loading) {
+    return <span className="loading loading-ring loading-lg"></span>;
+  }
+
   //delete product
   const handleDeleteProduct = (id) => {
     fetch(` http://localhost:5000/products/${id}`, {
@@ -52,7 +48,10 @@ const MyProducts = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl pl-5 my-5">My Products: {products?.length}</h2>
+      <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
+      My Products: {products?.length}
+      </h2>
+
       <div className="gap-5 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
         {products?.map((product) => (
           <Products

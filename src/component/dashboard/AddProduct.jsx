@@ -41,7 +41,7 @@ const AddProduct = () => {
         console.log(result);
         toast.success("Product added successfully");
         // reset()
-        // navigate("/dashboard/my-products");
+        navigate("/dashboard/my-product");
       });
   };
 
