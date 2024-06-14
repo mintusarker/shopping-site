@@ -16,7 +16,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` http://localhost:5000/product?email=${user?.email}`
+          ` https://user-dashboard-server-five.vercel.app/product?email=${user?.email}`
         );
         const data = await res.json();
         // console.log(data);
@@ -33,7 +33,7 @@ const MyProducts = () => {
 
   //delete product
   const handleDeleteProduct = (id) => {
-    fetch(` http://localhost:5000/products/${id}`, {
+    fetch(` https://user-dashboard-server-five.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -52,7 +52,7 @@ const MyProducts = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
+      <h2 className="text-2xl my-8 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
         My Products: {products?.length}
       </h2>
 

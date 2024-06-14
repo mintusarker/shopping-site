@@ -19,7 +19,7 @@ const Payment = () => {
     }
 
     return (
-        <div>
+        <div className='my-14'>
             <h2 className='text-2xl'>Payment for {booking?.name} </h2>
             <h2 className='text-xl'>Please Pay <span className='text-amber-500'>{booking?.price} $</span></h2>
 

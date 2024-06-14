@@ -27,19 +27,22 @@ const UpdateProduct = () => {
 
     console.log(updateProduct);
 
-    fetch(` http://localhost:5000/products/${data[0]?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
+    fetch(
+      ` https://user-dashboard-server-five.vercel.app/products/${data[0]?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(updateProduct),
-    })
+        },
+        body: JSON.stringify(updateProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("product updated");
-          navigate('/dashboard/my_products');
+          navigate("/dashboard/my_products");
           console.log(data);
         }
       });

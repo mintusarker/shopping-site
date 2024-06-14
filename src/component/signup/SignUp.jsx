@@ -51,7 +51,7 @@ const SignUp = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        const email= user.email;
+        const email = user.email;
         token(email);
         navigate(from, { replace: true });
       })
@@ -60,12 +60,12 @@ const SignUp = () => {
 
   //jwt token
   const token = (email) => {
-    fetch("http://localhost:5000/jwt", {
+    fetch("https://user-dashboard-server-five.vercel.app/jwt", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ email}),
+      body: JSON.stringify({ email }),
     })
       .then((res) => res.json())
       .then((data) => {

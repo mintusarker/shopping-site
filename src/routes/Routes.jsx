@@ -30,7 +30,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "/dashboard",
@@ -52,7 +56,9 @@ const router = createBrowserRouter([
         path: "/dashboard/booking_product/:id",
         element: <BookingPage></BookingPage>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/products/${params?.id}`),
+          fetch(
+            ` https://user-dashboard-server-five.vercel.app/products/${params?.id}`
+          ),
       },
       {
         path: "/dashboard/my_bookings",
@@ -62,14 +68,18 @@ const router = createBrowserRouter([
         path: "/dashboard/update-product/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/products/${params?.id}`),
+          fetch(
+            ` https://user-dashboard-server-five.vercel.app/products/${params?.id}`
+          ),
       },
-        {
-          path: "/dashboard/payment/:id",
-          element: <Payment></Payment>,
-          loader: ({ params }) =>
-            fetch(`http://localhost:5000/bookings/${params.id}`),
-        },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(
+            `https://user-dashboard-server-five.vercel.app/bookings/${params.id}`
+          ),
+      },
     ],
   },
 ]);

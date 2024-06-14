@@ -14,6 +14,7 @@ const Products = ({ product, handleDeleteProduct }) => {
         <h2 className="card-title">{product?.name}</h2>
         <p>Price: {product?.price} $</p>
         <p className="text-justify">Detail: {product?.detail}</p>
+        <p className="text-justify">Quantity: {product?.quantity}</p>
         <div className="flex justify-between">
           <button
             onClick={() => handleDeleteProduct(product?._id)}

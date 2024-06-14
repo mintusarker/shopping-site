@@ -10,7 +10,7 @@ const UserDashboard = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/bookings?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -23,7 +23,7 @@ const UserDashboard = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` http://localhost:5000/product?email=${user?.email}`
+          ` https://user-dashboard-server-five.vercel.app/product?email=${user?.email}`
         );
         const data = await res.json();
         // console.log(data);
@@ -39,7 +39,7 @@ const UserDashboard = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` http://localhost:5000/paymentDone?email=${user?.email}`
+          ` https://user-dashboard-server-five.vercel.app/paymentDone?email=${user?.email}`
         );
         const data = await res.json();
         // console.log(data);
@@ -51,7 +51,7 @@ const UserDashboard = () => {
   });
 
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-10">
+    <div className="grid lg:grid-cols-3 my-16 md:grid-cols-3 grid-cols-1 gap-10">
       <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl bg">
         <p>My Products</p>
         <p>Total: {products?.length} </p>

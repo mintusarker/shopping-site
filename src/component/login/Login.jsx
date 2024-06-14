@@ -42,7 +42,9 @@ const Login = () => {
     const email = emailRef.current.value;
     if (!email) {
       return;
-    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    ) {
       console.log("please write a valid email");
       return;
     }
@@ -54,15 +56,14 @@ const Login = () => {
       .catch((err) => console.log(err));
   };
 
-
   //jwt token
   const token = (email) => {
-    fetch("http://localhost:5000/jwt", {
+    fetch("https://user-dashboard-server-five.vercel.app/jwt", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ email}),
+      body: JSON.stringify({ email }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -70,7 +71,6 @@ const Login = () => {
         localStorage.setItem("accessToken", data.token);
       });
   };
-
 
   return (
     <div className="hero w-full my-11">

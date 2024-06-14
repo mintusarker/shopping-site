@@ -7,7 +7,7 @@ const BookingPage = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   console.log(data);
-    console.log(data[0].title);
+  console.log(data[0].title);
   const navigate = useNavigate();
 
   if (!user) {
@@ -18,7 +18,7 @@ const BookingPage = () => {
     const product = {
       email: user.email,
       name: data[0]?.name,
-    //   quantity: data[0]?.quantity,
+      //   quantity: data[0]?.quantity,
       price: parseInt(data[0]?.price),
       detail: data[0]?.detail,
       image: data[0]?.image,
@@ -26,7 +26,7 @@ const BookingPage = () => {
     console.log(product);
 
     // save product information to database
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://user-dashboard-server-five.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -41,7 +41,6 @@ const BookingPage = () => {
         toast.success("Product Booked, Please ensure your payment", {
           duration: 1500,
         });
-        
       });
   };
 
@@ -57,10 +56,22 @@ const BookingPage = () => {
             <p>Name: {data[0].name}</p>
             <p>Price: {data[0].price} $</p>
             <p>Detail: {data[0].detail}</p>
-            <p>Only left {data[0]?.quantity} {data[0]?.quantity > 1 ? "items" : data[0]?.quantity == 1 ? "item" : ''} </p>
-             <p className="break-words text-wrap text-amber-500">Easy return in 3 days , one year guarantee & we provide original product 
-             </p>
-            <button onClick={handleBookingProduct} className="btn text-xl btn-md btn-accent">
+            <p>
+              Only left {data[0]?.quantity}{" "}
+              {data[0]?.quantity > 1
+                ? "items"
+                : data[0]?.quantity == 1
+                ? "item"
+                : ""}{" "}
+            </p>
+            <p className="break-words text-wrap text-amber-500">
+              Easy return in 3 days , one year guarantee & we provide original
+              product
+            </p>
+            <button
+              onClick={handleBookingProduct}
+              className="btn text-xl btn-md btn-accent"
+            >
               Confirm
             </button>
           </div>
