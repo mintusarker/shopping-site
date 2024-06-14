@@ -12,12 +12,17 @@ import BookingPage from "../component/Booking/BookingPage";
 import MyOrders from "../component/dashboard/MyOrder/MyOrders";
 import Payment from "../component/payment/Payment";
 import PrivateRoute from "./PrivateRoutes";
+import Home from "../component/home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
       {
         path: "/login",
         element: <Login></Login>,
