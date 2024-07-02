@@ -28,7 +28,7 @@ const AddProduct = () => {
    
 
     // save product information to database
-    fetch("https://user-dashboard-server-five.vercel.app/products", {
+    fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -49,7 +49,7 @@ const AddProduct = () => {
     <div className="mt-8 mb-28">
       <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">Add Product</h2>
 
-      <form className="w-full" onSubmit={handleSubmit(handleAddProduct)}>
+      <form className="w-full border px-8 py-3 rounded-md" onSubmit={handleSubmit(handleAddProduct)}>
         <div>
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
             <div className="form-control">

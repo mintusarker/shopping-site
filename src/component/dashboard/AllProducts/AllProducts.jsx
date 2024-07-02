@@ -1,16 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import SingleProduct from "./SingleProduct";
+// import { AuthContext } from "../../../auth/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const AllProducts = () => {
-  const [products, setProducts] = useState();
+  
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      try {
+        const res = await fetch(` http://localhost:5000/products`);
+        const data = await res.json();
+        // console.log(data);
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
 
-  console.log(products);
-
-  useEffect(() => {
-    fetch("https://user-dashboard-server-five.vercel.app/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
+  if (isLoading) {
+    return <span className="loading loading-ring loading-lg"></span>;
+  }
 
   return (
     <div>
@@ -18,7 +29,7 @@ const AllProducts = () => {
         Products
       </h2>
 
-      <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-14 my-16">
+      <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-14 mt-12 mb-28">
         {products?.map((product) => (
           <SingleProduct key={product?._id} product={product}></SingleProduct>
         ))}

@@ -7,19 +7,19 @@ import Products from "./Products";
 const MyProducts = () => {
   const { user, loading } = useContext(AuthContext);
 
-  if (loading) {
-    return <span className="loading loading-ring loading-lg"></span>;
-  }
+  // if (loading) {
+  //   return <span className="loading loading-ring loading-lg"></span>;
+  // }
 
   const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/product?email=${user?.email}`
+          ` http://localhost:5000/product?email=${user?.email}`
         );
         const data = await res.json();
-        // console.log(data);
+        console.log(data);
         return data;
       } catch (error) {
         console.log(error);
@@ -33,7 +33,7 @@ const MyProducts = () => {
 
   //delete product
   const handleDeleteProduct = (id) => {
-    fetch(` https://user-dashboard-server-five.vercel.app/products/${id}`, {
+    fetch(` http://localhost:5000/products/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -56,7 +56,7 @@ const MyProducts = () => {
         My Products: {products?.length}
       </h2>
 
-      <div className="gap-5 px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 px-14 mt-16 mb-36">
         {products?.map((product) => (
           <Products
             key={product._id}

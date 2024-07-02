@@ -10,7 +10,7 @@ const UserDashboard = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `https://user-dashboard-server-five.vercel.app/bookings?email=${user?.email}`
+        `http://localhost:5000/bookings?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -23,7 +23,7 @@ const UserDashboard = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/product?email=${user?.email}`
+          ` http://localhost:5000/product?email=${user?.email}`
         );
         const data = await res.json();
         // console.log(data);
@@ -35,11 +35,11 @@ const UserDashboard = () => {
   });
 
   const { data: payments = [] } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["payments"],
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/paymentDone?email=${user?.email}`
+          ` http://localhost:5000/paymentDone?email=${user?.email}`
         );
         const data = await res.json();
         // console.log(data);
@@ -51,18 +51,34 @@ const UserDashboard = () => {
   });
 
   return (
-    <div className="grid lg:grid-cols-3 my-16 md:grid-cols-3 grid-cols-1 gap-10">
-      <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl bg">
-        <p>My Products</p>
-        <p>Total: {products?.length} </p>
+    <div className="px-16">
+      <div className="my-12 border border-b-4 border-orange-400 w-auto rounded-md p-6 text-xl  ">
+        <p className="my-3">
+          Your Name:{" "}
+          <span className="text-white bg-slate-500 px-2 rounded-md">
+            {user?.displayName ? user?.displayName : user?.name}
+          </span>
+        </p>
+        <p>
+          Your Email:{" "}
+          <span className="text-white bg-slate-500 px-2 rounded-md">
+            {user?.email}
+          </span>
+        </p>
       </div>
-      <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl bg">
-        <p>Order</p>
-        <p>Total: {bookings?.length} </p>
-      </div>
-      <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl bg">
-        <p>Payment Completed</p>
-        <p>Total: {payments?.length} </p>
+      <div className="grid lg:grid-cols-3 my-16 md:grid-cols-3 grid-cols-1 gap-10">
+        <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl">
+          <p>My Products</p>
+          <p>Total: {products?.length} </p>
+        </div>
+        <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl">
+          <p>Order</p>
+          <p>Total: {bookings?.length} </p>
+        </div>
+        <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl">
+          <p>Payment Completed</p>
+          <p>Total: {payments?.length} </p>
+        </div>
       </div>
     </div>
   );

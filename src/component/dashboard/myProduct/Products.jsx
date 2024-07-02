@@ -6,7 +6,7 @@ const Products = ({ product, handleDeleteProduct }) => {
   console.log(product);
 
   return (
-    <div className="border bg-base-100 shadow-xl">
+    <div className="border card card-compact bg-base-100 shadow-xl">
       <figure>
         <img className="h-40 w-full" src={product?.image} alt="" />
       </figure>
@@ -15,7 +15,7 @@ const Products = ({ product, handleDeleteProduct }) => {
         <p>Price: {product?.price} $</p>
         <p className="text-justify">Detail: {product?.detail}</p>
         <p className="text-justify">Quantity: {product?.quantity}</p>
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center flex-wrap gap-1">
           <button
             onClick={() => handleDeleteProduct(product?._id)}
             className="btn btn-sm btn-warning"

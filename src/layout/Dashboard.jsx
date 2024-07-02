@@ -1,6 +1,12 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { FaBuyNLarge, FaCartPlus, FaStore } from "react-icons/fa";
+import {
+  FaBuyNLarge,
+  FaCartPlus,
+  FaList,
+  FaListAlt,
+  FaStore,
+} from "react-icons/fa";
 import Navbar from "../component/share/Navbar";
 import Footer from "../component/share/Footer";
 import { FaShop } from "react-icons/fa6";
@@ -9,7 +15,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="drawer md:drawer-open lg:drawer-open">
+      <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center">
           {/* outlet */}
@@ -24,12 +30,33 @@ const Dashboard = () => {
           <ul className="menu w-auto p-8 text-center min-h-screen bg-[#ebae34] text-base-content flex items-center flex-col">
             {/* Sidebar content here */}
             <div className="text-lg my-4">
-             <li className="text-[#FFFFFF] text-xl shadow-md bg-slate-600 rounded-full shadow-white"> Dashboard</li>
-              
+              <li className="text-[#FFFFFF] text-xl shadow-md bg-slate-600 rounded-full shadow-white">
+                {" "}
+                Dashboard
+              </li>
+
               <li className="text-white mt-8 rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                   to="/dashboard/all_product"
+                  to="/dashboard/all_product"
+                >
+                  <FaListAlt></FaListAlt>
+                  All Products
+                </Link>
+              </li>
+              <li className="text-white mt-8 rounded-md">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/all_orders"
+                >
+                  <FaList></FaList>
+                  All Orders
+                </Link>
+              </li>
+              <li className="text-white mt-8 rounded-md">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/all_product"
                 >
                   <FaBuyNLarge></FaBuyNLarge>
                   Buy Product
@@ -39,7 +66,7 @@ const Dashboard = () => {
               <li className="text-center text-white my-6 rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                 to='/dashboard/my_bookings'
+                  to="/dashboard/my_bookings"
                 >
                   <FaCartPlus></FaCartPlus>
                   My Bookings
@@ -49,7 +76,7 @@ const Dashboard = () => {
               <li className="text-white rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                   to="/dashboard/my_products"
+                  to="/dashboard/my_products"
                 >
                   <FaStore></FaStore>
                   Manage Product
@@ -68,7 +95,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      {/* <Footer></Footer> */}
+      <Footer></Footer>
     </div>
   );
 };

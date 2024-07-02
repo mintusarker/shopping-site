@@ -5,25 +5,27 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../auth/AuthProvider";
 
 const MyOrders = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  if (loading) {
-    return <span className="loading loading-ring loading-lg"></span>;
-  }
-
-  const { data: bookings = [], refetch } = useQuery({
+  
+  const { data: bookings = [], refetch, isLoading } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `https://user-dashboard-server-five.vercel.app/bookings?email=${user?.email}`
+        `http://localhost:5000/bookings?email=${user?.email}`
       );
       const data = await res.json();
+      console.log(data);
       return data;
     },
   });
 
+  if (isLoading) {
+    return <span className="loading loading-ring loading-lg"></span>;
+  }
+
   const handleRemove = (id) => {
-    fetch(`https://user-dashboard-server-five.vercel.app/bookings/${id}`, {
+    fetch(`http://localhost:5000/bookings/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -51,7 +53,9 @@ const MyOrders = () => {
               <th></th>
               <th>Image</th>
               <th>Name</th>
-              <th>Price</th>
+              <th>Mobile Number</th>
+              <th>quantity</th>
+              <th>Total</th>
               <th>Payment</th>
               <th>Action</th>
             </tr>
@@ -69,6 +73,8 @@ const MyOrders = () => {
                     </div>
                   </th>
                   <td>{booking?.name}</td>
+                  <td>{booking?.phone}</td>
+                  <td>quantity: {booking?.quantity}</td>
                   <td>Tk. {booking?.price}</td>
                   <td>
                     {booking?.price && !booking.paid && (
