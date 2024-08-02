@@ -44,21 +44,21 @@ const Shopping = () => {
 
   if (isLoading) {
     return (
-      <div className="flex flex-col items-center justify-center mt-16">
+      <div className="flex items-center justify-center min-h-screen">
         <span className="loading loading-ring loading-lg"></span>
       </div>
     );
   }
 
   return (
-    <div>
-      <h2 className="text-2xl my-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
+    <div className="mt-24">
+      {/* <h2 className="text-2xl my-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
         Products
-      </h2>
+      </h2> */}
       <div className="flex justify-center">
         <input
           onChange={handleSearch}
-          className="border border-slate-400 outline-none rounded-full w-60 text-start px-3 py-1"
+          className="border border-slate-400 outline-none rounded-md w-60 text-start px-3 py-1"
           placeholder="search product"
           type="text"
         />

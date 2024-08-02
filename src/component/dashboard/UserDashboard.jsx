@@ -51,35 +51,33 @@ const UserDashboard = () => {
   });
 
   return (
-    <div className="px-16">
-      <div className="my-12 border border-b-4 border-orange-400 w-auto rounded-md p-6 text-xl  ">
-        <p className="my-3">
-          Your Name:{" "}
-          <span className="text-white bg-slate-500 px-2 rounded-md">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-7">
+      <div className="border border-b-4 border-orange-400 w-auto rounded-md text-lg p-4">
+        <p className="">
+          Name:
+          <span className="text-white text-sm bg-black mx-1 px-2 pb-1 rounded-sm">
             {user?.displayName ? user?.displayName : user?.name}
           </span>
         </p>
         <p>
-          Your Email:{" "}
-          <span className="text-white bg-slate-500 px-2 rounded-md">
+          Email:
+          <span className="text-white text-sm bg-black mx-1 px-2 pb-1 rounded-sm">
             {user?.email}
           </span>
         </p>
       </div>
-      <div className="grid lg:grid-cols-3 my-16 md:grid-cols-3 grid-cols-1 gap-10">
-        <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl">
+        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>My Products</p>
           <p>Total: {products?.length} </p>
         </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl">
+        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>Order</p>
           <p>Total: {bookings?.length} </p>
         </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md p-6 text-2xl">
+        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>Payment Completed</p>
           <p>Total: {payments?.length} </p>
         </div>
-      </div>
     </div>
   );
 };

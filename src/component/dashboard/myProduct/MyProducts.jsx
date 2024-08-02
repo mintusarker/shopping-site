@@ -52,7 +52,7 @@ const MyProducts = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl my-8 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
+      <h2 className="text-lg mb-8 border-b-4 border border-green-900 text-center w-auto mx-auto rounded-lg">
         My Products: {products?.length}
       </h2>
 

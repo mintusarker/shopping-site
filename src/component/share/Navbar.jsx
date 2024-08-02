@@ -43,11 +43,15 @@ const Navbar = () => {
       {user?.uid ? (
         <li>
           {profile ? (
-            <button onClick={() => modalHandler()} className="btn btn-sm">
+            <button onClick={() => modalHandler()} className="rounded">
               Profile
             </button>
           ) : !profile ? (
-            <button onClick={() => modalHandlerOff()} className="btn btn-sm">
+            <button
+              onClick={() => modalHandlerOff()}
+              onBlur={() => modalHandlerOff()}
+              className="rounded"
+            >
               Profile
             </button>
           ) : (
@@ -63,11 +67,14 @@ const Navbar = () => {
   );
 
   return (
-    <div>
-      <div className="navbar relative lg:px-10 md:px-6 mx-auto bg-gradient-to-t to-gray-600 from-blue-900 text-white justify-between">
+    <div className="fixed w-full z-50 top-0">
+      <div className="navbar opacity-90 text-opacity-90 relative lg:px-5 md:px-6 mx-auto bg-gradient-to-t to-slate-500 from-slate-600 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost md:hidden lg:hidden">
+            <label
+              tabIndex={0}
+              className="btn btn-ghost md:hidden lg:hidden sm:hidden"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -85,22 +92,22 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content z-10 mt-3 p-2 shadow bg-black rounded-box w-52 capitalize"
+              className="menu menu-sm dropdown-content z-10 mt-3 p-2 shadow bg-slate-600 rounded capitalize font-thin"
             >
               {menuItems}
             </ul>
           </div>
-          <p className="font-semibold text-xl">Fashion Corner</p>
+          <p className="text-2xl font-thin">Fashion Corner</p>
         </div>
-        <div className="navbar-center hidden md:flex lg:flex">
-          <ul className="menu menu-horizontal px-1 font-semibold text-base capitalize items-center">
+        <div className="navbar-center hidden sm:flex md:flex lg:flex">
+          <ul className="menu menu-horizontal px-1 font-thin text-base capitalize items-center">
             {menuItems}
           </ul>
         </div>
         <label
           htmlFor="my-drawer-2"
           tabIndex={0}
-          className="btn btn-ghost lg:hidden"
+          className="btn btn-ghost lg:hidden md:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
