@@ -73,11 +73,11 @@ const Login = () => {
   };
 
   return (
-    <div className="hero w-full my-11">
+    <div className="hero w-full my-11 mx-auto">
       <div className="hero-content flex-col">
-        <div className="card flex-shrink-0 w-full shadow-2xl py-11">
-          <h1 className="text-5xl text-center text-blue-500 font-semibold">
-            Login
+        <div className="card rounded-none py-8 shadow-2xl shadow-black">
+          <h1 className="text-2xl text-center text-blue-500 font-semibold">
+            Log in
           </h1>
           <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
@@ -89,7 +89,7 @@ const Login = () => {
                 type="text"
                 name="email"
                 placeholder="email"
-                className="input input-bordered w-96"
+                className="input input-bordered w-72 focus:outline-none"
               />
             </div>
             <div className="form-control">
@@ -100,31 +100,30 @@ const Login = () => {
                 type="password"
                 name="password"
                 placeholder="password"
-                className=" w-96 input input-bordered"
+                className="input input-bordered w-72 focus:outline-none"
               />
-              <label className="label">
-                <a
-                  href="#"
-                  onClick={handleResetPassword}
-                  className="label link link-hover"
-                >
-                  Forgot password?
-                </a>
-              </label>
+              <a
+                href="#"
+                onClick={handleResetPassword}
+                className="label link link-hover text-sm"
+              >
+                Forgot password?
+              </a>
+
             </div>
-            <div className="form-control mt-2">
+            <div className="form-control">
               <input
-                className="btn btn-accent text-lg  w-96"
+                className="btn btn-accent text-balance uppercase w-72"
                 type="submit"
-                value="Login"
+                value="Log in"
               />
               {loginError && <p className="text-red-600">{loginError}</p>}
             </div>
           </form>
           <p className="text-center">
             New to Here ! Please
-            <Link className="text-secondary font-bold ml-2" to="/sign_up">
-              Sign Up
+            <Link className="text-red-800 font-semibold up ml-2 link link-hover" to="/sign_up">
+              sign up
             </Link>
           </p>
         </div>

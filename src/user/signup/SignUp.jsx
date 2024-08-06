@@ -77,8 +77,8 @@ const SignUp = () => {
   return (
     <div className="h-[800px] flex justify-center items-center">
       <div className="w-96 p-7 shadow-2xl shadow-black">
-        <h1 className="text-5xl text-center text-blue-500 font-semibold">
-          Sign Up
+        <h1 className="text-xl text-center text-blue-500 font-semibold">
+          Create New Account
         </h1>
 
         <form onSubmit={handleSubmit(handleSignUp)}>
@@ -88,7 +88,7 @@ const SignUp = () => {
             </label>
             <input
               type="text"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs focus:outline-none"
               {...register("name", {
                 required: "Name is required",
               })}
@@ -104,7 +104,7 @@ const SignUp = () => {
             </label>
             <input
               type="email"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs focus:outline-none"
               {...register("email", {
                 required: "Email is required",
               })}
@@ -120,7 +120,7 @@ const SignUp = () => {
             </label>
             <input
               type="password"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs focus:outline-none"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -136,15 +136,15 @@ const SignUp = () => {
 
           <input
             className="btn btn-accent text-base my-3 w-full max-w-xs"
-            value="Sign Up"
+            value="Sign up"
             type="submit"
           />
           {signUpError && <p className="text-red-600">{signUpError}</p>}
         </form>
         <p>
           Already have an account ! Please
-          <Link to="/login" className="text-secondary font-bold ml-2">
-            Login
+          <Link to="/login" className="text-red-800 link link-hover font-bold ml-2">
+            Log in
           </Link>
         </p>
         <div className="divider">OR</div>

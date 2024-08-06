@@ -1,12 +1,15 @@
 import React from 'react';
+import Banner from './Banner';
+import TopSellingItems from './TopSellingItems';
+import Carosel from './Carosel';
 
 const Home = () => {
     return (
-        <div className='flex justify-center items-center my-24 px-4 text-3xl font-semibold text-green-800'>
-            <div>
-            <p>Please click dashboard button in navbar for seeing User Dashboard</p>
-            </div>
-        </div>
+       <div>
+        <Banner></Banner>
+        <TopSellingItems></TopSellingItems>
+        <Carosel></Carosel>
+       </div>
     );
 };
 

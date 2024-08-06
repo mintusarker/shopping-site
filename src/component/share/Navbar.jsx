@@ -47,11 +47,7 @@ const Navbar = () => {
               Profile
             </button>
           ) : !profile ? (
-            <button
-              onClick={() => modalHandlerOff()}
-              onBlur={() => modalHandlerOff()}
-              className="rounded"
-            >
+            <button onClick={() => modalHandlerOff()} className="rounded">
               Profile
             </button>
           ) : (
@@ -67,7 +63,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed w-full z-50 top-0">
+    <div className="w-full z-50">
       <div className="navbar opacity-90 text-opacity-90 relative lg:px-5 md:px-6 mx-auto bg-gradient-to-t to-slate-500 from-slate-600 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
