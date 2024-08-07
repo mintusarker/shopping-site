@@ -3,32 +3,58 @@ import pic1 from "../../assets/bpic1.png";
 import pic2 from "../../assets/bpic2.png";
 import pic3 from "../../assets/bpic3.png";
 import pic4 from "../../assets/bpic4.png";
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa";
+import { RxDotFilled } from "react-icons/rx";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 const Banner = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const [curr, setCurr] = useState(0);
   const slides = [pic1, pic2, pic4, pic3];
+  
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
 
-  const prev = () =>
-    setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
-  const next = () =>
-    setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1))
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === slides.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToSlide = (slideIndex) => {
+    setCurrentIndex(slideIndex);
+  };
 
   return (
-    <div className="relative">
-    
-
-      <div className="flex justify-between relative top-[270px]">
-        <button onClick={prev} className="text-white z-50 btn btn-info">
-          <FaAngleLeft></FaAngleLeft>
-        </button>
-        <button onClick={next} className="text-white z-50">
-          <FaAngleRight></FaAngleRight>
-        </button>
+    <div className='h-[630px] w-full m-auto relative group'>
+      <div
+        style={{ backgroundImage: `url(${slides[currentIndex]})` }}
+        className='w-full h-full bg-center bg-cover duration-500'
+      ></div>
+      {/* Left Arrow */}
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-1 bg-black/20 text-white cursor-pointer'>
+        <BsChevronCompactLeft onClick={prevSlide} size={30} />
+      </div>
+      {/* Right Arrow */}
+      <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-1 bg-black/20 text-white cursor-pointer'>
+        <BsChevronCompactRight onClick={nextSlide} size={30} />
+      </div>
+      <div className='flex top-4 justify-center'>
+        {slides.map((slide, slideIndex) => (
+          <div
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+            className='text-2xl text-slate-400 cursor-pointer'
+          >
+            <RxDotFilled />
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default Banner;
+
