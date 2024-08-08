@@ -75,20 +75,21 @@ const SignUp = () => {
   };
 
   return (
-    <div className="h-[800px] flex justify-center items-center">
-      <div className="w-96 p-7 shadow-2xl shadow-black">
-        <h1 className="text-xl text-center text-blue-500 font-semibold">
+    <div className="h-auto mt-12 flex justify-center items-center">
+      <div className="w-96 p-6 mx-auto shadow-2xl shadow-black">
+        <h1 className="text-xl text-center text-black font-semibold">
           Create New Account
         </h1>
 
         <form onSubmit={handleSubmit(handleSignUp)}>
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Name</span>
             </label>
             <input
               type="text"
-              className="input input-bordered w-full max-w-xs focus:outline-none"
+               placeholder="Name"
+              className="input border-stone-300 rounded-sm w-full focus:outline-none"
               {...register("name", {
                 required: "Name is required",
               })}
@@ -98,13 +99,14 @@ const SignUp = () => {
             )}
           </div>
 
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Email</span>
             </label>
             <input
               type="email"
-              className="input input-bordered w-full max-w-xs focus:outline-none"
+              placeholder="Email"
+              className="input border-stone-300 rounded-sm w-full focus:outline-none"
               {...register("email", {
                 required: "Email is required",
               })}
@@ -114,13 +116,14 @@ const SignUp = () => {
             )}
           </div>
 
-          <div className="form-control w-full max-w-xs">
+          <div className="form-control w-full">
             <label className="label">
               <span className="label-text">Password</span>
             </label>
             <input
               type="password"
-              className="input input-bordered w-full max-w-xs focus:outline-none"
+               placeholder="Password"
+              className="input border-stone-300 rounded-sm w-full focus:outline-none"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -135,7 +138,7 @@ const SignUp = () => {
           </div>
 
           <input
-            className="btn btn-accent text-base my-3 w-full max-w-xs"
+            className="btn btn-neutral rounded-sm uppercase text-base my-3 w-full"
             value="Sign up"
             type="submit"
           />
@@ -150,7 +153,7 @@ const SignUp = () => {
         <div className="divider">OR</div>
         <button
           onClick={handleGoogleSignIn}
-          className="btn btn-outline w-full max-w-xs"
+          className="btn btn-outline w-full rounded-sm"
         >
           CONTINUE WITH GOOGLE
         </button>

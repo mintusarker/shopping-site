@@ -64,7 +64,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full z-50">
-      <div className="navbar opacity-90 text-opacity-90 relative lg:px-5 md:px-6 mx-auto bg-gradient-to-t to-slate-500 from-slate-600 text-white justify-between">
+      <div className="navbar opacity-90 text-opacity-90 relative lg:px-5 md:px-6 mx-auto bg-gradient-to-t to-slate-800 from-black text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label

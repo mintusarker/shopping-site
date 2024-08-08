@@ -76,7 +76,7 @@ const Login = () => {
     <div className="hero w-full my-11 mx-auto">
       <div className="hero-content flex-col">
         <div className="card rounded-none py-8 shadow-2xl shadow-black">
-          <h1 className="text-2xl text-center text-blue-500 font-semibold">
+          <h1 className="text-2xl text-center text-black font-semibold">
             Log in
           </h1>
           <form onSubmit={handleLogin} className="card-body">
@@ -89,38 +89,40 @@ const Login = () => {
                 type="text"
                 name="email"
                 placeholder="email"
-                className="input input-bordered w-72 focus:outline-none"
+                className="input border border-stone-300 rounded-sm w-72 focus:outline-none"
               />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
+              <div className="flex border border-stone-300 w-72 rounded-sm">
               <input
                 type="password"
                 name="password"
                 placeholder="password"
-                className="input input-bordered w-72 focus:outline-none"
+                className="input border-none focus:outline-none"
               />
               <a
                 href="#"
                 onClick={handleResetPassword}
-                className="label link link-hover text-sm"
+                className="label link link-hover text-sm opacity-85"
               >
-                Forgot password?
+                Forgot?
               </a>
+              </div>
 
             </div>
-            <div className="form-control">
+            <div className="form-control mt-2">
               <input
-                className="btn btn-accent text-balance uppercase w-72"
+                className="btn btn-neutral text-balance rounded-sm uppercase w-72"
                 type="submit"
                 value="Log in"
               />
               {loginError && <p className="text-red-600">{loginError}</p>}
             </div>
           </form>
-          <p className="text-center">
+          <p className="text-center -mt-5">
             New to Here ! Please
             <Link className="text-red-800 font-semibold up ml-2 link link-hover" to="/sign_up">
               sign up
