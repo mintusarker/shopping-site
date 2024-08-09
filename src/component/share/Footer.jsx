@@ -2,9 +2,9 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div>
-      <p className="bg-slate-800 text-white text-center pt-9 pb-6 text-3xl font-serif">Fashion</p>
+      
       <div className="absolute bottom-0 left-0 h-0 right-0">
+        <p className="bg-slate-800 text-white text-center pt-9 pb-6 text-3xl font-serif">Fashion</p>
       <footer className=" footer justify-around py-8 bg-gradient-to-t to-slate-800 from-black text-white">
         <nav>
           <h6 className="footer-title">Services</h6>
@@ -25,7 +25,6 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
         </nav>
       </footer>
-    </div>
     </div>
   );
 };

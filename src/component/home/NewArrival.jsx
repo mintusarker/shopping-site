@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const TopSellingItems = () => {
-  return (
-    <div className="mt-16 px-20">
+const NewArrival = () => {
+    return (
+        <div className="my-16 px-20">
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
-        Top Selling Items
+        New Arrival Items
       </h2>
       <div className="grid gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
 
@@ -45,7 +45,7 @@ const TopSellingItems = () => {
         </div>
       </div>
     </div>
-  );
+    );
 };
 
-export default TopSellingItems;
+export default NewArrival;
