@@ -6,6 +6,7 @@ import {
   FaCartPlus,
   FaListAlt,
   FaStore,
+  FaUser,
 } from "react-icons/fa";
 import Navbar from "../component/share/Navbar";
 import Footer from "../component/share/Footer";
@@ -114,6 +115,16 @@ const Dashboard = () => {
                 >
                   <FaShop></FaShop>
                   Add Product
+                </Link>
+              </li>
+
+              <li className="text-white text-base mt-1 rounded-md">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/users"
+                >
+                  <FaUser></FaUser>
+                  All Users
                 </Link>
               </li>
 

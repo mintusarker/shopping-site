@@ -15,6 +15,7 @@ import Login from "../user/login/Login";
 import SignUp from "../user/signup/SignUp";
 import MyOrders from "../component/Booking/MyOrder/MyOrders";
 import AllOrders from "../component/dashboard/AllOrders/AllOrders";
+import AllUsers from "../component/dashboard/AllUsers/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -37,11 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <Login></Login>,
       },
       {
         path: "/sign_up",
-        element: <SignUp></SignUp>
+        element: <SignUp></SignUp>,
       },
     ],
   },
@@ -71,11 +72,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/my_bookings",
-        element: <MyOrders></MyOrders>
+        element: <MyOrders></MyOrders>,
       },
       {
         path: "/dashboard/all_orders",
-        element: <AllOrders></AllOrders>
+        element: <AllOrders></AllOrders>,
       },
       {
         path: "/dashboard/update-product/:id",
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
         element: <Payment></Payment>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookings/${params.id}`),
+      },
+      {
+        path: "/dashboard/users",
+        element: <AllUsers></AllUsers>,
       },
     ],
   },
