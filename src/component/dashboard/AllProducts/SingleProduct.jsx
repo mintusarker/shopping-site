@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const SingleProduct = ({ product }) => {
   return (
-    <div className="card card-compact bg-base-100 shadow-xl">
+    <div className="card card-compact rounded-sm bg-base-100 shadow-xl">
       <figure>
         <img className="w-full h-40" src={product?.image} alt="Shoes" />
       </figure>
@@ -27,19 +27,19 @@ const SingleProduct = ({ product }) => {
 
           {
             product?.quantity >= 1 && <>
-             <p className="bg-green-800 text-white px-2 py-1 rounded inline">In Stock</p>
+             <p className="bg-green-800 text-white px-2 py-1 rounded-sm inline">In Stock</p>
             </>
           }
 
           {product?.quantity == 0 && (
             <>
-              <p className="text-white bg-rose-500 inline py-1 px-2 rounded"> Out of Stock</p>
+              <p className="text-white bg-rose-500 inline py-1 px-2 rounded-sm"> Out of Stock</p>
             </>
           )}
         </p>
         <div className="card-actions justify-end">
           <Link to={`/booking_product/${product?._id}`}>
-            <button className="btn btn-sm btn-outline">Buy</button>
+            <button className="btn btn-sm rounded-sm btn-outline">Buy</button>
           </Link>
         </div>
       </div>

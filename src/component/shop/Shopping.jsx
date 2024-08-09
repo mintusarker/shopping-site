@@ -51,10 +51,7 @@ const Shopping = () => {
   }
 
   return (
-    <div className="mt-24">
-      {/* <h2 className="text-2xl my-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
-        Products
-      </h2> */}
+    <div className="my-7">
       <div className="flex justify-center">
         <input
           onChange={handleSearch}
@@ -63,7 +60,7 @@ const Shopping = () => {
           type="text"
         />
       </div>
-      <div className="grid gap-6 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-14 mt-12 pb-24">
+      <div className="grid gap-6 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-16 mt-7 pb-24">
         {products?.map((product) => (
           <SingleProduct key={product?._id} product={product}></SingleProduct>
         ))}

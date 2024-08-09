@@ -30,12 +30,18 @@ const SignUp = () => {
         toast.success("User created successfully");
         const userInfo = {
           displayName: data.name,
-          options: data.option,
         };
+
+        console.log(userInfo);
+
         updateUser(userInfo)
           .then(() => {
             const email = data.email;
             console.log(email);
+
+            //save user to database
+            saveUser(data.name, data.email);
+
             token(email);
             navigate(from, { replace: true });
           })
@@ -51,11 +57,31 @@ const SignUp = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        console.log(user);
         const email = user.email;
+        const name = user.displayName;
+
+        //save user to database
+        saveUser(name, email);
+
         token(email);
         navigate(from, { replace: true });
       })
       .catch((error) => console.error(error));
+  };
+
+  //save user function
+  const saveUser = (name, email) => {
+    const user = { name, email };
+    fetch("http://localhost:5000/users", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   //jwt token
@@ -88,7 +114,7 @@ const SignUp = () => {
             </label>
             <input
               type="text"
-               placeholder="Name"
+              placeholder="Name"
               className="input border-stone-300 rounded-sm w-full focus:outline-none"
               {...register("name", {
                 required: "Name is required",
@@ -122,7 +148,7 @@ const SignUp = () => {
             </label>
             <input
               type="password"
-               placeholder="Password"
+              placeholder="Password"
               className="input border-stone-300 rounded-sm w-full focus:outline-none"
               {...register("password", {
                 required: "Password is required",
@@ -146,7 +172,10 @@ const SignUp = () => {
         </form>
         <p>
           Already have an account ! Please
-          <Link to="/login" className="text-red-800 link link-hover font-bold ml-2">
+          <Link
+            to="/login"
+            className="text-red-800 link link-hover font-bold ml-2"
+          >
             Log in
           </Link>
         </p>

@@ -34,6 +34,8 @@ const Dashboard = () => {
           <ul className="menu w-auto p-8 min-h-screen bg-[#dbab4d] text-base-content flex items-center flex-col">
             {/* Sidebar content here */}
             <div className="text-lg my-4">
+
+              
               <div className="lg:mt-0 md:mt-0 mt-14">
                 {user?.email ? (
                   <p className="text-[#FFFFFF] uppercase text-sm font-semibold text-center shadow-md opacity-70 rounded-full shadow-white">
