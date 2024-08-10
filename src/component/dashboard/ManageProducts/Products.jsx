@@ -5,6 +5,36 @@ import { Link } from "react-router-dom";
 const Products = ({ product, handleDeleteProduct }) => {
   console.log(product);
 
+  const newArrivalHandler = (product) => {
+    fetch("http://localhost:5000/new-arrival", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Product add to new arrival successfully");
+      });
+  };
+
+  const topSellinglHandler = (product) => {
+    fetch("http://localhost:5000/top-selling", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Product add to top selling successfully");
+      });
+  };
+
   return (
     <div className="border rounded-sm card card-compact bg-base-100 shadow-xl">
       <figure>
@@ -27,10 +57,13 @@ const Products = ({ product, handleDeleteProduct }) => {
             <button className="btn btn-sm rounded-sm btn-error">Update</button>
           </Link>
 
-          <button className="btn btn-sm rounded-sm btn-success">
+          <button onClick={()=> topSellinglHandler(product)} className="btn btn-sm rounded-sm btn-success">
             Add to Top sell
           </button>
-          <button className="btn btn-sm rounded-sm btn-info">
+          <button
+            onClick={() => newArrivalHandler(product)}
+            className="btn btn-sm rounded-sm btn-info"
+          >
             Add to New Arrival
           </button>
         </div>
