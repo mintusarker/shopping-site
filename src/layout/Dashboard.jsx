@@ -35,8 +35,6 @@ const Dashboard = () => {
           <ul className="menu w-auto p-8 min-h-screen bg-[#dbab4d] text-base-content flex items-center flex-col">
             {/* Sidebar content here */}
             <div className="text-lg my-4">
-
-              
               <div className="lg:mt-0 md:mt-0 mt-14">
                 {user?.email ? (
                   <p className="text-[#FFFFFF] uppercase text-sm font-semibold text-center shadow-md opacity-70 rounded-full shadow-white">
@@ -65,6 +63,27 @@ const Dashboard = () => {
                 </Link>
               </li>
 
+              <li className="rounded-md text-base text-white">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/all_orders"
+                >
+                  <FaListAlt></FaListAlt>
+                  All Orders
+                </Link>
+              </li>
+              <li className="rounded-md text-base text-white">
+                <Link className="flex items-center gap-2" to="">
+                  <FaListAlt></FaListAlt>
+                  Top Selling Products
+                </Link>
+              </li>
+              <li className="rounded-md text-base text-white">
+                <Link className="flex items-center gap-2" to="">
+                  <FaListAlt></FaListAlt>
+                  New Arrival Products
+                </Link>
+              </li>
 
               <li className="text-white text-base mt-1 rounded-md">
                 <Link
@@ -99,8 +118,6 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-             
-
               <li className="text-white text-base mt-1 rounded-md">
                 <Link
                   className="flex items-center gap-2"
@@ -112,10 +129,7 @@ const Dashboard = () => {
               </li>
 
               <li className="text-white text-base mt-1 rounded-md">
-                <Link
-                  className="flex items-center gap-2"
-                  to="/dashboard/users"
-                >
+                <Link className="flex items-center gap-2" to="/dashboard/users">
                   <FaUser></FaUser>
                   All Users
                 </Link>

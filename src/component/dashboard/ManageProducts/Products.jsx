@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const Products = ({ product, handleDeleteProduct }) => {
   console.log(product);
 
+  //add new arrival products handler
   const newArrivalHandler = (product) => {
     fetch("http://localhost:5000/new-arrival", {
       method: "POST",
@@ -20,6 +21,7 @@ const Products = ({ product, handleDeleteProduct }) => {
       });
   };
 
+   //add top selling products handler
   const topSellinglHandler = (product) => {
     fetch("http://localhost:5000/top-selling", {
       method: "POST",
