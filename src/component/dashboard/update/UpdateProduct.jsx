@@ -39,7 +39,7 @@ const UpdateProduct = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           toast.success("product updated");
-          navigate("/dashboard/my_products");
+          navigate("/dashboard/manage_products");
           console.log(data);
         }
       });
@@ -82,7 +82,7 @@ const UpdateProduct = () => {
         <label htmlFor="">Product's Detail</label>
         <textarea
           type="text"
-          className="border border-stone-500 w-full h-24 p-2"
+          className="border border-stone-500 w-full h-24 p-2 mb-4"
           name="detail"
           defaultValue={data[0]?.detail}
         />
@@ -98,7 +98,7 @@ const UpdateProduct = () => {
         />
 
         <br />
-        <button className="btn btn-success">Update</button>
+        <button className="btn rounded-sm btn-success">Update Product</button>
       </form>
     </div>
   );

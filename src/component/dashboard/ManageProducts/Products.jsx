@@ -6,7 +6,7 @@ const Products = ({ product, handleDeleteProduct }) => {
   console.log(product);
 
   return (
-    <div className="border card card-compact bg-base-100 shadow-xl">
+    <div className="border rounded-sm card card-compact bg-base-100 shadow-xl">
       <figure>
         <img className="h-40 w-full" src={product?.image} alt="" />
       </figure>
@@ -15,21 +15,27 @@ const Products = ({ product, handleDeleteProduct }) => {
         <p>Price: {product?.price} $</p>
         <p className="text-justify">Detail: {product?.detail}</p>
         <p className="text-justify">Quantity: {product?.quantity}</p>
-        <div className="flex justify-between items-center flex-wrap gap-1">
+        <div className="flex items-center flex-wrap gap-3">
           <button
             onClick={() => handleDeleteProduct(product?._id)}
-            className="btn btn-sm btn-warning"
+            className="btn btn-sm rounded-sm btn-warning"
           >
             Delete
           </button>
+
           <Link to={`/dashboard/update-product/${product?._id}`}>
-            <button className="btn btn-sm btn-error">Update</button>
+            <button className="btn btn-sm rounded-sm btn-error">Update</button>
           </Link>
+
+          <button className="btn btn-sm rounded-sm btn-success">
+            Add to Top sell
+          </button>
+          <button className="btn btn-sm rounded-sm btn-info">
+            Add to New Arrival
+          </button>
         </div>
       </div>
     </div>
-
-   
   );
 };
 

@@ -61,17 +61,18 @@ const Dashboard = () => {
                   to="/dashboard/all_product"
                 >
                   <FaListAlt></FaListAlt>
-                  All Products
+                  Buy Products
                 </Link>
               </li>
+
 
               <li className="text-white text-base mt-1 rounded-md">
                 <Link
                   className="flex items-center gap-2"
-                  to="/dashboard/all_product"
+                  to="/dashboard/manage_products"
                 >
-                  <FaBuyNLarge></FaBuyNLarge>
-                  Buy Product
+                  <FaStore></FaStore>
+                  Manage Product
                 </Link>
               </li>
 
@@ -98,15 +99,7 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-              <li className="text-white text-base mt-1 rounded-md">
-                <Link
-                  className="flex items-center gap-2"
-                  to="/dashboard/my_products"
-                >
-                  <FaStore></FaStore>
-                  Manage Product
-                </Link>
-              </li>
+             
 
               <li className="text-white text-base mt-1 rounded-md">
                 <Link

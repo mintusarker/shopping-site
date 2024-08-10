@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import SingleProduct from "../dashboard/AllProducts/SingleProduct";
+import SingleProduct from "../dashboard/BuyProducts/SingleProduct";
 
 const Shopping = () => {
   const [products, setProducts] = useState();
 
-  const { data , isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
@@ -24,23 +24,22 @@ const Shopping = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     const key = e.target.value;
-   if(key){
-    fetch(`http://localhost:5000/search/${key}`)
-    .then((res) => res.json())
-    .then((data) => {
-      setProducts(data);
-      console.log(data);
-    }) 
-  }
-  else{
-    fetch(` http://localhost:5000/products`)
-    .then((res) => res.json())
-    .then((data) => {
-      setProducts(data);
-      console.log(data);
-  }
- )}
-};
+    if (key) {
+      fetch(`http://localhost:5000/search/${key}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data);
+          console.log(data);
+        });
+    } else {
+      fetch(` http://localhost:5000/products`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(data);
+          console.log(data);
+        });
+    }
+  };
 
   if (isLoading) {
     return (

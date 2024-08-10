@@ -1,6 +1,5 @@
 import React from "react";
 import SingleProduct from "./SingleProduct";
-// import { AuthContext } from "../../../auth/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 
 const AllProducts = () => {

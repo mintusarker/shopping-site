@@ -3,9 +3,8 @@ import Dashboard from "../layout/Dashboard";
 import UserDashboard from "../component/dashboard/UserDashboard";
 import Main from "../layout/Main";
 import AddProduct from "../component/dashboard/AddProduct";
-import MyProducts from "../component/dashboard/myProduct/MyProducts";
 import UpdateProduct from "../component/dashboard/update/UpdateProduct";
-import AllProducts from "../component/dashboard/AllProducts/AllProducts";
+import AllProducts from "../component/dashboard/BuyProducts/AllProducts";
 import BookingPage from "../component/Booking/BookingPage";
 import Payment from "../component/payment/Payment";
 import PrivateRoute from "./PrivateRoutes";
@@ -16,6 +15,7 @@ import SignUp from "../user/signup/SignUp";
 import MyOrders from "../component/Booking/MyOrder/MyOrders";
 import AllOrders from "../component/dashboard/AllOrders/AllOrders";
 import AllUsers from "../component/dashboard/AllUsers/AllUsers";
+import StoreProducts from "../component/dashboard/ManageProducts/StoreProducts";
 
 const router = createBrowserRouter([
   {
@@ -63,8 +63,8 @@ const router = createBrowserRouter([
         element: <AddProduct></AddProduct>,
       },
       {
-        path: "/dashboard/my_products",
-        element: <MyProducts></MyProducts>,
+        path: "/dashboard/manage_products",
+        element: <StoreProducts></StoreProducts>
       },
       {
         path: "/dashboard/all_product",

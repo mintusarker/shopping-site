@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../../auth/AuthProvider";
 import Products from "./Products";
 
-const MyProducts = () => {
+const StoreProducts = () => {
   const { user, loading } = useContext(AuthContext);
 
   // if (loading) {
@@ -16,7 +16,7 @@ const MyProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` http://localhost:5000/product?email=${user?.email}`
+          ` http://localhost:5000/products`
         );
         const data = await res.json();
         console.log(data);
@@ -52,11 +52,11 @@ const MyProducts = () => {
 
   return (
     <div className="">
-      <h2 className="text-lg mb-8 border-b-4 border border-green-900 text-center w-auto mx-auto rounded-lg">
-        My Products: {products?.length}
+      <h2 className="text-2xl mt-6 border-b-4 border border-green-900 text-center w-48 rounded-lg">
+      Total Products: {products?.length}
       </h2>
 
-      <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-3 grid-cols-2 px-14 mt-16 mb-36">
+      <div className="grid gap-6 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 mt-16 mb-36">
         {products?.map((product) => (
           <Products
             key={product._id}
@@ -69,4 +69,4 @@ const MyProducts = () => {
   );
 };
 
-export default MyProducts;
+export default StoreProducts;
