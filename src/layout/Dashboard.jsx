@@ -73,13 +73,13 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li className="rounded-md text-base text-white">
-                <Link className="flex items-center gap-2" to="">
+                <Link className="flex items-center gap-2" to="top_selling">
                   <FaListAlt></FaListAlt>
                   Top Selling Products
                 </Link>
               </li>
               <li className="rounded-md text-base text-white">
-                <Link className="flex items-center gap-2" to="">
+                <Link className="flex items-center gap-2" to="/dashboard/new_arrival">
                   <FaListAlt></FaListAlt>
                   New Arrival Products
                 </Link>

@@ -12,7 +12,7 @@ const MyOrders = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings?email=${user?.email}`
+        `http://localhost:5000/bookings/email?email=${user?.email}`
       );
       const data = await res.json();
       console.log(data);

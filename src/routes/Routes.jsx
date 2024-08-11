@@ -16,6 +16,8 @@ import MyOrders from "../component/Booking/MyOrder/MyOrders";
 import AllOrders from "../component/dashboard/AllOrders/AllOrders";
 import AllUsers from "../component/dashboard/AllUsers/AllUsers";
 import StoreProducts from "../component/dashboard/ManageProducts/StoreProducts";
+import NewArrivalProductsList from "../component/dashboard/NewArrivalList/NewArrivalProductsList";
+import TopSellingProductsList from "../component/dashboard/TopSellingList/TopSellingProductsList";
 
 const router = createBrowserRouter([
   {
@@ -64,11 +66,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/manage_products",
-        element: <StoreProducts></StoreProducts>
+        element: <StoreProducts></StoreProducts>,
       },
       {
         path: "/dashboard/all_product",
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: "/dashboard/new_arrival",
+        element: <NewArrivalProductsList></NewArrivalProductsList>,
+      },
+      {
+        path: "/dashboard/top_selling",
+        element: <TopSellingProductsList></TopSellingProductsList>,
       },
       {
         path: "/dashboard/my_bookings",
