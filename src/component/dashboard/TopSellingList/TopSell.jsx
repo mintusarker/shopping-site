@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewProduct = ({ product, newArrivalDelete }) => {
+const TopSell = ({ product}) => {
   console.log(product);
   return (
     <div className="border rounded-sm card card-compact bg-base-100 shadow-xl">
@@ -14,7 +14,7 @@ const NewProduct = ({ product, newArrivalDelete }) => {
         <p className="text-justify">Quantity: {product?.quantity}</p>
         <div className="flex items-center flex-wrap gap-3">
           <button
-            onClick={() => newArrivalDelete(product?._id)}
+            // onClick={() => newArrivalDelete(product?._id)}
             className="btn btn-sm rounded-sm btn-warning"
           >
             Remove
@@ -25,4 +25,4 @@ const NewProduct = ({ product, newArrivalDelete }) => {
   );
 };
 
-export default NewProduct;
+export default TopSell;
