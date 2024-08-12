@@ -11,9 +11,8 @@ const TopSellingProductsList = () => {
       .then((data) => setTopSell(data));
   }, []);
 
-  const handleRemove =()=> {
-
-  }
+ 
+  
   return (
     <div>
       <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 px-16 mt-7 pb-24">
@@ -21,7 +20,6 @@ const TopSellingProductsList = () => {
           <TopSell
             key={product?._id}
             product={product}
-            // newArrivalDelete={newArrivalDelete}
           ></TopSell>
         ))}
       </div>

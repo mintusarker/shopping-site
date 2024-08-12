@@ -24,8 +24,8 @@ const NewArrivalProductsList = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.deletedCount > 1) {
-          toast.success("New arrival product deleted");
+        if (data.deletedCount > 0) {
+          toast.success("New arrival product removed");
         }
       });
   };

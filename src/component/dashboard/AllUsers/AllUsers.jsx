@@ -31,8 +31,8 @@ const AllUsers = () => {
       })
       .then((data) => {
         console.log(data);
-        if(data.deletedCount) {
-            toast.success(`User deleted successfully`)
+        if (data.deletedCount) {
+          toast.success(`User deleted successfully`);
         }
       });
   };

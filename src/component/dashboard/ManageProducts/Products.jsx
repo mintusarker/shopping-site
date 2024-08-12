@@ -7,12 +7,24 @@ const Products = ({ product, handleDeleteProduct }) => {
 
   //add new arrival products handler
   const newArrivalHandler = (product) => {
+    console.log(product);
+    const { name, quantity, image, price, detail, email } = product;
+    const newItem = {
+      name,
+      quantity,
+      image,
+      price,
+      detail,
+      email,
+    };
+    console.log(newItem);
+
     fetch("http://localhost:5000/new-arrival", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(product),
+      body: JSON.stringify(newItem),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -21,7 +33,7 @@ const Products = ({ product, handleDeleteProduct }) => {
       });
   };
 
-   //add top selling products handler
+  //add top selling products handler
   const topSellinglHandler = (product) => {
     fetch("http://localhost:5000/top-selling", {
       method: "POST",
@@ -59,7 +71,10 @@ const Products = ({ product, handleDeleteProduct }) => {
             <button className="btn btn-sm rounded-sm btn-error">Update</button>
           </Link>
 
-          <button onClick={()=> topSellinglHandler(product)} className="btn btn-sm rounded-sm btn-success">
+          <button
+            onClick={() => topSellinglHandler(product)}
+            className="btn btn-sm rounded-sm btn-success"
+          >
             Add to Top sell
           </button>
           <button
