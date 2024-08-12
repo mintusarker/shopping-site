@@ -3,6 +3,7 @@ import React from "react";
 const TopSell = ({ product }) => {
   console.log(product);
 
+  //remove 
   const handleRemove = (_id) => {
     fetch(`http://localhost:5000/top-selling/${_id}`, {
       method: "DELETE",

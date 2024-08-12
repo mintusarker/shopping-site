@@ -10,12 +10,13 @@ const TopSellingProductsList = () => {
       .then((res) => res.json())
       .then((data) => setTopSell(data));
   }, []);
-
- 
   
   return (
     <div>
-      <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 px-16 mt-7 pb-24">
+       <h2 className="text-xl my-6 border-b-4 border border-green-900 text-center w-48 rounded-sm">
+        Top Sell Items:  {topSell?.length}
+      </h2>
+      <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 mt-7 pb-24">
         {topSell?.map((product) => (
           <TopSell
             key={product?._id}

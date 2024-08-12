@@ -4,8 +4,7 @@ import toast from "react-hot-toast";
 
 const NewArrivalProductsList = () => {
   const [newArrival, setNewArrival] = useState();
-
-  console.log(newArrival);
+  // console.log(newArrival);
 
   useEffect(() => {
     fetch("http://localhost:5000/new-arrival")
@@ -32,7 +31,10 @@ const NewArrivalProductsList = () => {
 
   return (
     <div>
-      <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 px-16 mt-7 pb-24">
+      <h2 className="text-xl leading-6 mb-6 border-b-4 border border-green-900 text-center w-48 rounded-sm">
+        New Arrival: {newArrival?.length}
+      </h2>
+      <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 my-7 pb-24">
         {newArrival?.map((product) => (
           <NewProduct
             key={product?._id}
