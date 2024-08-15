@@ -18,6 +18,8 @@ import AllUsers from "../component/dashboard/AllUsers/AllUsers";
 import StoreProducts from "../component/dashboard/ManageProducts/StoreProducts";
 import NewArrivalProductsList from "../component/dashboard/NewArrivalList/NewArrivalProductsList";
 import TopSellingProductsList from "../component/dashboard/TopSellingList/TopSellingProductsList";
+import NewArrivalBooking from "../component/Booking/NewArrivalBooking";
+import TopSellingProductBooking from "../component/Booking/TopSellingProductBooking";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +39,18 @@ const router = createBrowserRouter([
         element: <BookingPage></BookingPage>,
         loader: ({ params }) =>
           fetch(` http://localhost:5000/products/${params?.id}`),
+      },
+      {
+        path: "/new_arrival/:id",
+        element: <NewArrivalBooking></NewArrivalBooking>,
+        loader: ({ params }) =>
+          fetch(` http://localhost:5000/newArrival/${params?.id}`),
+      },
+      {
+        path: "/top_selling/:id",
+        element: <TopSellingProductBooking></TopSellingProductBooking>,
+        loader: ({ params }) =>
+          fetch(` http://localhost:5000/topSelling/${params?.id}`),
       },
       {
         path: "/login",

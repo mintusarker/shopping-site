@@ -28,10 +28,10 @@ const Banner = () => {
   };
 
   return (
-    <div className='h-[630px] w-full m-auto relative group'>
+    <div className='h-[530px] w-full m-auto relative group'>
       <div
         style={{ backgroundImage: `url(${slides[currentIndex]})` }}
-        className='w-full h-full bg-cover duration-300'
+        className=' bg-cover h-full w-full duration-300'
       ></div>
       {/* Left Arrow */}
       <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 rounded-full p-1 bg-black/20 text-white cursor-pointer'>

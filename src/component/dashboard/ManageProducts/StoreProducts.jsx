@@ -52,7 +52,7 @@ const StoreProducts = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl mt-6 border-b-4 border border-green-900 text-center w-48 rounded-lg">
+      <h2 className="text-2xl mt-6 border-b-4 border border-green-900 text-center w-52 rounded-sm">
       Total Products: {products?.length}
       </h2>
 

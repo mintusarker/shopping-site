@@ -4,7 +4,7 @@ import { AuthContext } from "../../auth/AuthProvider";
 import toast from "react-hot-toast";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const BookingPage = () => {
+const NewArrivalBooking = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   const navigate = useNavigate();
@@ -66,7 +66,6 @@ const BookingPage = () => {
         });
       });
   };
-
 
   //increase quantity handler
   const handleIncrement = () => {
@@ -215,4 +214,4 @@ const BookingPage = () => {
   );
 };
 
-export default BookingPage;
+export default NewArrivalBooking;

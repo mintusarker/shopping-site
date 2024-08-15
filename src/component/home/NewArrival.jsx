@@ -3,13 +3,25 @@ import { Link } from "react-router-dom";
 
 const NewArrival = () => {
   const [newItems, setNewItems] = useState();
-  console.log(newItems);
+  console.log(newItems?.length);
+  const [nextIndex, setNextIdex] = useState(3);
 
   useEffect(() => {
     fetch("http://localhost:5000/new-arrival")
       .then((res) => res.json())
       .then((data) => setNewItems(data));
   }, []);
+
+  const loadMoreNewProduct = () => {
+    setNextIdex((prev) => prev + 3);
+  };
+
+  // const seeLessNewProduct = () => {
+  //   // setNextItems((prev) => prev - 3);
+  //   // const items = nextItems - 3;
+  //   // setNextItems(items)
+  //   setNextIdex(3);
+  // };
 
   return (
     <div className="mt-16 pb-20 px-20">
@@ -18,17 +30,44 @@ const NewArrival = () => {
       </h2>
       <div className="grid gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
         {newItems &&
-          newItems?.map((items) => (
+          newItems?.slice(0, nextIndex).map((items) => (
             <div
               key={items?._id}
               className="bg-base-100 rounded-sm shadow-xl card  relative"
             >
-              <img src={items?.image} alt="Shoes" className="h-full" />
-              <Link className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl">
+              <img src={items?.image} alt="Shoes" className="h-80 w-full" />
+              <Link to={`new_arrival/${items._id}`} className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl">
                 Buy
               </Link>
+
+              {/* <Link to={`/booking_product/${items?._id}`}>
+            <button className="btn btn-sm rounded-sm btn-outline">Buy</button>
+          </Link> */}
             </div>
           ))}
+      </div>
+      <div className="flex justify-end items-center">
+        {/* {nextIndex == newItems?.length ? (
+          <button
+            onClick={seeLessNewProduct}
+            className="btn btn-md bg-black text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+          >
+            See Less
+          </button>
+        ) : (
+          <button
+            onClick={loadMoreNewProduct}
+            className="btn btn-md bg-black text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+          >
+            Load More
+          </button>
+        )} */}
+        <button
+          onClick={loadMoreNewProduct}
+          className="btn btn-md bg-slate-800 text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+        >
+          Load More
+        </button>
       </div>
     </div>
   );

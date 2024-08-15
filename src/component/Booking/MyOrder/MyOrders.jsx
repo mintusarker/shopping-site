@@ -7,8 +7,11 @@ import { AuthContext } from "../../../auth/AuthProvider";
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
 
-  
-  const { data: bookings = [], refetch, isLoading } = useQuery({
+  const {
+    data: bookings = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(

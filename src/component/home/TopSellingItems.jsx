@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthProvider";
 
 const TopSellingItems = () => {
+  const { loading } = useContext(AuthContext);
+
   const [topSellItems, setTopSellItems] = useState();
+  const [nextItems, setNextItems] = useState(6);
 
   useEffect(() => {
     fetch(`http://localhost:5000/top-selling`)
@@ -10,24 +14,61 @@ const TopSellingItems = () => {
       .then((data) => setTopSellItems(data));
   }, []);
 
+  const loadMore = () => {
+    setNextItems((prev) => prev + 3);
+  };
+
+  // const seeLessProduct = () => {
+  //   // setNextItems((prev) => prev - 3);
+  //   // const items = nextItems - 3;
+  //   // setNextItems(items)
+  //   setNextItems(6);
+  // };
+
+  if (loading) {
+    return <span className="loading loading-ring loading-lg"></span>;
+  }
   return (
-    <div className="mt-16 px-20">
+    <div className="mt-16 px-24">
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
         Top Selling Items
       </h2>
       <div className="grid gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
         {topSellItems &&
-          topSellItems?.map((topSell) => (
+          topSellItems?.slice(0, nextItems).map((topSell) => (
             <div
               key={topSell?._id}
-              className="bg-base-100 rounded-sm shadow-xl card  relative"
+              className="bg-base-100 rounded-sm shadow-md card  relative"
             >
-              <img src={topSell?.image} alt="Shoes" className="h-full" />
-              <Link className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl">
+              <img src={topSell?.image} alt="Shoes" className="h-80 w-full" />
+              <Link to={`top_selling/${topSell._id}`} className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl">
                 Buy
               </Link>
             </div>
           ))}
+      </div>
+      <div className="flex justify-end items-center">
+        <button
+          onClick={loadMore}
+          className="btn btn-md bg-slate-800 text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+        >
+          Load More
+        </button>
+        {/* {nextItems == topSellItems?.length ? (
+          <button
+            onClick={seeLessProduct}
+            className="btn btn-md bg-black text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+          >
+            See Less
+          </button>
+        ) : (
+          <button
+            onClick={loadMore}
+            className="btn btn-md bg-black text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+          >
+            Load More
+          </button>
+        )} */}
       </div>
     </div>
   );

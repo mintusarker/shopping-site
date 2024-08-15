@@ -15,7 +15,7 @@ const Products = ({ product, handleDeleteProduct }) => {
       price,
       detail,
     };
-    console.log(newItem);
+    // console.log(newItem);
 
     fetch("http://localhost:5000/new-arrival", {
       method: "POST",
