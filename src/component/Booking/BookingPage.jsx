@@ -26,7 +26,7 @@ const BookingPage = () => {
     //phone number handle
     const phone = document.getElementById("phone");
     const phoneNumber = phone.value;
-    console.log(phoneNumber);
+    // console.log(phoneNumber);
     if (!Number(phoneNumber) || phoneNumber.length < 11 || null) {
       setNumberError("Need a valid phone number");
       return;
@@ -105,7 +105,7 @@ const BookingPage = () => {
     <div className="my-12">
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-10">
         <div>
-          <img className="w-full h-auto" src={data[0]?.image} alt="image" />
+          <img className="w-full h-64" src={data[0]?.image} alt="image" />
 
           <div>
             <label htmlFor="">Mobile: </label>

@@ -10,8 +10,6 @@ const AllUsers = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-
-        // const filter = users._id !==
         setUsers(data);
       });
   }, []);
@@ -32,6 +30,8 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.deletedCount) {
+          const restUsers = users.filter((user) => user?._id !== _id);
+          setUsers(restUsers);
           toast.success(`User deleted successfully`);
         }
       });

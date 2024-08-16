@@ -1,10 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../layout/Dashboard";
-import UserDashboard from "../component/dashboard/UserDashboard";
+import DashboardHome from "../component/dashboard/DashboardHome";
 import Main from "../layout/Main";
 import AddProduct from "../component/dashboard/AddProduct";
 import UpdateProduct from "../component/dashboard/update/UpdateProduct";
-import AllProducts from "../component/dashboard/BuyProducts/AllProducts";
 import BookingPage from "../component/Booking/BookingPage";
 import Payment from "../component/payment/Payment";
 import PrivateRoute from "./PrivateRoutes";
@@ -72,7 +71,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <UserDashboard></UserDashboard>,
+        element: <DashboardHome></DashboardHome>,
       },
       {
         path: "/dashboard/add_product",
@@ -82,10 +81,10 @@ const router = createBrowserRouter([
         path: "/dashboard/manage_products",
         element: <StoreProducts></StoreProducts>,
       },
-      {
-        path: "/dashboard/all_product",
-        element: <AllProducts></AllProducts>,
-      },
+      // {
+      //   path: "/dashboard/all_product",
+      //   element: <AllProducts></AllProducts>,
+      // },
       {
         path: "/dashboard/new_arrival",
         element: <NewArrivalProductsList></NewArrivalProductsList>,

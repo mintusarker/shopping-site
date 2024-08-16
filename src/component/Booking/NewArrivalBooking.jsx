@@ -104,7 +104,7 @@ const NewArrivalBooking = () => {
     <div className="my-12">
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-10">
         <div>
-          <img className="w-full h-auto" src={data[0]?.image} alt="image" />
+          <img className="w-full h-64" src={data[0]?.image} alt="image" />
 
           <div>
             <label htmlFor="">Mobile: </label>

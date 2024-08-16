@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 
 const AllOrders = () => {
   const [orders, setOrders] = useState();
+  const [orderss, setOrderss] = useState();
+  console.log(orders?.length);
   console.log(orders);
 
   useEffect(() => {
@@ -30,12 +32,14 @@ const AllOrders = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        const restItems = orders.filter((order) => order?._id !== id);
+        setOrders(restItems);
         toast.success("Order deleted");
       });
   };
   return (
     <div>
-      <div className="overflow-x-auto mb-16">
+      <div className=" mb-16">
         <table className="table">
           <thead>
             <tr>
@@ -80,6 +84,11 @@ const AllOrders = () => {
           </tbody>
         </table>
       </div>
+      {!orders?.length && (
+        <p className="text-xl flex justify-center items-center">
+          No Active Orders
+        </p>
+      )}
     </div>
   );
 };

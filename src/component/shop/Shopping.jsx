@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import SingleProduct from "../dashboard/BuyProducts/SingleProduct";
+import SingleProduct from "./SingleProduct";
 
 const Shopping = () => {
   const [products, setProducts] = useState();
@@ -59,11 +59,14 @@ const Shopping = () => {
           type="text"
         />
       </div>
-      <div className="grid gap-6 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-16 mt-7 pb-24">
+      <div className="grid gap-6 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-16 mt-7 pb-12">
         {products?.map((product) => (
           <SingleProduct key={product?._id} product={product}></SingleProduct>
         ))}
       </div>
+      {/* <div className="flex justify-end pb-12 px-16">
+        <button className="btn btn-md text-lg rounded-sm btn-neutral">Load More</button>
+      </div> */}
     </div>
   );
 };

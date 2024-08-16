@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 
-const UserDashboard = () => {
+const DashboardHome = () => {
   const { user } = useContext(AuthContext);
 
   // booking
@@ -66,20 +66,20 @@ const UserDashboard = () => {
           </span>
         </p>
       </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>My Products</p>
-          <p>Total: {products?.length} </p>
-        </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Order</p>
-          <p>Total: {bookings?.length} </p>
-        </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Payment Completed</p>
-          <p>Total: {payments?.length} </p>
-        </div>
+      <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+        <p>My Products</p>
+        <p>Total: {products?.length} </p>
+      </div>
+      <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+        <p>Order</p>
+        <p>Total: {bookings?.length} </p>
+      </div>
+      <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+        <p>Payment Completed</p>
+        <p>Total: {payments?.length} </p>
+      </div>
     </div>
   );
 };
 
-export default UserDashboard;
+export default DashboardHome;

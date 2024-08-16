@@ -34,7 +34,7 @@ const Dashboard = () => {
           ></label>
           <ul className="menu w-auto p-8 min-h-screen bg-[#dbab4d] text-base-content flex items-center flex-col">
             {/* Sidebar content here */}
-            <div className="text-lg my-4">
+            <div className="text-lg my-2">
               <div className="lg:mt-0 md:mt-0 mt-14">
                 {user?.email ? (
                   <p className="text-[#FFFFFF] uppercase text-sm font-semibold text-center shadow-md opacity-70 rounded-full shadow-white">
@@ -49,18 +49,8 @@ const Dashboard = () => {
                 )}
               </div>
 
-              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-12 mb-3 border-b border-b-white text-center">
+              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-10 mb-3 border-b border-b-white text-center">
                 Products
-              </li>
-
-              <li className="rounded-md text-base text-white">
-                <Link
-                  className="flex items-center gap-2"
-                  to="/dashboard/all_product"
-                >
-                  <FaListAlt></FaListAlt>
-                  Buy Products
-                </Link>
               </li>
 
               <li className="rounded-md text-base text-white">
@@ -79,13 +69,16 @@ const Dashboard = () => {
                 </Link>
               </li>
               <li className="rounded-md text-base text-white">
-                <Link className="flex items-center gap-2" to="/dashboard/new_arrival">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/new_arrival"
+                >
                   <FaListAlt></FaListAlt>
                   New Arrival Products
                 </Link>
               </li>
 
-              <li className="text-white text-base mt-1 rounded-md">
+              <li className="text-white text-base rounded-md">
                 <Link
                   className="flex items-center gap-2"
                   to="/dashboard/manage_products"
@@ -95,18 +88,9 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-12 mb-3 border-b border-b-white text-center">
+              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-6 mb-3 border-b border-b-white text-center">
                 Manage
               </li>
-              {/* <li className="text-white rounded-md">
-                <Link
-                  className="flex items-center gap-2"
-                  to="/dashboard/all_orders"
-                >
-                  <FaList></FaList>
-                  All Orders
-                </Link>
-              </li> */}
 
               <li className="text-base text-white rounded-md">
                 <Link
@@ -135,8 +119,8 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-              <li className="text-white text-base mt-14 rounded-md">
-                <Link className="flex items-center gap-2" to="/">
+              <li className="text-white bg-black rounded-sm text-base mt-10">
+                <Link className="flex items-center justify-center gap-2" to="/">
                   <FaArrowAltCircleLeft></FaArrowAltCircleLeft>
                   Home
                 </Link>
