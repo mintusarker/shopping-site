@@ -24,7 +24,7 @@ const NewArrival = () => {
   // };
 
   return (
-    <div className="mt-16 pb-20 px-20">
+    <div className="mt-16 pb-20 px-24">
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
         New Arrival Items
       </h2>

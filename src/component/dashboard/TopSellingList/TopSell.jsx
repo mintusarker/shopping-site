@@ -1,21 +1,7 @@
 import React from "react";
 
-const TopSell = ({ product }) => {
-  console.log(product);
-
-  //remove 
-  const handleRemove = (_id) => {
-    fetch(`http://localhost:5000/top-selling/${_id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
+const TopSell = ({ product, handleRemoveTopSell }) => {
+  // console.log(product);
 
   return (
     <div className="border rounded-sm card card-compact bg-base-100 shadow-xl">
@@ -29,7 +15,7 @@ const TopSell = ({ product }) => {
         <p className="text-justify">Quantity: {product?.quantity}</p>
         <div className="flex items-center flex-wrap gap-3">
           <button
-            onClick={() => handleRemove(product?._id)}
+            onClick={() => handleRemoveTopSell(product?._id)}
             className="btn btn-sm rounded-sm btn-warning"
           >
             Remove
@@ -41,4 +27,3 @@ const TopSell = ({ product }) => {
 };
 
 export default TopSell;
-

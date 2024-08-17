@@ -32,7 +32,7 @@ const AllOrders = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const restItems = orders.filter((order) => order?._id !== id);
+        const restItems = orders?.filter((order) => order?._id !== id);
         setOrders(restItems);
         toast.success("Order deleted");
       });

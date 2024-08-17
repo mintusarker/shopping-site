@@ -29,9 +29,9 @@ const AllUsers = () => {
       })
       .then((data) => {
         console.log(data);
-        if (data.deletedCount) {
-          const restUsers = users.filter((user) => user?._id !== _id);
+        const restUsers = users?.filter((user) => user?._id !== _id);
           setUsers(restUsers);
+        if (data.deletedCount) {
           toast.success(`User deleted successfully`);
         }
       });
