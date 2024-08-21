@@ -67,7 +67,6 @@ const BookingPage = () => {
       });
   };
 
-
   //increase quantity handler
   const handleIncrement = () => {
     if (quantity <= parseInt(data[0]?.quantity) + 1) {
@@ -103,7 +102,7 @@ const BookingPage = () => {
 
   return (
     <div className="my-12">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-10">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-8">
         <div>
           <img className="w-full h-64" src={data[0]?.image} alt="image" />
 
@@ -118,7 +117,6 @@ const BookingPage = () => {
               minLength="11"
             />
           </div>
-
           <p className="text-red-500">{numberError}</p>
         </div>
 
@@ -145,15 +143,46 @@ const BookingPage = () => {
             )}
           </p>
           <div className="w-auto flex flex-wrap items-center gap-3">
-            <p> Quantity :</p>
-            <div className="">
+            <label>Select Size :</label>
+            <div className="flex gap-2">
+              <input
+                className="btn btn-sm rounded-sm"
+                type="button"
+                value="39"
+              />
+              <input
+                className="btn btn-sm rounded-sm"
+                type="button"
+                value="40"
+              />
+              <input
+                className="btn btn-sm rounded-sm"
+                type="button"
+                value="41"
+              />
+              <input
+                className="btn btn-sm rounded-sm"
+                type="button"
+                value="42"
+              />
+              <input
+                className="btn btn-sm rounded-sm"
+                type="button"
+                value="44"
+              />
+            </div>
+          </div>
+          <div className="w-auto flex flex-wrap items-center gap-3">
+            {/* <p> Quantity :</p> */}
+            <div>Quantity :</div>
+            <div className="flex gap-2 items-center">
               <button onClick={handleDecrement}>
                 <FaMinus></FaMinus>
               </button>
               <input
                 id="quantity"
                 type="text"
-                className="border-2 outline-none text-center mx-3"
+                className="border border-slate-500 outline-none text-center"
                 value={quantity}
               />
               <button onClick={handleIncrement}>

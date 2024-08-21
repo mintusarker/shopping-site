@@ -8,6 +8,9 @@ const TopSellingItems = () => {
   const [topSellItems, setTopSellItems] = useState();
   const [nextItems, setNextItems] = useState(6);
 
+  const [noMoreQuantity, setNoMoreQuantity] = useState();
+  console.log(noMoreQuantity);
+
   useEffect(() => {
     fetch(`http://localhost:5000/top-selling`)
       .then((res) => res.json())
@@ -15,7 +18,11 @@ const TopSellingItems = () => {
   }, []);
 
   const loadMore = () => {
-    setNextItems((prev) => prev + 3);
+    if (nextItems < topSellItems?.length) {
+      setNextItems((prev) => prev + 3);
+    } else {
+      setNoMoreQuantity("Explore More");
+    }
   };
 
   // const seeLessProduct = () => {
@@ -38,14 +45,20 @@ const TopSellingItems = () => {
           topSellItems?.slice(0, nextItems).map((topSell) => (
             <div
               key={topSell?._id}
-              className="bg-base-100 rounded-sm shadow-md card  relative"
+              className="bg-base-100 rounded-sm shadow-md card relative"
             >
               <img src={topSell?.image} alt="Shoes" className="h-80 w-full" />
-              <Link to={`top_selling/${topSell._id}`} className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl">
+              <Link
+                to={`top_selling/${topSell._id}`}
+                className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl"
+              >
                 Buy
               </Link>
             </div>
           ))}
+      </div>
+      <div className="flex justify-center items-center">
+        <Link to={'/shop'} className="text-center font-medium text-xl mt-4 uppercase">{noMoreQuantity}</Link>
       </div>
       <div className="flex justify-end items-center">
         <button

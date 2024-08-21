@@ -25,7 +25,6 @@ const AddProduct = () => {
       email: data.email,
     };
     console.log(product);
-   
 
     // save product information to database
     fetch("http://localhost:5000/products", {
@@ -40,16 +39,21 @@ const AddProduct = () => {
       .then((result) => {
         console.log(result);
         toast.success("Product added successfully");
-        reset()
-        navigate('/dashboard/manage_products');
+        reset();
+        navigate("/dashboard/manage_products");
       });
   };
 
   return (
     <div className="mt-8 mb-28">
-      <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">Add Product</h2>
+      <h2 className="text-xl leading-6 mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-sm">
+        Add Product
+      </h2>
 
-      <form className="w-full border px-8 py-3 rounded-md" onSubmit={handleSubmit(handleAddProduct)}>
+      <form
+        className="w-full border px-8 py-3 rounded-sm"
+        onSubmit={handleSubmit(handleAddProduct)}
+      >
         <div>
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
             <div className="form-control">
@@ -58,11 +62,11 @@ const AddProduct = () => {
               </label>
               <input
                 type="text"
-                defaultValue={user?.email} 
+                defaultValue={user?.email}
                 readOnly
-                className="input input-bordered w-60"
+                className="input input-bordered rounded-sm w-60"
                 {...register("email", {
-                    required: "Email is required",
+                  required: "Email is required",
                 })}
               />
             </div>
@@ -73,7 +77,7 @@ const AddProduct = () => {
               <input
                 type="text"
                 placeholder="Product Name"
-                className="input input-bordered w-60"
+                className="input input-bordered rounded-sm w-60"
                 {...register("name", {
                   required: "Name is required",
                 })}
@@ -93,7 +97,7 @@ const AddProduct = () => {
                 type="number"
                 min={1}
                 placeholder="Quantity"
-                className="input input-bordered w-60"
+                className="input input-bordered rounded-sm w-60"
                 {...register("quantity", {
                   required: "Quantity is required",
                 })}
@@ -110,7 +114,7 @@ const AddProduct = () => {
               <input
                 type="text"
                 placeholder="Price"
-                className="input input-bordered w-60"
+                className="input input-bordered rounded-sm w-60"
                 {...register("price", {
                   required: "Price is required",
                 })}
@@ -129,7 +133,7 @@ const AddProduct = () => {
               <textarea
                 type="text"
                 placeholder="Image url"
-                className="input input-bordered h-16"
+                className="input input-bordered rounded-sm h-16"
                 {...register("image", {
                   required: "Photo is required",
                 })}
@@ -146,7 +150,7 @@ const AddProduct = () => {
               <textarea
                 type="text"
                 placeholder="Product's Detail"
-                className="input input-bordered h-24"
+                className="input input-bordered rounded-sm h-24"
                 {...register("detail", {
                   required: "Description is required",
                 })}
@@ -159,7 +163,7 @@ const AddProduct = () => {
         </div>
 
         <input
-          className="btn w-full btn-info text-white text-lg my-3"
+          className="btn w-full btn-neutral rounded-sm text-white text-lg my-3"
           value="Add Product"
           type="submit"
         />

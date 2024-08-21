@@ -64,7 +64,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full">
-      <div className="z-50 navbar opacity-100 text-opacity-90 relative lg:px-5 md:px-6 bg-gradient-to-t to-slate-800 from-black text-white justify-between">
+      <div className="z-50 navbar opacity-100 text-opacity-90 relative lg:px-5 md:px-6 bg-gradient-to-b to-slate-600 from-slate-950 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label
@@ -93,7 +93,7 @@ const Navbar = () => {
               {menuItems}
             </ul>
           </div>
-          <p className="text-2xl font-thin">Fashion Corner</p>
+          <i className="text-2xl font-thin">Fashion Corner</i>
         </div>
         <div className="navbar-center hidden sm:flex md:flex lg:flex">
           <ul className="menu menu-horizontal px-1 font-thin text-base capitalize items-center">

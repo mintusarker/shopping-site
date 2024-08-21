@@ -34,7 +34,7 @@ const TopSellingProductsList = () => {
 
   return (
     <div>
-      <h2 className="text-xl my-6 border-b-4 border border-green-900 text-center w-48 rounded-sm">
+      <h2 className="text-xl leading-6 my-6 border-b-4 border border-green-900 text-center w-48 rounded-sm">
         Top Sell Items: {topSells?.length}
       </h2>
       <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 mt-7 pb-24">

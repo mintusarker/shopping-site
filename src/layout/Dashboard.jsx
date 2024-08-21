@@ -49,19 +49,10 @@ const Dashboard = () => {
                 )}
               </div>
 
-              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-10 mb-3 border-b border-b-white text-center">
+              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-5 mb-3 border-b border-b-white text-center">
                 Products
               </li>
 
-              <li className="rounded-md text-base text-white">
-                <Link
-                  className="flex items-center gap-2"
-                  to="/dashboard/all_orders"
-                >
-                  <FaListAlt></FaListAlt>
-                  All Orders
-                </Link>
-              </li>
               <li className="rounded-md text-base text-white">
                 <Link className="flex items-center gap-2" to="top_selling">
                   <FaListAlt></FaListAlt>
@@ -88,20 +79,6 @@ const Dashboard = () => {
                 </Link>
               </li>
 
-              <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-6 mb-3 border-b border-b-white text-center">
-                Manage
-              </li>
-
-              <li className="text-base text-white rounded-md">
-                <Link
-                  className="flex items-center gap-2"
-                  to="/dashboard/my_bookings"
-                >
-                  <FaCartPlus></FaCartPlus>
-                  My Bookings
-                </Link>
-              </li>
-
               <li className="text-white text-base mt-1 rounded-md">
                 <Link
                   className="flex items-center gap-2"
@@ -112,10 +89,36 @@ const Dashboard = () => {
                 </Link>
               </li>
 
+              <li className="text-slate-800 uppercase text-sm font-bold leading-6 my-3 border-b border-b-white text-center">
+                Orders
+              </li>
+              <li className="rounded-md text-base text-white">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/all_orders"
+                >
+                  <FaListAlt></FaListAlt>
+                  All Orders
+                </Link>
+              </li>
+
+              <li className="text-slate-800 uppercase text-sm font-bold leading-6 my-3 border-b border-b-white text-center">
+                Users
+              </li>
               <li className="text-white text-base mt-1 rounded-md">
                 <Link className="flex items-center gap-2" to="/dashboard/users">
                   <FaUser></FaUser>
                   All Users
+                </Link>
+              </li>
+
+              <li className="text-base text-white rounded-md">
+                <Link
+                  className="flex items-center gap-2"
+                  to="/dashboard/my_bookings"
+                >
+                  <FaCartPlus></FaCartPlus>
+                  My Bookings
                 </Link>
               </li>
 

@@ -7,7 +7,7 @@ const Footer = () => {
       <p className="bg-slate-800 text-white text-center pt-9 pb-6 text-3xl font-serif">
         Fashion
       </p>
-      <footer className=" footer justify-around py-8 bg-gradient-to-t to-slate-800 from-black text-white">
+      <footer className=" footer justify-around py-8 bg-gradient-to-t to-slate-800 from-slate-950 text-white">
         <nav>
           <h6 className="footer-title">Services</h6>
           <a className="link link-hover">Branding</a>

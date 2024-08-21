@@ -6,6 +6,9 @@ const NewArrival = () => {
   console.log(newItems?.length);
   const [nextIndex, setNextIdex] = useState(3);
 
+  const [noMoreQuantity, setNoMoreQuantity] = useState();
+  console.log(noMoreQuantity);
+
   useEffect(() => {
     fetch("http://localhost:5000/new-arrival")
       .then((res) => res.json())
@@ -13,7 +16,11 @@ const NewArrival = () => {
   }, []);
 
   const loadMoreNewProduct = () => {
-    setNextIdex((prev) => prev + 3);
+    if (nextIndex < newItems?.length) {
+      setNextIdex((prev) => prev + 3);
+    } else {
+      setNoMoreQuantity("Explore More");
+    }
   };
 
   // const seeLessNewProduct = () => {
@@ -36,7 +43,10 @@ const NewArrival = () => {
               className="bg-base-100 rounded-sm shadow-xl card  relative"
             >
               <img src={items?.image} alt="Shoes" className="h-80 w-full" />
-              <Link to={`new_arrival/${items._id}`} className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl">
+              <Link
+                to={`new_arrival/${items._id}`}
+                className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl"
+              >
                 Buy
               </Link>
 
@@ -45,6 +55,9 @@ const NewArrival = () => {
           </Link> */}
             </div>
           ))}
+      </div>
+      <div className="flex justify-center items-center">
+      <Link to={'/shop'} className="text-center font-medium text-xl mt-4 uppercase">{noMoreQuantity}</Link>
       </div>
       <div className="flex justify-end items-center">
         {/* {nextIndex == newItems?.length ? (
