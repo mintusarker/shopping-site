@@ -6,7 +6,7 @@ const TopSellingItems = () => {
   const { loading } = useContext(AuthContext);
 
   const [topSellItems, setTopSellItems] = useState();
-  const [nextItems, setNextItems] = useState(6);
+  const [nextItems, setNextItems] = useState(8);
 
   const [noMoreQuantity, setNoMoreQuantity] = useState();
   console.log(noMoreQuantity);
@@ -19,7 +19,7 @@ const TopSellingItems = () => {
 
   const loadMore = () => {
     if (nextItems < topSellItems?.length) {
-      setNextItems((prev) => prev + 3);
+      setNextItems((prev) => prev + 4);
     } else {
       setNoMoreQuantity("Explore More");
     }
@@ -40,14 +40,14 @@ const TopSellingItems = () => {
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
         Top Selling Items
       </h2>
-      <div className="grid gap-12 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
+      <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
         {topSellItems &&
           topSellItems?.slice(0, nextItems).map((topSell) => (
             <div
               key={topSell?._id}
               className="bg-base-100 rounded-sm shadow-md card relative"
             >
-              <img src={topSell?.image} alt="Shoes" className="h-80 w-full" />
+              <img src={topSell?.image} alt="Shoes" className="h-52 w-full" />
               <Link
                 to={`top_selling/${topSell._id}`}
                 className="absolute uppercase text-stone-700 btn px-7 rounded-sm bottom-10 right-14 text-xl"
@@ -57,13 +57,22 @@ const TopSellingItems = () => {
             </div>
           ))}
       </div>
-      <div className="flex justify-center items-center">
-        <Link to={'/shop'} className="text-center font-medium text-xl mt-4 uppercase">{noMoreQuantity}</Link>
-      </div>
+
+      {noMoreQuantity && (
+        <div className="flex justify-center items-center">
+          <Link
+            to={"/shop"}
+            className="text-center font-medium text-xl mt-8 uppercase border-2 border-orange-200 px-3 py-2"
+          >
+            {noMoreQuantity}
+          </Link>
+        </div>
+      )}
+
       <div className="flex justify-end items-center">
         <button
           onClick={loadMore}
-          className="btn btn-md bg-slate-800 text-slate-200 hover:bg-gradient-to-t to-green-700 from-slate-900 uppercase rounded-sm mt-4"
+          className="bg-black/90 p-2 text-slate-200 uppercase text-xs font-semibold rounded-sm mt-4"
         >
           Load More
         </button>

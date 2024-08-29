@@ -4,6 +4,14 @@ import { AuthContext } from "../../auth/AuthProvider";
 import toast from "react-hot-toast";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
+const itemSize = [
+  { value: 39, _id: 1 },
+  { value: 40, _id: 2 },
+  { value: 41, _id: 3 },
+  { value: 42, _id: 4 },
+  { value: 43, _id: 5 },
+  { value: 44, _id: 6 },
+];
 const BookingPage = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
@@ -19,10 +27,22 @@ const BookingPage = () => {
   );
 
   const [numberError, setNumberError] = useState();
-  console.log(numberError);
+  // console.log(numberError);
+
+  //product size
+  const [size, setSize] = useState();
+  // console.log(size);
+
+  const [sizeError, setSizeError] = useState();
+  // console.log(sizeError);
 
   // booking product handler
   const handleBookingProduct = () => {
+    if (!size) {
+      setSizeError("Please select a size");
+      return;
+    }
+
     //phone number handle
     const phone = document.getElementById("phone");
     const phoneNumber = phone.value;
@@ -41,30 +61,31 @@ const BookingPage = () => {
       detail: data[0]?.detail,
       phone: phoneNumber,
       image: data[0]?.image,
+      productSize: size,
     };
     setNumberError("");
     console.log(product);
 
     // save product information to database
-    fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(product),
-    })
-      .then((res) => {
-        res.json();
-        console.log(res);
-      })
-      .then((result) => {
-        console.log(result);
-        navigate("/dashboard/my_bookings");
-        toast.success("Product Booked, Please ensure your payment", {
-          duration: 1500,
-        });
-      });
+    // fetch("http://localhost:5000/bookings", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
+    //   },
+    //   body: JSON.stringify(product),
+    // })
+    //   .then((res) => {
+    //     res.json();
+    //     console.log(res);
+    //   })
+    //   .then((result) => {
+    //     console.log(result);
+    //     navigate("/dashboard/my_bookings");
+    //     toast.success("Product Booked, Please ensure your payment", {
+    //       duration: 1500,
+    //     });
+    //   });
   };
 
   //increase quantity handler
@@ -100,9 +121,30 @@ const BookingPage = () => {
     }
   };
 
+  //select size
+  const selectSizeHandler = (value) => {
+    // const data = document.getElementById("size");
+    // if (value == 39) {
+    //   data.classList.add("bg-red-300");
+    // } else if (value == 41) {
+    //   data.classList.add("bg-red-500");
+    // } else if (value == 42) {
+    //   data.classList.add("bg-red-700");
+    // } else if (value == 43) {
+    //   data.classList.add("bg-red-300");
+    // } else if (value == 44) {
+    //   data.classList.add("bg-red-800");
+    // } else if (value == 45) {
+    //   data.classList.add("bg-red-900");
+    // }
+    console.log(value);
+    setSize(value);
+    setSizeError(" ");
+  };
+
   return (
     <div className="my-12">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-8">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto bg-red-100 lg:w-2/3 p-8">
         <div>
           <img className="w-full h-64" src={data[0]?.image} alt="image" />
 
@@ -112,7 +154,7 @@ const BookingPage = () => {
               id="phone"
               type=""
               name="phone"
-              className="border border-black mt-12 outline-none px-2 py-1 rounded"
+              className="border border-black mt-12 outline-none pl-2 py-1 rounded-sm"
               placeholder="Mobile Number"
               minLength="11"
             />
@@ -145,32 +187,21 @@ const BookingPage = () => {
           <div className="w-auto flex flex-wrap items-center gap-3">
             <label>Select Size :</label>
             <div className="flex gap-2">
-              <input
-                className="btn btn-sm rounded-sm"
-                type="button"
-                value="39"
-              />
-              <input
-                className="btn btn-sm rounded-sm"
-                type="button"
-                value="40"
-              />
-              <input
-                className="btn btn-sm rounded-sm"
-                type="button"
-                value="41"
-              />
-              <input
-                className="btn btn-sm rounded-sm"
-                type="button"
-                value="42"
-              />
-              <input
-                className="btn btn-sm rounded-sm"
-                type="button"
-                value="44"
-              />
+              {itemSize.map((size) => (
+                <button
+                  onClick={() => selectSizeHandler(size?.value)}
+                  id="size"
+                  className="menu btn btn-sm rounded-sm"
+                  key={size?._id}
+                  name="size"
+                >
+                  {size?.value}
+                </button>
+              ))}
+
+              <input type="button" value="" />
             </div>
+            <p className="text-red-600 text-sm">{sizeError}</p>
           </div>
           <div className="w-auto flex flex-wrap items-center gap-3">
             {/* <p> Quantity :</p> */}
