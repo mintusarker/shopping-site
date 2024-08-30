@@ -35,7 +35,7 @@ const NewArrival = () => {
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
         New Arrival Items
       </h2>
-      <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
+      <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 w-full mx-auto">
         {newItems &&
           newItems?.slice(0, nextIndex).map((items) => (
             <div

@@ -32,7 +32,6 @@ const BookingPage = () => {
   //product size
   const [size, setSize] = useState();
   // console.log(size);
-
   const [sizeError, setSizeError] = useState();
   // console.log(sizeError);
 
@@ -61,31 +60,31 @@ const BookingPage = () => {
       detail: data[0]?.detail,
       phone: phoneNumber,
       image: data[0]?.image,
-      productSize: size,
+      size: size,
     };
     setNumberError("");
     console.log(product);
 
     // save product information to database
-    // fetch("http://localhost:5000/bookings", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
-    //   },
-    //   body: JSON.stringify(product),
-    // })
-    //   .then((res) => {
-    //     res.json();
-    //     console.log(res);
-    //   })
-    //   .then((result) => {
-    //     console.log(result);
-    //     navigate("/dashboard/my_bookings");
-    //     toast.success("Product Booked, Please ensure your payment", {
-    //       duration: 1500,
-    //     });
-    //   });
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => {
+        res.json();
+        console.log(res);
+      })
+      .then((result) => {
+        console.log(result);
+        navigate("/dashboard/my_bookings");
+        toast.success("Product Booked, Please ensure your payment", {
+          duration: 1500,
+        });
+      });
   };
 
   //increase quantity handler
@@ -122,28 +121,22 @@ const BookingPage = () => {
   };
 
   //select size
-  const selectSizeHandler = (value) => {
-    // const data = document.getElementById("size");
-    // if (value == 39) {
-    //   data.classList.add("bg-red-300");
-    // } else if (value == 41) {
-    //   data.classList.add("bg-red-500");
-    // } else if (value == 42) {
-    //   data.classList.add("bg-red-700");
-    // } else if (value == 43) {
-    //   data.classList.add("bg-red-300");
-    // } else if (value == 44) {
-    //   data.classList.add("bg-red-800");
-    // } else if (value == 45) {
-    //   data.classList.add("bg-red-900");
-    // }
+  const selectSizeHandler = (id) => {
+    const field = document.getElementById("size");
+    console.log(field);
+
+    const data = itemSize.find((sz) => sz?._id == id);
+    const value = data.value;
     console.log(value);
+
+
+
     setSize(value);
     setSizeError(" ");
   };
 
   return (
-    <div className="my-12">
+    <div className="my-12 px-10">
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto bg-red-100 lg:w-2/3 p-8">
         <div>
           <img className="w-full h-64" src={data[0]?.image} alt="image" />
@@ -188,15 +181,15 @@ const BookingPage = () => {
             <label>Select Size :</label>
             <div className="flex gap-2">
               {itemSize.map((size) => (
-                <button
-                  onClick={() => selectSizeHandler(size?.value)}
+                <Link
+                  onClick={() => selectSizeHandler(size?._id)}
                   id="size"
-                  className="menu btn btn-sm rounded-sm"
+                  className="btn btn-sm rounded-sm"
                   key={size?._id}
                   name="size"
                 >
                   {size?.value}
-                </button>
+                </Link>
               ))}
 
               <input type="button" value="" />
@@ -204,7 +197,6 @@ const BookingPage = () => {
             <p className="text-red-600 text-sm">{sizeError}</p>
           </div>
           <div className="w-auto flex flex-wrap items-center gap-3">
-            {/* <p> Quantity :</p> */}
             <div>Quantity :</div>
             <div className="flex gap-2 items-center">
               <button onClick={handleDecrement}>

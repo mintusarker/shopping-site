@@ -40,7 +40,7 @@ const TopSellingItems = () => {
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
         Top Selling Items
       </h2>
-      <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 w-full mx-auto">
+      <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 w-full mx-auto">
         {topSellItems &&
           topSellItems?.slice(0, nextItems).map((topSell) => (
             <div
