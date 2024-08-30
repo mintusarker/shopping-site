@@ -12,6 +12,7 @@ const itemSize = [
   { value: 43, _id: 5 },
   { value: 44, _id: 6 },
 ];
+
 const BookingPage = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
@@ -129,8 +130,6 @@ const BookingPage = () => {
     const value = data.value;
     console.log(value);
 
-
-
     setSize(value);
     setSizeError(" ");
   };
@@ -191,8 +190,6 @@ const BookingPage = () => {
                   {size?.value}
                 </Link>
               ))}
-
-              <input type="button" value="" />
             </div>
             <p className="text-red-600 text-sm">{sizeError}</p>
           </div>

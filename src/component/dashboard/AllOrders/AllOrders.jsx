@@ -47,9 +47,10 @@ const AllOrders = () => {
           <thead>
             <tr>
               <th></th>
-              <th>picture</th>
+              <th>Picture</th>
               <th>Name</th>
-              <th>quantity</th>
+              <th>Quantity</th>
+              <th>Size</th>
               <th>Phone No.</th>
               <th>Payment</th>
               <th>Action</th>
@@ -68,7 +69,8 @@ const AllOrders = () => {
                   />
                 </th>
                 <td>{order?.name} </td>
-                <td>{order?.quantity} </td>
+                <td>Quantity : {order?.quantity} </td>
+                <td>Size : {order?.size} </td>
                 <td>{order?.phone} </td>
                 <td className="font-semibold text-green-500">
                   {order?.paid === true ? "Paid" : "pending"}{" "}

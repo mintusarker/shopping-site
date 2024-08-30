@@ -4,6 +4,15 @@ import { AuthContext } from "../../auth/AuthProvider";
 import toast from "react-hot-toast";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
+const itemSize = [
+  { value: 39, _id: 1 },
+  { value: 40, _id: 2 },
+  { value: 41, _id: 3 },
+  { value: 42, _id: 4 },
+  { value: 43, _id: 5 },
+  { value: 44, _id: 6 },
+];
+
 const NewArrivalBooking = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
@@ -21,8 +30,18 @@ const NewArrivalBooking = () => {
   const [numberError, setNumberError] = useState();
   console.log(numberError);
 
+  //product size
+  const [size, setSize] = useState();
+  // console.log(size);
+  const [sizeError, setSizeError] = useState();
+  // console.log(sizeError);
+
   // booking product handler
   const handleBookingProduct = () => {
+    if (!size) {
+      setSizeError("Please select a size");
+      return;
+    }
     //phone number handle
     const phone = document.getElementById("phone");
     const phoneNumber = phone.value;
@@ -41,6 +60,7 @@ const NewArrivalBooking = () => {
       detail: data[0]?.detail,
       phone: phoneNumber,
       image: data[0]?.image,
+      size: size,
     };
     setNumberError("");
     console.log(product);
@@ -100,6 +120,19 @@ const NewArrivalBooking = () => {
     }
   };
 
+  //select size
+  const selectSizeHandler = (id) => {
+    const field = document.getElementById("size");
+    console.log(field);
+
+    const data = itemSize.find((sz) => sz?._id == id);
+    const value = data.value;
+    console.log(value);
+
+    setSize(value);
+    setSizeError(" ");
+  };
+
   return (
     <div className="my-12">
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-10">
@@ -143,6 +176,24 @@ const NewArrivalBooking = () => {
               </>
             )}
           </p>
+
+          <div className="w-auto flex flex-wrap items-center gap-3">
+            <label>Select Size :</label>
+            <div className="flex gap-2">
+              {itemSize.map((size) => (
+                <Link
+                  onClick={() => selectSizeHandler(size?._id)}
+                  id="size"
+                  className="btn btn-sm rounded-sm"
+                  key={size?._id}
+                  name="size"
+                >
+                  {size?.value}
+                </Link>
+              ))}
+            </div>
+            <p className="text-red-600 text-sm">{sizeError}</p>
+          </div>
           <div className="w-auto flex flex-wrap items-center gap-3">
             <p> Quantity :</p>
             <div className="">

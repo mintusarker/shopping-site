@@ -57,7 +57,8 @@ const MyOrders = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Mobile Number</th>
-              <th>quantity</th>
+              <th>Quantity</th>
+              <th>Size</th>
               <th>Total</th>
               <th>Payment</th>
               <th>Action</th>
@@ -77,7 +78,8 @@ const MyOrders = () => {
                   </th>
                   <td>{booking?.name}</td>
                   <td>{booking?.phone}</td>
-                  <td>quantity: {booking?.quantity}</td>
+                  <td>quantity: {booking?.quantity} </td>
+                  <td>size: {booking?.size} </td>
                   <td>Tk. {booking?.price}</td>
                   <td>
                     {booking?.price && !booking.paid && (

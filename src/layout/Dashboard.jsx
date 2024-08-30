@@ -54,7 +54,7 @@ const Dashboard = () => {
               </li>
 
               <li className="rounded-md text-base text-white">
-                <Link className="flex items-center gap-2" to="top_selling">
+                <Link className="flex items-center gap-2" to="/dashboard/top_selling">
                   <FaListAlt></FaListAlt>
                   Top Selling Products
                 </Link>
