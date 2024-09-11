@@ -15,9 +15,13 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(user);
+  // console.log(user);
 
   const [loading, setLoading] = useState(true);
+
+  //cart
+  const [cart, setCart] = useState([]);
+  console.log(cart);
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -50,7 +54,19 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  
+  const addToCart = (name, id) => {
+    const obj = {
+      name,
+      id,
+    };
+    // setCart([...cart, obj]);
+    localStorage.setItem("product", JSON.stringify([...cart, obj]));
+    const data = localStorage.getItem("product");
+    const item = JSON.parse(data);
+    console.log(item);
+    setCart(item)
+  };
+
   const authInfo = {
     createUser,
     userLogin,
@@ -59,6 +75,8 @@ const AuthProvider = ({ children }) => {
     updateUser,
     loading,
     user,
+    addToCart,
+    cart,
   };
 
   return (

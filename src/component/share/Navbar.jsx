@@ -4,7 +4,7 @@ import { AuthContext } from "../../auth/AuthProvider";
 import UserProfileModal from "../../user/profile/UserProfileModal";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, cart } = useContext(AuthContext);
 
   const [modal, setModal] = useState(false);
 
@@ -39,6 +39,9 @@ const Navbar = () => {
       <li>
         <Link to="/sign_up">SignUp</Link>
       </li>
+      {/* <li>
+        <Link>{cart?.length}</Link>
+      </li> */}
 
       {user?.uid ? (
         <li>
@@ -64,7 +67,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full">
-      <div className="z-50 navbar opacity-100 text-opacity-90 relative lg:px-5 md:px-6 bg-gradient-to-b to-slate-600 from-slate-950 text-white justify-between">
+      <div className="z-50 navbar bg-opacity-0 text-opacity-80 lg:px-5 md:px-6 bg-gradient-to-t to-slate-800 from-slate-950 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label

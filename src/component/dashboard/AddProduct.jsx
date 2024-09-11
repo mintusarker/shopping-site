@@ -12,7 +12,7 @@ const AddProduct = () => {
     formState: { errors },
   } = useForm();
 
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleAddProduct = (data) => {
@@ -22,7 +22,7 @@ const AddProduct = () => {
       price: parseInt(data.price),
       detail: data.detail,
       image: data.image,
-      email: data.email,
+      category: data.category,
     };
     console.log(product);
 
@@ -58,21 +58,23 @@ const AddProduct = () => {
           <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text">Product Category</span>
               </label>
-              <input
-                type="text"
-                defaultValue={user?.email}
-                readOnly
-                className="input input-bordered rounded-sm w-60"
-                {...register("email", {
-                  required: "Email is required",
+              <select
+                className="select select-bordered rounded-sm"
+                {...register("category", {
+                  required: "category name is required",
                 })}
-              />
+              >
+                <option></option>
+                <option>Men</option>
+                <option>Women</option>
+                <option>Kids</option>
+              </select>
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Product Name</span>
+                <span className="label-text">Product Brand Name</span>
               </label>
               <input
                 type="text"

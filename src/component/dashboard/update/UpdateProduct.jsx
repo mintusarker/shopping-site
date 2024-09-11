@@ -11,6 +11,7 @@ const UpdateProduct = () => {
   const handleUpdateUser = (event) => {
     event.preventDefault();
     const form = event.target;
+    const category = form.category.value;
     const name = form.name.value;
     const quantity = form.quantity.value;
     const price = form.price.value;
@@ -18,6 +19,7 @@ const UpdateProduct = () => {
     const detail = form.detail.value;
 
     const updateProduct = {
+      category,
       name,
       quantity,
       price,
@@ -46,39 +48,61 @@ const UpdateProduct = () => {
   };
 
   return (
-    <div className="mt-16 mb-32 border w-1/2 p-4 mx-auto">
-      <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-lg">
+    <div className="mt-16 mb-32 border lg:w-1/2 md:w-full w-full lg:p-4 md:p-4 p-4 mx-auto">
+      <h2 className="text-2xl mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-sm">
         Update Product
       </h2>
 
       <form onSubmit={handleUpdateUser} className="flex flex-col">
-        <label htmlFor="">Product Name</label>
-        <input
-          className="border border-black  w-full p-2 mb-4"
-          defaultValue={data[0]?.name}
-          type="text"
-          name="name"
-          placeholder="Product Name"
-          required
-        />
-        <label htmlFor="">Product Quantity</label>
-        <input
-          className="border border-black  w-full p-2 mb-4"
-          defaultValue={data[0]?.quantity}
-          type="text"
-          name="quantity"
-          placeholder="Quantity"
-          required
-        />
-        <label htmlFor="">Price</label>
-        <input
-          className="border border-stone-500 w-full p-2 mb-4"
-          defaultValue={data[0]?.price}
-          type="text"
-          name="price"
-          placeholder="Price"
-          required
-        />
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="">Product category</label>
+            <input
+              className="border border-black w-full p-2 mb-4"
+              defaultValue={data[0]?.category}
+              type="text"
+              name="category"
+              placeholder="Product Name"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="">Product brand</label>
+            <input
+              className="border border-black  w-full p-2 mb-4"
+              defaultValue={data[0]?.name}
+              type="text"
+              name="name"
+              placeholder="Product Name"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="">Product Quantity</label>
+            <input
+              className="border border-black  w-full p-2 mb-4"
+              defaultValue={data[0]?.quantity}
+              type="text"
+              name="quantity"
+              placeholder="Quantity"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="">Price</label>
+            <input
+              className="border border-stone-500 w-full p-2 mb-4"
+              defaultValue={data[0]?.price}
+              type="text"
+              name="price"
+              placeholder="Price"
+              required
+            />
+          </div>
+        </div>
         <label htmlFor="">Product's Detail</label>
         <textarea
           type="text"

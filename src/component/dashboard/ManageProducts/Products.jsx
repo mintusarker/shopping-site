@@ -67,6 +67,7 @@ const Products = ({ product, handleDeleteProduct }) => {
         <p>Price: {product?.price} $</p>
         <p className="text-justify">Detail: {product?.detail}</p>
         <p className="text-justify">Quantity: {product?.quantity}</p>
+        <p className="text-justify">For <span className="text-blue-700 font-semibold">{product?.category}</span></p>
         <div className="flex items-center flex-wrap gap-3">
           <button
             onClick={() => handleDeleteProduct(product?._id)}
