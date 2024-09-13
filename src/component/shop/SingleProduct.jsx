@@ -36,13 +36,13 @@ const SingleProduct = ({ product, addToCart }) => {
           {product?.quantity == 0 && (
             <>
               <p className="text-white bg-rose-500 text-xs inline py-1 px-2 rounded-sm">
-                {" "}
+              
                 Out of Stock
               </p>
             </>
           )}
         </p>
-        <div className="card-actions justify-end -mt-8">
+        <div className="card-actions justify-end">
           <Link to={`/booking_product/${product?._id}`}>
             <button className="btn btn-sm rounded-sm btn-outline">Buy</button>
           </Link>

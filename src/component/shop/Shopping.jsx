@@ -4,10 +4,12 @@ import SingleProduct from "./SingleProduct";
 import { AuthContext } from "../../auth/AuthProvider";
 
 const Shopping = () => {
+  const [allProducts, setAllProducts] = useState();
+
   const [products, setProducts] = useState();
   // const [cart, setCart]= useState([])
   // // console.log(cart);
-  const { addToCart} = useContext(AuthContext)
+  const { addToCart } = useContext(AuthContext);
 
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
@@ -15,7 +17,7 @@ const Shopping = () => {
       try {
         const res = await fetch(` http://localhost:5000/products`);
         const data = await res.json();
-        setProducts(data);
+        setAllProducts(data);
         // console.log(data);
         return data;
       } catch (error) {
@@ -45,6 +47,30 @@ const Shopping = () => {
     }
   };
 
+  //filter items
+  const mensItemHandler = () => {
+    const data = allProducts?.filter((product) => product.category == "Men");
+    setProducts(data);
+    console.log(data);
+  };
+
+  const womansItemHandler = () => {
+    const data = allProducts?.filter((product) => product.category == "Women");
+    setProducts(data);
+    console.log(data);
+  };
+
+  const kidsItemsHandler = () => {
+    const data = allProducts?.filter((product) => product.category == "Kids");
+    setProducts(data);
+    console.log(data);
+  };
+
+  const allItemsHandler = () => {
+    setProducts(allProducts);
+    console.log(data);
+  };
+
   // const addToCart = (name, id) => {
   //   const obj={
   //     name, id
@@ -71,10 +97,52 @@ const Shopping = () => {
           type="text"
         />
       </div>
-      <div className="grid gap-6 lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 px-20 mt-7 pb-20">
-        {products?.map((product) => (
-          <SingleProduct key={product?._id} product={product} addToCart={addToCart} ></SingleProduct>
-        ))}
+      <div className="flex px-12 mt-10">
+        <div className="flex flex-col gap-3 w-32">
+          <button
+            onClick={mensItemHandler}
+            className="btn btn-sm btn-neutral rounded-sm uppercase"
+          >
+            Men
+          </button>
+          <button
+            onClick={womansItemHandler}
+            className="btn btn-sm btn-neutral rounded-sm uppercase"
+          >
+            Women
+          </button>
+          <button
+            onClick={kidsItemsHandler}
+            className="btn btn-sm btn-neutral rounded-sm uppercase"
+          >
+            Kids
+          </button>
+          <button
+            onClick={allItemsHandler}
+            className="btn btn-sm btn-neutral rounded-sm uppercase"
+          >
+            All Items
+          </button>
+        </div>
+        <div className="w-full">
+          <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-2 px-20 pb-20">
+            {products
+              ? products?.map((product) => (
+                  <SingleProduct
+                    key={product?._id}
+                    product={product}
+                    addToCart={addToCart}
+                  ></SingleProduct>
+                ))
+              : allProducts?.map((product) => (
+                  <SingleProduct
+                    key={product?._id}
+                    product={product}
+                    addToCart={addToCart}
+                  ></SingleProduct>
+                ))}
+          </div>
+        </div>
       </div>
       {/* <div className="flex justify-end pb-12 px-16">
         <button className="btn btn-md text-lg rounded-sm btn-neutral">Load More</button>
