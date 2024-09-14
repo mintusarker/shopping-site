@@ -15,9 +15,7 @@ const StoreProducts = () => {
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch(
-          ` http://localhost:5000/products`
-        );
+        const res = await fetch(` http://localhost:5000/products`);
         const data = await res.json();
         console.log(data);
         return data;
@@ -53,7 +51,7 @@ const StoreProducts = () => {
   return (
     <div className="">
       <h2 className="text-xl leading-6 mt-5 border-b-4 border border-green-900 text-center w-52 rounded-sm">
-      Total Products: {products?.length}
+        Total Products: {products?.length}
       </h2>
 
       <div className="grid gap-6 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 my-8 mb-36">

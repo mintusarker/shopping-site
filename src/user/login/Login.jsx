@@ -97,21 +97,20 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <div className="flex border border-stone-300 w-72 rounded-sm">
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="input border-none focus:outline-none"
-              />
-              <a
-                href="#"
-                onClick={handleResetPassword}
-                className="label link link-hover text-sm opacity-85"
-              >
-                Forgot?
-              </a>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  className="input border-none focus:outline-none"
+                />
+                <a
+                  href="#"
+                  onClick={handleResetPassword}
+                  className="label link link-hover text-sm opacity-85"
+                >
+                  Forgot?
+                </a>
               </div>
-
             </div>
             <div className="form-control mt-2">
               <input
@@ -124,7 +123,10 @@ const Login = () => {
           </form>
           <p className="text-center -mt-5">
             New to Here ! Please
-            <Link className="text-red-800 font-semibold up ml-2 link link-hover" to="/sign_up">
+            <Link
+              className="text-red-800 font-semibold up ml-2 link link-hover"
+              to="/sign_up"
+            >
               sign up
             </Link>
           </p>

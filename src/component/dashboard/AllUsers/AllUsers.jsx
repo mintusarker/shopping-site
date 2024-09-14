@@ -30,7 +30,7 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         const restUsers = users?.filter((user) => user?._id !== _id);
-          setUsers(restUsers);
+        setUsers(restUsers);
         if (data.deletedCount) {
           toast.success(`User deleted successfully`);
         }

@@ -23,8 +23,8 @@ const NewArrivalProductsList = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const restItems = newArrival?.filter(newArr => newArr?._id !== id);
-        setNewArrival(restItems)
+        const restItems = newArrival?.filter((newArr) => newArr?._id !== id);
+        setNewArrival(restItems);
         if (data.deletedCount > 0) {
           toast.success("New arrival product removed");
         }

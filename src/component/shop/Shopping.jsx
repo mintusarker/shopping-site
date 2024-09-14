@@ -88,7 +88,7 @@ const Shopping = () => {
   }
 
   return (
-    <div className="my-7">
+    <div className="my-7 relative">
       <div className="flex justify-center">
         <input
           onChange={handleSearch}
@@ -97,8 +97,22 @@ const Shopping = () => {
           type="text"
         />
       </div>
-      <div className="flex px-12 mt-10">
-        <div className="flex flex-col gap-3 w-32">
+
+      <div className="flex flex-col absolute top-0 right-20">
+        <div className="flex items-center gap-1">
+          <input type="radio" id="" name="radio-4" />
+          <p className="font-semibold text-sm">Low to High</p>
+        </div>
+        <div className="flex items-center gap-1">
+          <input type="radio" id="" name="radio-4" />
+
+          <p className="font-semibold text-sm">High to Low</p>
+        </div>
+      </div>
+
+      <div className="flex pl-10 mt-10 pb-12">
+        <div className="flex flex-col gap-3 w-36 mr-12">
+          <p className="text-md font-semibold">Category</p>
           <button
             onClick={mensItemHandler}
             className="btn btn-sm btn-neutral rounded-sm uppercase"
@@ -123,9 +137,51 @@ const Shopping = () => {
           >
             All Items
           </button>
+
+          {/* price range filter section */}
+          <div className="my-8 flex flex-col gap-1">
+            <p className="text-md font-semibold mb-1">Price Range</p>
+
+            <div className="flex justify-center items-center gap-6 bg-slate-300 rounded-sm py-1">
+              <input
+                type="radio"
+                name="radio-4"
+                className="radio radio-sm radio-success"
+              />
+              <p>0 - 100 $</p>
+            </div>
+
+            <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
+              <input
+                type="radio"
+                name="radio-4"
+                className="radio radio-sm radio-success"
+              />
+              <p>100 - 200 $</p>
+            </div>
+
+            <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
+              <input
+                type="radio"
+                name="radio-4"
+                className="radio radio-sm radio-success"
+              />
+              <p>200 - 400 $</p>
+            </div>
+
+            <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
+              <input
+                type="radio"
+                name="radio-4"
+                className="radio radio-sm radio-success"
+              />
+              <p>400 - 500 $</p>
+            </div>
+          </div>
         </div>
-        <div className="w-full">
-          <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 grid-cols-2 px-20 pb-20">
+        <hr className="bg-slate-300 w-0.5 h-screen" />
+        <div className="w-ful">
+          <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:px-16 md:px-16 px-4 pb-20 lg:ml-0 md:ml-0 ml-6">
             {products
               ? products?.map((product) => (
                   <SingleProduct

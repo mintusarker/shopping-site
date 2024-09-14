@@ -28,7 +28,7 @@ const TopSellingProductsList = () => {
         setTopSells(restTopSell);
         if (data.deletedCount > 0) {
           toast.success("Top selling product removed");
-        };
+        }
       });
   };
 

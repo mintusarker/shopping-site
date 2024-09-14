@@ -42,7 +42,7 @@ const SingleProduct = ({ product, addToCart }) => {
             </>
           )}
         </p>
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-end -mt-8">
           <Link to={`/booking_product/${product?._id}`}>
             <button className="btn btn-sm rounded-sm btn-outline">Buy</button>
           </Link>
