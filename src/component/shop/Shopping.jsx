@@ -1,15 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SingleProduct from "./SingleProduct";
 import { AuthContext } from "../../auth/AuthProvider";
 
 const Shopping = () => {
   const [allProducts, setAllProducts] = useState();
+  console.log(allProducts);
 
   const [products, setProducts] = useState();
   // const [cart, setCart]= useState([])
   // // console.log(cart);
   const { addToCart } = useContext(AuthContext);
+
+  const [item, setItem] = useState();
+  
 
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
@@ -35,16 +39,21 @@ const Shopping = () => {
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
-          console.log(data);
         });
     } else {
       fetch(` http://localhost:5000/products`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
-          console.log(data);
         });
     }
+  };
+
+  // price sorting low to high
+  const priceLowToHigh = () => {
+    fetch("http://localhost:5000/priceLow")
+      .then((res) => res.json())
+      .then((data) => setAllProducts(data));
   };
 
   //filter items
@@ -99,14 +108,36 @@ const Shopping = () => {
       </div>
 
       <div className="flex flex-col absolute top-0 right-20">
+        {/* <select
+          className="border input-bordered px-2 py-1 text-sm rounded-sm outline-none font-semibold"
+          name=""
+          id=""
+          onClick={sortingPrice}
+        >
+          <option className="font-semibold" value="" disabled selected>
+            Price
+          </option>
+          <option className="font-semibold" value="">
+            Default
+          </option>
+          <option className="font-semibold" value="">
+            Low to High
+          </option>
+          <option className="font-semibold" value="">
+            High to Low
+          </option>
+        </select> */}
         <div className="flex items-center gap-1">
-          <input type="radio" id="" name="radio-4" />
-          <p className="font-semibold text-sm">Low to High</p>
+          <input type="radio" name="radio-5" className="" id="" />
+          <span className="text-sm font-semibold">Default</span>
         </div>
         <div className="flex items-center gap-1">
-          <input type="radio" id="" name="radio-4" />
-
-          <p className="font-semibold text-sm">High to Low</p>
+          <input onClick={priceLowToHigh} type="radio" name="radio-5" id="" />
+          <span className="text-sm font-semibold">Low To High</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <input type="radio" className="" name="radio-5" id="" />
+          <span className="text-sm font-semibold">High To Low</span>
         </div>
       </div>
 

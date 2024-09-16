@@ -14,7 +14,7 @@ const UpdateProduct = () => {
     const category = form.category.value;
     const name = form.name.value;
     const quantity = form.quantity.value;
-    const price = form.price.value;
+    const price = parseInt(form.price.value);
     const image = form.image.value;
     const detail = form.detail.value;
 
@@ -122,7 +122,7 @@ const UpdateProduct = () => {
         />
 
         <br />
-        <button className="btn rounded-sm btn-success">Update Product</button>
+        <button className="btn rounded-sm text-lg uppercase text-white btn-neutral">Update Product</button>
       </form>
     </div>
   );
