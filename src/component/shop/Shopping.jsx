@@ -13,7 +13,6 @@ const Shopping = () => {
   const { addToCart } = useContext(AuthContext);
 
   const [item, setItem] = useState();
-  
 
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
@@ -51,7 +50,27 @@ const Shopping = () => {
 
   // price sorting low to high
   const priceLowToHigh = () => {
+    setAllProducts("");
+    setProducts("");
     fetch("http://localhost:5000/priceLow")
+      .then((res) => res.json())
+      .then((data) => setAllProducts(data));
+  };
+
+  // price sorting high to low
+  const priceHighToLow = () => {
+    setAllProducts("");
+    setProducts("");
+    fetch("http://localhost:5000/priceHigh")
+      .then((res) => res.json())
+      .then((data) => setAllProducts(data));
+  };
+
+  //default Price
+  const defaultPrice = () => {
+    setAllProducts("");
+    setProducts("");
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };
@@ -128,7 +147,13 @@ const Shopping = () => {
           </option>
         </select> */}
         <div className="flex items-center gap-1">
-          <input type="radio" name="radio-5" className="" id="" />
+          <input
+            onClick={defaultPrice}
+            type="radio"
+            name="radio-5"
+            className=""
+            id=""
+          />
           <span className="text-sm font-semibold">Default</span>
         </div>
         <div className="flex items-center gap-1">
@@ -136,7 +161,13 @@ const Shopping = () => {
           <span className="text-sm font-semibold">Low To High</span>
         </div>
         <div className="flex items-center gap-1">
-          <input type="radio" className="" name="radio-5" id="" />
+          <input
+            onClick={priceHighToLow}
+            type="radio"
+            className="cursor-pointer"
+            name="radio-5"
+            id=""
+          />
           <span className="text-sm font-semibold">High To Low</span>
         </div>
       </div>
@@ -212,7 +243,7 @@ const Shopping = () => {
         </div>
         <hr className="bg-slate-300 w-0.5 h-screen" />
         <div className="w-ful">
-          <div className="grid gap-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:px-16 md:px-16 px-4 pb-20 lg:ml-0 md:ml-0 ml-6">
+          <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:px-16 md:px-16 px-4 pb-20 lg:ml-0 md:ml-0 ml-6">
             {products
               ? products?.map((product) => (
                   <SingleProduct
@@ -221,7 +252,7 @@ const Shopping = () => {
                     addToCart={addToCart}
                   ></SingleProduct>
                 ))
-              : allProducts?.map((product) => (
+              : allProducts && allProducts?.map((product) => (
                   <SingleProduct
                     key={product?._id}
                     product={product}

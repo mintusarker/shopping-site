@@ -122,7 +122,9 @@ const UpdateProduct = () => {
         />
 
         <br />
-        <button className="btn rounded-sm text-lg uppercase text-white btn-neutral">Update Product</button>
+        <button className="btn rounded-sm text-lg uppercase text-white btn-neutral">
+          Update Product
+        </button>
       </form>
     </div>
   );
