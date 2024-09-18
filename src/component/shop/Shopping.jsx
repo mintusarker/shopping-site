@@ -12,8 +12,6 @@ const Shopping = () => {
   // // console.log(cart);
   const { addToCart } = useContext(AuthContext);
 
-  const [item, setItem] = useState();
-
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
@@ -50,8 +48,8 @@ const Shopping = () => {
 
   // price sorting low to high
   const priceLowToHigh = () => {
-    setAllProducts("");
     setProducts("");
+    // setAllProducts("");
     fetch("http://localhost:5000/priceLow")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
@@ -59,8 +57,8 @@ const Shopping = () => {
 
   // price sorting high to low
   const priceHighToLow = () => {
-    setAllProducts("");
     setProducts("");
+    // setAllProducts("");
     fetch("http://localhost:5000/priceHigh")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
@@ -68,8 +66,8 @@ const Shopping = () => {
 
   //default Price
   const defaultPrice = () => {
-    setAllProducts("");
     setProducts("");
+    // setAllProducts("");
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
@@ -96,6 +94,47 @@ const Shopping = () => {
 
   const allItemsHandler = () => {
     setProducts(allProducts);
+    console.log(data);
+  };
+
+  //filter with price range
+  const priceHandlerOne = () => {
+    setProducts("");
+    setAllProducts("");
+    const data = allProducts.filter((p) => p?.price > 0 && p?.price <= 100);
+    setAllProducts(data);
+    console.log(data);
+  };
+
+  const priceHandlerTwo = () => {
+    setProducts("");
+    setAllProducts("");
+    const data = allProducts.filter((p) => p?.price >= 100 && p?.price <= 200);
+    setAllProducts(data);
+    console.log(data);
+  };
+
+  const priceHandlerThree = () => {
+    setProducts("");
+    setAllProducts("");
+    const data = allProducts.filter((p) => p?.price >= 200 && p?.price <= 300);
+    setAllProducts(data);
+    console.log(data);
+  };
+
+  const priceHandlerFour = () => {
+    setProducts("");
+    setAllProducts("");
+    const data = allProducts.filter((p) => p?.price >= 300 && p?.price <= 400);
+    setAllProducts(data);
+    console.log(data);
+  };
+
+  const priceHandlerFive = () => {
+    setProducts("");
+    setAllProducts("");
+    const data = allProducts.filter((p) => p?.price >= 400);
+    setAllProducts(data);
     console.log(data);
   };
 
@@ -206,6 +245,7 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-6 bg-slate-300 rounded-sm py-1">
               <input
+                onClick={priceHandlerOne}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
@@ -215,6 +255,7 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
+              onClick={priceHandlerTwo}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
@@ -224,20 +265,34 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
+              onClick={priceHandlerThree}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
               />
-              <p>200 - 400 $</p>
+              <p>200 - 300 $</p>
             </div>
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
+              onClick={priceHandlerFour}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
               />
-              <p>400 - 500 $</p>
+              <p>300 - 400 $</p>
+            </div>
+
+            <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
+              <input
+              onClick={priceHandlerFive}
+                type="radio"
+                name="radio-4"
+                className="radio radio-sm radio-success"
+              />
+              <p>
+                <span className="p-3">&#8805;</span> 400 $
+              </p>
             </div>
           </div>
         </div>
@@ -252,11 +307,12 @@ const Shopping = () => {
                     addToCart={addToCart}
                   ></SingleProduct>
                 ))
-              : allProducts && allProducts?.map((product) => (
+              : allProducts &&
+                allProducts?.map((product) => (
                   <SingleProduct
                     key={product?._id}
                     product={product}
-                    addToCart={addToCart}
+                    // addToCart={addToCart}
                   ></SingleProduct>
                 ))}
           </div>
