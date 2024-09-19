@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SingleProduct from "./SingleProduct";
 import { AuthContext } from "../../auth/AuthProvider";
@@ -6,6 +6,8 @@ import { AuthContext } from "../../auth/AuthProvider";
 const Shopping = () => {
   const [allProducts, setAllProducts] = useState();
   console.log(allProducts);
+  const [item, setItem] = useState();
+  console.log(item);
 
   const [products, setProducts] = useState();
   // const [cart, setCart]= useState([])
@@ -19,6 +21,7 @@ const Shopping = () => {
         const res = await fetch(` http://localhost:5000/products`);
         const data = await res.json();
         setAllProducts(data);
+        setItem(data);
         // console.log(data);
         return data;
       } catch (error) {
@@ -68,9 +71,10 @@ const Shopping = () => {
   const defaultPrice = () => {
     setProducts("");
     // setAllProducts("");
-    fetch("http://localhost:5000/products")
-      .then((res) => res.json())
-      .then((data) => setAllProducts(data));
+    // fetch("http://localhost:5000/products")
+    //   .then((res) => res.json())
+    //   .then((data) => setAllProducts(data));
+    setAllProducts(item);
   };
 
   //filter items
@@ -100,42 +104,53 @@ const Shopping = () => {
   //filter with price range
   const priceHandlerOne = () => {
     setProducts("");
-    setAllProducts("");
-    const data = allProducts.filter((p) => p?.price > 0 && p?.price <= 100);
+    // setAllProducts("");
+    const data = item.filter((p) => p?.price > 0 && p?.price <= 100);
     setAllProducts(data);
+    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerTwo = () => {
-    setProducts("");
+    // setProducts("");
     setAllProducts("");
-    const data = allProducts.filter((p) => p?.price >= 100 && p?.price <= 200);
+    const data = item.filter((p) => p?.price >= 100 && p?.price <= 200);
     setAllProducts(data);
+    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerThree = () => {
-    setProducts("");
+    // setProducts("");
     setAllProducts("");
-    const data = allProducts.filter((p) => p?.price >= 200 && p?.price <= 300);
+    const data = item.filter((p) => p?.price >= 200 && p?.price <= 300);
     setAllProducts(data);
+    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerFour = () => {
     setProducts("");
-    setAllProducts("");
-    const data = allProducts.filter((p) => p?.price >= 300 && p?.price <= 400);
+    // setAllProducts("");
+    const data = item.filter((p) => p?.price >= 300 && p?.price <= 400);
     setAllProducts(data);
+    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerFive = () => {
     setProducts("");
-    setAllProducts("");
-    const data = allProducts.filter((p) => p?.price >= 400);
+    // setAllProducts("");
+    const data = item.filter((p) => p?.price >= 400);
     setAllProducts(data);
+    // setProducts(data);
     console.log(data);
+  };
+
+  const defaultListHandler = () => {
+    setProducts("");
+    setAllProducts("");
+    setAllProducts(item);
   };
 
   // const addToCart = (name, id) => {
@@ -212,7 +227,7 @@ const Shopping = () => {
       </div>
 
       <div className="flex pl-10 mt-10 pb-12">
-        <div className="flex flex-col gap-3 w-36 mr-12">
+        <div className="flex flex-col gap-3 w-40 mr-12">
           <p className="text-md font-semibold">Category</p>
           <button
             onClick={mensItemHandler}
@@ -255,7 +270,7 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
-              onClick={priceHandlerTwo}
+                onClick={priceHandlerTwo}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
@@ -265,7 +280,7 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
-              onClick={priceHandlerThree}
+                onClick={priceHandlerThree}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
@@ -275,7 +290,7 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
-              onClick={priceHandlerFour}
+                onClick={priceHandlerFour}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
@@ -285,7 +300,7 @@ const Shopping = () => {
 
             <div className="flex justify-center items-center gap-2 bg-slate-300 rounded-sm py-1">
               <input
-              onClick={priceHandlerFive}
+                onClick={priceHandlerFive}
                 type="radio"
                 name="radio-4"
                 className="radio radio-sm radio-success"
@@ -295,8 +310,20 @@ const Shopping = () => {
               </p>
             </div>
           </div>
+
+          <div className="flex justify-center items-center bg-slate-300 rounded-sm py-1 mt-4">
+            <input
+              onClick={defaultListHandler}
+              type="radio"
+              name="radio-4"
+              className="radio radio-sm radio-success"
+            />
+            <p>
+              <span className="p-3">Default View</span>
+            </p>
+          </div>
         </div>
-        <hr className="bg-slate-300 w-0.5 h-screen" />
+        <hr className="bg-slate-300 w-[1px] h-[600px]" />
         <div className="w-ful">
           <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:px-16 md:px-16 px-4 pb-20 lg:ml-0 md:ml-0 ml-6">
             {products
