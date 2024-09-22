@@ -67,7 +67,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full">
-      <div className="z-50 navbar bg-opacity-0 text-opacity-80 lg:px-5 md:px-6 bg-gradient-to-t to-slate-800 from-slate-950 text-white justify-between">
+      <div className="z-50 navbar  text-opacity-80 lg:px-5 md:px-6 bg-slate-600 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label
@@ -99,9 +99,46 @@ const Navbar = () => {
           <i className="text-2xl font-thin">Fashion Corner</i>
         </div>
         <div className="navbar-center hidden sm:flex md:flex lg:flex">
-          <ul className="menu menu-horizontal px-1 font-thin text-base capitalize items-center">
-            {menuItems}
-          </ul>
+          <div className="menu gap-6 menu-horizontal px-1 font-thin text-base capitalize items-center">
+            <p>
+              <Link to="/">Home</Link>
+            </p>
+
+            <p>
+              <Link to="/shop">Shop</Link>
+            </p>
+
+            <p>
+              <Link to="/dashboard">Dashboard</Link>
+            </p>
+
+            <p>
+              <Link to="/sign_up">SignUp</Link>
+            </p>
+            {/* <p>
+        <Link>{cart?.length}</Link>
+      </p> */}
+
+            {user?.uid ? (
+              <p>
+                {profile ? (
+                  <button onClick={() => modalHandler()} className="rounded">
+                    Profile
+                  </button>
+                ) : !profile ? (
+                  <button onClick={() => modalHandlerOff()} className="rounded">
+                    Profile
+                  </button>
+                ) : (
+                  ""
+                )}
+              </p>
+            ) : (
+              <p>
+                <Link to="/login">Login</Link>
+              </p>
+            )}
+          </div>
         </div>
         <label
           htmlFor="my-drawer-2"

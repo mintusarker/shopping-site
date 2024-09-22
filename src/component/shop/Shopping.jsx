@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import SingleProduct from "./SingleProduct";
 import { AuthContext } from "../../auth/AuthProvider";
+import { Link } from "react-router-dom";
+import { BsCartCheck } from "react-icons/bs";
 
 const Shopping = () => {
   const [allProducts, setAllProducts] = useState();
@@ -10,9 +12,8 @@ const Shopping = () => {
   console.log(item);
 
   const [products, setProducts] = useState();
-  // const [cart, setCart]= useState([])
-  // // console.log(cart);
-  const { addToCart } = useContext(AuthContext);
+
+  const { addToCart, user } = useContext(AuthContext);
 
   const { data, isLoading } = useQuery({
     queryKey: ["products"],
@@ -49,10 +50,24 @@ const Shopping = () => {
     }
   };
 
+  //get order by email
+  const {
+    data: bookings = [],
+  } = useQuery({
+    queryKey: ["bookings"],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/bookings/email?email=${user?.email}`
+      );
+      const data = await res.json();
+      console.log(data);
+      return data;
+    },
+  });
+
   // price sorting low to high
   const priceLowToHigh = () => {
     setProducts("");
-    // setAllProducts("");
     fetch("http://localhost:5000/priceLow")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
@@ -61,7 +76,6 @@ const Shopping = () => {
   // price sorting high to low
   const priceHighToLow = () => {
     setProducts("");
-    // setAllProducts("");
     fetch("http://localhost:5000/priceHigh")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
@@ -70,10 +84,6 @@ const Shopping = () => {
   //default Price
   const defaultPrice = () => {
     setProducts("");
-    // setAllProducts("");
-    // fetch("http://localhost:5000/products")
-    //   .then((res) => res.json())
-    //   .then((data) => setAllProducts(data));
     setAllProducts(item);
   };
 
@@ -104,46 +114,36 @@ const Shopping = () => {
   //filter with price range
   const priceHandlerOne = () => {
     setProducts("");
-    // setAllProducts("");
     const data = item.filter((p) => p?.price > 0 && p?.price <= 100);
     setAllProducts(data);
-    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerTwo = () => {
-    // setProducts("");
     setAllProducts("");
     const data = item.filter((p) => p?.price >= 100 && p?.price <= 200);
     setAllProducts(data);
-    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerThree = () => {
-    // setProducts("");
     setAllProducts("");
     const data = item.filter((p) => p?.price >= 200 && p?.price <= 300);
     setAllProducts(data);
-    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerFour = () => {
     setProducts("");
-    // setAllProducts("");
     const data = item.filter((p) => p?.price >= 300 && p?.price <= 400);
     setAllProducts(data);
-    // setProducts(data);
     console.log(data);
   };
 
   const priceHandlerFive = () => {
     setProducts("");
-    // setAllProducts("");
     const data = item.filter((p) => p?.price >= 400);
     setAllProducts(data);
-    // setProducts(data);
     console.log(data);
   };
 
@@ -152,14 +152,6 @@ const Shopping = () => {
     setAllProducts("");
     setAllProducts(item);
   };
-
-  // const addToCart = (name, id) => {
-  //   const obj={
-  //     name, id
-  //   }
-  //       setCart([...cart, obj])
-  //       console.log('love', cart);
-  // }
 
   if (isLoading) {
     return (
@@ -170,64 +162,62 @@ const Shopping = () => {
   }
 
   return (
-    <div className="my-7 relative">
-      <div className="flex justify-center">
+    <div className="mt-3 mb-7">
+      <div className=" flex justify-evenly items-center">
+        <div></div>
         <input
           onChange={handleSearch}
-          className="border border-slate-400 outline-none rounded-md w-60 text-start px-3 py-1"
+          className="border border-slate-400 outline-none rounded-md w-60 text-start px-3 h-10"
           placeholder="search product"
           type="text"
         />
-      </div>
 
-      <div className="flex flex-col absolute top-0 right-20">
-        {/* <select
-          className="border input-bordered px-2 py-1 text-sm rounded-sm outline-none font-semibold"
-          name=""
-          id=""
-          onClick={sortingPrice}
-        >
-          <option className="font-semibold" value="" disabled selected>
-            Price
-          </option>
-          <option className="font-semibold" value="">
-            Default
-          </option>
-          <option className="font-semibold" value="">
-            Low to High
-          </option>
-          <option className="font-semibold" value="">
-            High to Low
-          </option>
-        </select> */}
-        <div className="flex items-center gap-1">
-          <input
-            onClick={defaultPrice}
-            type="radio"
-            name="radio-5"
-            className=""
-            id=""
-          />
-          <span className="text-sm font-semibold">Default</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <input onClick={priceLowToHigh} type="radio" name="radio-5" id="" />
-          <span className="text-sm font-semibold">Low To High</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <input
-            onClick={priceHighToLow}
-            type="radio"
-            className="cursor-pointer"
-            name="radio-5"
-            id=""
-          />
-          <span className="text-sm font-semibold">High To Low</span>
+        <div className="relative">
+          <Link
+            className="hover:bg-slate-200 h-14 w-14 flex justify-center items-center rounded-sm"
+            to="/dashboard/my_bookings"
+          >
+            <BsCartCheck className="text-3xl text-red-500 h-8 w-8" />
+          <span className="absolute top-1 right-2 opacity-65 bg-black text-white flex justify-center items-center px-2 rounded-full">
+            {user?.email ? bookings?.length : 0}
+          </span>
+          </Link>
         </div>
       </div>
 
       <div className="flex pl-10 mt-10 pb-12">
         <div className="flex flex-col gap-3 w-40 mr-12">
+          <div className="flex flex-col mb-4">
+            <div className="flex items-center gap-1">
+              <input
+                onClick={defaultPrice}
+                type="radio"
+                name="radio-5"
+                className=""
+                id=""
+              />
+              <span className="text-sm font-semibold">Default</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <input
+                onClick={priceLowToHigh}
+                type="radio"
+                name="radio-5"
+                id=""
+              />
+              <span className="text-sm font-semibold">Low To High</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <input
+                onClick={priceHighToLow}
+                type="radio"
+                className="cursor-pointer"
+                name="radio-5"
+                id=""
+              />
+              <span className="text-sm font-semibold">High To Low</span>
+            </div>
+          </div>
           <p className="text-md font-semibold">Category</p>
           <button
             onClick={mensItemHandler}
@@ -323,7 +313,7 @@ const Shopping = () => {
             </p>
           </div>
         </div>
-        <hr className="bg-slate-300 w-[1px] h-[600px]" />
+        <hr className="bg-slate-300 w-[1px] h-[650px]" />
         <div className="w-ful">
           <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:px-16 md:px-16 px-4 pb-20 lg:ml-0 md:ml-0 ml-6">
             {products
@@ -331,7 +321,7 @@ const Shopping = () => {
                   <SingleProduct
                     key={product?._id}
                     product={product}
-                    addToCart={addToCart}
+                    // addToCart={addToCart}
                   ></SingleProduct>
                 ))
               : allProducts &&
@@ -339,7 +329,7 @@ const Shopping = () => {
                   <SingleProduct
                     key={product?._id}
                     product={product}
-                    // addToCart={addToCart}
+                    addToCart={addToCart}
                   ></SingleProduct>
                 ))}
           </div>

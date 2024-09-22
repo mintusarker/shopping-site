@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -64,7 +65,7 @@ const AuthProvider = ({ children }) => {
     const data = localStorage.getItem("product");
     const item = JSON.parse(data);
     console.log(item);
-    setCart(item)
+    setCart(item);
   };
 
   const authInfo = {
@@ -76,7 +77,7 @@ const AuthProvider = ({ children }) => {
     loading,
     user,
     addToCart,
-    cart,
+    cart
   };
 
   return (
