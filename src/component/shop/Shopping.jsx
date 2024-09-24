@@ -51,9 +51,7 @@ const Shopping = () => {
   };
 
   //get order by email
-  const {
-    data: bookings = [],
-  } = useQuery({
+  const { data: bookings = [] } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
@@ -120,14 +118,14 @@ const Shopping = () => {
   };
 
   const priceHandlerTwo = () => {
-    setAllProducts("");
+    setProducts("");
     const data = item.filter((p) => p?.price >= 100 && p?.price <= 200);
     setAllProducts(data);
     console.log(data);
   };
 
   const priceHandlerThree = () => {
-    setAllProducts("");
+    setProducts("");
     const data = item.filter((p) => p?.price >= 200 && p?.price <= 300);
     setAllProducts(data);
     console.log(data);
@@ -162,32 +160,38 @@ const Shopping = () => {
   }
 
   return (
-    <div className="mt-3 mb-7">
+    <div className="mt-1 mb-7">
       <div className=" flex justify-evenly items-center">
         <div></div>
         <input
           onChange={handleSearch}
-          className="border border-slate-400 outline-none rounded-md w-60 text-start px-3 h-10"
+          className="border border-slate-400 outline-none rounded-md w-60 text-start px-3 py-1"
           placeholder="search product"
           type="text"
         />
 
-        <div className="relative">
+        <div
+          className="relative tooltip tooltip-right"
+          data-tip={`My order ${user?.email ? bookings?.length : 0}`}
+        >
           <Link
             className="hover:bg-slate-200 h-14 w-14 flex justify-center items-center rounded-sm"
             to="/dashboard/my_bookings"
           >
-            <BsCartCheck className="text-3xl text-red-500 h-8 w-8" />
-          <span className="absolute top-1 right-2 opacity-65 bg-black text-white flex justify-center items-center px-2 rounded-full">
-            {user?.email ? bookings?.length : 0}
-          </span>
+            <BsCartCheck
+              className="text-3xl text-red-500 h-8 w-8"
+              data-tip="hello"
+            />
+            <span className="absolute top-1 right-2 opacity-65 bg-black text-white flex justify-center items-center px-2 rounded-full">
+              {user?.email ? bookings?.length : 0}
+            </span>
           </Link>
         </div>
       </div>
 
-      <div className="flex pl-10 mt-10 pb-12">
-        <div className="flex flex-col gap-3 w-40 mr-12">
-          <div className="flex flex-col mb-4">
+      <div className="flex pl-10 mt-4 pb-12">
+        <div className="flex flex-col w-40 mr-12">
+          <div className="flex flex-col">
             <div className="flex items-center gap-1">
               <input
                 onClick={defaultPrice}
@@ -218,34 +222,9 @@ const Shopping = () => {
               <span className="text-sm font-semibold">High To Low</span>
             </div>
           </div>
-          <p className="text-md font-semibold">Category</p>
-          <button
-            onClick={mensItemHandler}
-            className="btn btn-sm btn-neutral rounded-sm uppercase"
-          >
-            Men
-          </button>
-          <button
-            onClick={womansItemHandler}
-            className="btn btn-sm btn-neutral rounded-sm uppercase"
-          >
-            Women
-          </button>
-          <button
-            onClick={kidsItemsHandler}
-            className="btn btn-sm btn-neutral rounded-sm uppercase"
-          >
-            Kids
-          </button>
-          <button
-            onClick={allItemsHandler}
-            className="btn btn-sm btn-neutral rounded-sm uppercase"
-          >
-            All Items
-          </button>
 
           {/* price range filter section */}
-          <div className="my-8 flex flex-col gap-1">
+          <div className="flex flex-col gap-1 mt-4">
             <p className="text-md font-semibold mb-1">Price Range</p>
 
             <div className="flex justify-center items-center gap-6 bg-slate-300 rounded-sm py-1">
@@ -312,6 +291,36 @@ const Shopping = () => {
               <span className="p-3">Default View</span>
             </p>
           </div>
+
+          <div className="my-4">
+            <p className="text-md font-semibold">Category</p>
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={mensItemHandler}
+                className="btn btn-sm btn-neutral rounded-sm uppercase"
+              >
+                Men
+              </button>
+              <button
+                onClick={womansItemHandler}
+                className="btn btn-sm btn-neutral rounded-sm uppercase"
+              >
+                Women
+              </button>
+              <button
+                onClick={kidsItemsHandler}
+                className="btn btn-sm btn-neutral rounded-sm uppercase"
+              >
+                Kids
+              </button>
+              <button
+                onClick={allItemsHandler}
+                className="btn btn-sm btn-neutral rounded-sm uppercase"
+              >
+                All Items
+              </button>
+            </div>
+          </div>
         </div>
         <hr className="bg-slate-300 w-[1px] h-[650px]" />
         <div className="w-ful">
@@ -335,6 +344,8 @@ const Shopping = () => {
           </div>
         </div>
       </div>
+
+     
       {/* <div className="flex justify-end pb-12 px-16">
         <button className="btn btn-md text-lg rounded-sm btn-neutral">Load More</button>
       </div> */}

@@ -1,0 +1,8 @@
+.btn-nav span {
+  transform: translateX(-101%);
+  transition: 0.2s ease-in;
+}
+
+.btn-nav:hover span {
+  transform: translateX(0);
+}

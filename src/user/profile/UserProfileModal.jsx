@@ -32,7 +32,7 @@ const UserProfileModal = ({ setModal, setProfile }) => {
 
       <div className="avatar">
         <div className="w-16 rounded-full">
-          <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+          <img src={user?.photoURL} />
         </div>
       </div>
       <div className="text-sm">Name : {user?.displayName}</div>

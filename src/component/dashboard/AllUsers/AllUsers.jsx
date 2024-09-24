@@ -1,22 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../auth/AuthProvider";
+import { deleteUser, getAuth } from "firebase/auth";
+import app from "../../../firebase/firebase.config";
 
 const AllUsers = () => {
+  // const { userDelete } = useContext(AuthContext);
   const [users, setUsers] = useState();
-  console.log(users);
+  // console.log(users);
+
+  const auth = getAuth(app);
 
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setUsers(data);
       });
   }, []);
 
   //user delete
-
   const UserDelete = (_id) => {
+    // deleteUser(auth.currentUser)
+    //   .then((result) => {
+    //     const user = result.user;
+    //     console.log(result);
+    //     console.log(user);
+    //   })
+    //   .catch((err) => console.log(err));
+
     fetch(`http://localhost:5000/user/${_id}`, {
       method: "DELETE",
       headers: {

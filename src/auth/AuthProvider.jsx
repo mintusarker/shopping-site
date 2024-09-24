@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -8,6 +7,7 @@ import {
   signOut,
   onAuthStateChanged,
   updateProfile,
+  deleteUser,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -46,6 +46,10 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userInfo);
   };
 
+  const userDelete = ()=> {
+    return deleteUser(auth)
+  }
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("user observing");
@@ -76,6 +80,7 @@ const AuthProvider = ({ children }) => {
     updateUser,
     loading,
     user,
+    userDelete,
     addToCart,
     cart
   };

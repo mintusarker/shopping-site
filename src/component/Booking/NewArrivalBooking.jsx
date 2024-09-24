@@ -56,7 +56,7 @@ const NewArrivalBooking = () => {
       name: data[0]?.name,
       quantity: quantity,
       // price: parseInt(data[0]?.price),
-      price: parseInt(total),
+      price: parseInt(total + 10),
       detail: data[0]?.detail,
       phone: phoneNumber,
       image: data[0]?.image,
@@ -211,8 +211,16 @@ const NewArrivalBooking = () => {
               </button>
             </div>
           </div>
+          <div className="flex justify-between">
+          <p className="font-semibold text-center">
+            Price: {total} $
+          </p>
+          <p className="font-semibold text-center">
+            Delivery Charge: {total == 0 ? 0 : 10} $
+          </p>
+          </div>
           <p className="font-semibold border text-center">
-            Total Price: {total} $
+            Sub-Total: {total + 10} $
           </p>
 
           <p className="break-words text-wrap text-amber-500">

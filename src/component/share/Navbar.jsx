@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../auth/AuthProvider";
 import UserProfileModal from "../../user/profile/UserProfileModal";
+import "./Navbar.css";
 
 const Navbar = () => {
   const { user, cart } = useContext(AuthContext);
@@ -67,7 +68,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full">
-      <div className="z-50 navbar  text-opacity-80 lg:px-5 md:px-6 bg-slate-600 text-white justify-between">
+      <div className="z-50 navbar text-opacity-80 lg:px-5 md:px-6 bg-slate-600 text-white justify-between">
         <div className="navbar-start">
           <div className="dropdown">
             <label
@@ -100,43 +101,56 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden sm:flex md:flex lg:flex">
           <div className="menu gap-6 menu-horizontal px-1 font-thin text-base capitalize items-center">
-            <p>
+            <button className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden">
+              <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
               <Link to="/">Home</Link>
-            </p>
+            </button>
 
-            <p>
+            <button className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden">
+              <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
               <Link to="/shop">Shop</Link>
-            </p>
+            </button>
 
-            <p>
-              <Link to="/dashboard">Dashboard</Link>
-            </p>
+            <button className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden">
+              <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
+              <Link to="/dashboard">Dashboard</Link>{" "}
+            </button>
 
-            <p>
+            <button className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden">
+              <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
               <Link to="/sign_up">SignUp</Link>
-            </p>
-            {/* <p>
+            </button>
+            {/* <button>
         <Link>{cart?.length}</Link>
-      </p> */}
+      </button> */}
 
             {user?.uid ? (
-              <p>
+              <button>
                 {profile ? (
-                  <button onClick={() => modalHandler()} className="rounded">
+                  <button
+                    className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden"
+                    onClick={() => modalHandler()}
+                  >
+                    <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
                     Profile
                   </button>
                 ) : !profile ? (
-                  <button onClick={() => modalHandlerOff()} className="rounded">
+                  <button
+                    className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden"
+                    onClick={() => modalHandlerOff()}
+                  >
+                    <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
                     Profile
                   </button>
                 ) : (
                   ""
                 )}
-              </p>
+              </button>
             ) : (
-              <p>
+              <button className="relative btn-nav py-2 bg-slate-600 tracking-wider leading-none overflow-hidden">
+                <span className="absolute inset-x-0 h-[2px] bottom-0 bg-white"></span>
                 <Link to="/login">Login</Link>
-              </p>
+              </button>
             )}
           </div>
         </div>

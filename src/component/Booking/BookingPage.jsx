@@ -20,8 +20,10 @@ const BookingPage = () => {
 
   //booking quantity
   const [quantity, setQuantity] = useState(1);
+
   // total
   const [total, setTotal] = useState(data[0]?.price);
+
   //product quantity update
   const [updateQuantity, setUpdateQuantity] = useState(
     parseInt(data[0]?.quantity)
@@ -57,7 +59,7 @@ const BookingPage = () => {
       name: data[0]?.name,
       quantity: quantity,
       // price: parseInt(data[0]?.price),
-      price: parseInt(total),
+      price: parseInt(total + 10),
       detail: data[0]?.detail,
       phone: phoneNumber,
       image: data[0]?.image,
@@ -112,8 +114,8 @@ const BookingPage = () => {
 
       //price update
       const singlePrice = parseInt(data[0]?.price);
-      const totalPrice = total - singlePrice;
-      setTotal(totalPrice);
+      const price = total - singlePrice;
+      setTotal(price);
 
       //quantity update
       const update = parseInt(updateQuantity + 1);
@@ -136,7 +138,7 @@ const BookingPage = () => {
 
   return (
     <div className="my-12 px-10">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto bg-red-100 lg:w-2/3 p-8">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-5">
         <div>
           <img className="w-full h-64" src={data[0]?.image} alt="image" />
 
@@ -210,9 +212,18 @@ const BookingPage = () => {
               </button>
             </div>
           </div>
-          <p className="font-semibold border text-center">
-            Total Price: {total} $
+          <div className="flex justify-between">
+          <p className="font-semibold text-center">
+            Price: {total} $
           </p>
+          <p className="font-semibold text-center">
+            Delivery Charge: {total == 0 ? 0 : 10} $
+          </p>
+          </div>
+
+          <div className="font-semibold text-center border input-bordered py-1">
+           Sub-Total : {quantity == 0 ? 0 : (total + 10) } $
+          </div>
 
           <p className="break-words text-wrap text-amber-500">
             Easy return in 3 days , one year guarantee & we provide original
