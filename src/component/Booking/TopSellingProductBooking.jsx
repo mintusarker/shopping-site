@@ -13,30 +13,94 @@ const itemSize = [
   { value: 44, _id: 6 },
 ];
 
-const TopSellingProductBooking = () => {
+const BookingPage = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
+  console.log(data);
   const navigate = useNavigate();
 
   //booking quantity
   const [quantity, setQuantity] = useState(1);
+
   // total
   const [total, setTotal] = useState(data[0]?.price);
+
   //product quantity update
   const [updateQuantity, setUpdateQuantity] = useState(
     parseInt(data[0]?.quantity)
   );
 
+  //phone number store
+  const [phone, setPhone] = useState();
+  console.log(phone);
+
+  //phone number error
   const [numberError, setNumberError] = useState();
-  console.log(numberError);
+  // console.log(numberError);
 
   //product size
   const [size, setSize] = useState();
+  // console.log(size);
   const [sizeError, setSizeError] = useState();
+  // console.log(sizeError);
+
+  //increase quantity handler
+  const handleIncrement = () => {
+    if (quantity <= parseInt(data[0]?.quantity) + 1) {
+      setQuantity((prev) => prev + 1);
+
+      //price update
+      const singlePrice = parseInt(data[0]?.price);
+      const price = quantity * singlePrice + singlePrice;
+      setTotal(price);
+
+      //quantity update
+      const productQuantity = parseInt(data[0]?.quantity);
+      const update = productQuantity - quantity;
+      setUpdateQuantity(update);
+    }
+  };
+
+  //decrease quantity handler
+  const handleDecrement = () => {
+    if (quantity > 0) {
+      setQuantity((prev) => prev - 1);
+
+      //price update
+      const singlePrice = parseInt(data[0]?.price);
+      const price = total - singlePrice;
+      setTotal(price);
+
+      //quantity update
+      const update = parseInt(updateQuantity + 1);
+      setUpdateQuantity(update);
+    }
+  };
+
+  //select size
+  const selectSizeHandler = (id) => {
+    const field = document.getElementById("size");
+    console.log(field);
+
+    const data = itemSize.find((sz) => sz?._id == id);
+    const value = data.value;
+    console.log(value);
+
+    setSize(value);
+    setSizeError(" ");
+  };
+
+
+  //store phone number handler
+  const phoneStoreHandler = () => {
+    const phone = document.getElementById("phone");
+    const phoneNumber = phone.value;
+    setPhone(phoneNumber);
+    console.log(phoneNumber);
+  };
 
   // booking product handler
   const handleBookingProduct = () => {
-    //size handle
     if (!size) {
       setSizeError("Please select a size");
       return;
@@ -45,9 +109,12 @@ const TopSellingProductBooking = () => {
     //phone number handle
     const phone = document.getElementById("phone");
     const phoneNumber = phone.value;
-    console.log(phoneNumber);
-    if (!Number(phoneNumber) || phoneNumber.length < 11 || null) {
+    if (!Number(phoneNumber) || null) {
       setNumberError("Need a valid phone number");
+      return;
+    }
+    if (phoneNumber.length < 11) {
+      setNumberError("Phone number must be greater or equal to 11 digit");
       return;
     }
 
@@ -87,74 +154,42 @@ const TopSellingProductBooking = () => {
       });
   };
 
-  //increase quantity handler
-  const handleIncrement = () => {
-    if (quantity <= parseInt(data[0]?.quantity) + 1) {
-      setQuantity((prev) => prev + 1);
-
-      //price update
-      const singlePrice = parseInt(data[0]?.price);
-      const price = quantity * singlePrice + singlePrice;
-      setTotal(price);
-
-      //quantity update
-      const productQuantity = parseInt(data[0]?.quantity);
-      const update = productQuantity - quantity;
-      setUpdateQuantity(update);
-    }
-  };
-
-  //decrease quantity handler
-  const handleDecrement = () => {
-    if (quantity > 0) {
-      setQuantity((prev) => prev - 1);
-
-      //price update
-      const singlePrice = parseInt(data[0]?.price);
-      const totalPrice = total - singlePrice;
-      setTotal(totalPrice);
-
-      //quantity update
-      const update = parseInt(updateQuantity + 1);
-      setUpdateQuantity(update);
-    }
-  };
-
-  //select size
-  const selectSizeHandler = (id) => {
-    const field = document.getElementById("size");
-    console.log(field);
-
-    const data = itemSize.find((sz) => sz?._id == id);
-    const value = data.value;
-    console.log(value);
-
-    setSize(value);
-    setSizeError(" ");
-  };
-
   return (
-    <div className="my-12">
-      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-10">
-        <div>
-          <img className="w-full h-64" src={data[0]?.image} alt="image" />
+    <div className="my-12 px-10">
+      <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-5">
+        <div className="flex flex-col">
+          <img className="w-full h-56" src={data[0]?.image} alt="image" />
 
           <div>
             <label htmlFor="">Mobile: </label>
             <input
+              onChange={phoneStoreHandler}
               id="phone"
               type=""
               name="phone"
-              className="border border-black mt-12 outline-none px-2 py-1 rounded"
-              placeholder="Mobile Number"
+              className="border border-slate-300 text-sm py-1 mt-4 outline-none pl-2 rounded-sm"
+              placeholder="Phone Number"
               minLength="11"
             />
           </div>
+          <p className="text-red-500 mt-1 text-xs font-semibold">
+            {numberError}
+          </p>
 
-          <p className="text-red-500">{numberError}</p>
+          <div className="border border-slate-500 flex flex-col justify-center mx-14 p-4 mt-6 text-xs w-48">
+            <p className="text-center -my-2 font-semibold">Order Summary</p>
+            <div className="flex flex-col mt-3">
+              <p>Name: {data[0]?.name} </p>
+              <p>Category : {data[0]?.category} </p>
+              <p>Price: {total + 10} $</p>
+              <p>quantity: {quantity}</p>
+              <p className="text-red-500 font-semibold">Size : {size}</p>
+              <p>Phone: {phone}</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 text-[15px]">
           <p>Name: {data[0]?.name}</p>
           <p>Price: {data[0]?.price} $</p>
           <p>Detail: {data[0]?.detail}</p>
@@ -176,10 +211,9 @@ const TopSellingProductBooking = () => {
               </>
             )}
           </p>
-
           <div className="w-auto flex flex-wrap items-center gap-3">
             <label>Select Size :</label>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {itemSize.map((size) => (
                 <Link
                   onClick={() => selectSizeHandler(size?._id)}
@@ -194,17 +228,16 @@ const TopSellingProductBooking = () => {
             </div>
             <p className="text-red-600 text-sm">{sizeError}</p>
           </div>
-
           <div className="w-auto flex flex-wrap items-center gap-3">
-            <p> Quantity :</p>
-            <div className="">
+            <div>Quantity :</div>
+            <div className="flex gap-2 items-center">
               <button onClick={handleDecrement}>
                 <FaMinus></FaMinus>
               </button>
               <input
                 id="quantity"
                 type="text"
-                className="border-2 outline-none text-center mx-3"
+                className="border border-slate-500 outline-none text-center"
                 value={quantity}
               />
               <button onClick={handleIncrement}>
@@ -218,9 +251,10 @@ const TopSellingProductBooking = () => {
               Delivery Charge: {total == 0 ? 0 : 10} $
             </p>
           </div>
-          <p className="font-semibold border text-center">
-            Sub-Total: {total + 10} $
-          </p>
+
+          <div className="font-semibold text-center border input-bordered py-1">
+            Sub-Total : {quantity == 0 ? 0 : total + 10} $
+          </div>
 
           <p className="break-words text-wrap text-amber-500">
             Easy return in 3 days , one year guarantee & we provide original
@@ -272,4 +306,4 @@ const TopSellingProductBooking = () => {
   );
 };
 
-export default TopSellingProductBooking;
+export default BookingPage;

@@ -6,6 +6,7 @@ const TopSellingItems = () => {
   const { loading } = useContext(AuthContext);
 
   const [topSellItems, setTopSellItems] = useState();
+  console.log(topSellItems);
   const [nextItems, setNextItems] = useState(8);
 
   const [noMoreQuantity, setNoMoreQuantity] = useState();
@@ -72,7 +73,7 @@ const TopSellingItems = () => {
       <div className="flex justify-end items-center">
         <button
           onClick={loadMore}
-          className="bg-black/90 p-2 text-slate-200 uppercase text-xs font-semibold rounded-sm mt-4"
+          className="btn btn-neutral btn-sm h-10 text-slate-200 uppercase text-sm font-semibold rounded-sm mt-4"
         >
           Load More
         </button>

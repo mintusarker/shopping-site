@@ -16,6 +16,7 @@ const itemSize = [
 const BookingPage = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
+  console.log(data);
   const navigate = useNavigate();
 
   //booking quantity
@@ -29,6 +30,11 @@ const BookingPage = () => {
     parseInt(data[0]?.quantity)
   );
 
+  //phone number store
+  const [phone, setPhone] = useState();
+  console.log(phone);
+
+  //phone number error
   const [numberError, setNumberError] = useState();
   // console.log(numberError);
 
@@ -37,58 +43,6 @@ const BookingPage = () => {
   // console.log(size);
   const [sizeError, setSizeError] = useState();
   // console.log(sizeError);
-
-  // booking product handler
-  const handleBookingProduct = () => {
-    if (!size) {
-      setSizeError("Please select a size");
-      return;
-    }
-
-    //phone number handle
-    const phone = document.getElementById("phone");
-    const phoneNumber = phone.value;
-    // console.log(phoneNumber);
-    if (!Number(phoneNumber) || phoneNumber.length < 11 || null) {
-      setNumberError("Need a valid phone number");
-      return;
-    }
-
-    const product = {
-      email: user.email,
-      name: data[0]?.name,
-      quantity: quantity,
-      // price: parseInt(data[0]?.price),
-      price: parseInt(total + 10),
-      detail: data[0]?.detail,
-      phone: phoneNumber,
-      image: data[0]?.image,
-      size: size,
-    };
-    setNumberError("");
-    console.log(product);
-
-    // save product information to database
-    fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(product),
-    })
-      .then((res) => {
-        res.json();
-        console.log(res);
-      })
-      .then((result) => {
-        console.log(result);
-        navigate("/dashboard/my_bookings");
-        toast.success("Product Booked, Please ensure your payment", {
-          duration: 1500,
-        });
-      });
-  };
 
   //increase quantity handler
   const handleIncrement = () => {
@@ -136,27 +90,106 @@ const BookingPage = () => {
     setSizeError(" ");
   };
 
+
+  //store phone number handler
+  const phoneStoreHandler = () => {
+    const phone = document.getElementById("phone");
+    const phoneNumber = phone.value;
+    setPhone(phoneNumber);
+    console.log(phoneNumber);
+  };
+
+  // booking product handler
+  const handleBookingProduct = () => {
+    if (!size) {
+      setSizeError("Please select a size");
+      return;
+    }
+
+    //phone number handle
+    const phone = document.getElementById("phone");
+    const phoneNumber = phone.value;
+    if (!Number(phoneNumber) || null) {
+      setNumberError("Need a valid phone number");
+      return;
+    }
+    if (phoneNumber.length < 11) {
+      setNumberError("Phone number must be greater or equal to 11 digit");
+      return;
+    }
+
+    const product = {
+      email: user.email,
+      name: data[0]?.name,
+      quantity: quantity,
+      // price: parseInt(data[0]?.price),
+      price: parseInt(total + 10),
+      detail: data[0]?.detail,
+      phone: phoneNumber,
+      image: data[0]?.image,
+      size: size,
+    };
+    setNumberError("");
+    console.log(product);
+
+    // save product information to database
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(product),
+    })
+      .then((res) => {
+        res.json();
+        console.log(res);
+      })
+      .then((result) => {
+        console.log(result);
+        navigate("/dashboard/my_bookings");
+        toast.success("Product Booked, Please ensure your payment", {
+          duration: 1500,
+        });
+      });
+  };
+
   return (
     <div className="my-12 px-10">
       <div className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-2 gap-3 grid-cols-1 border-2 h-full mx-auto lg:w-2/3 p-5">
-        <div>
-          <img className="w-full h-64" src={data[0]?.image} alt="image" />
+        <div className="flex flex-col">
+          <img className="w-full h-56" src={data[0]?.image} alt="image" />
 
           <div>
             <label htmlFor="">Mobile: </label>
             <input
+              onChange={phoneStoreHandler}
               id="phone"
               type=""
               name="phone"
-              className="border border-black mt-12 outline-none pl-2 py-1 rounded-sm"
-              placeholder="Mobile Number"
+              className="border border-slate-300 text-sm py-1 mt-4 outline-none pl-2 rounded-sm"
+              placeholder="Phone Number"
               minLength="11"
             />
           </div>
-          <p className="text-red-500">{numberError}</p>
+          <p className="text-red-500 mt-1 text-xs font-semibold">
+            {numberError}
+          </p>
+
+          <div className="border border-slate-500 flex flex-col justify-center mx-14 p-4 mt-6 text-xs w-48">
+            <p className="text-center -my-2 font-semibold">Order Summary</p>
+            <div className="flex flex-col mt-3">
+              <p>Name: {data[0]?.name} </p>
+              <p>Category : {data[0]?.category} </p>
+              <p>Price: {total + 10} $</p>
+              <p>quantity: {quantity}</p>
+              <p className="text-red-500 font-semibold">Size : {size}</p>
+              <p>Phone: {phone}</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 text-[15px]">
           <p>Name: {data[0]?.name}</p>
           <p>Price: {data[0]?.price} $</p>
           <p>Detail: {data[0]?.detail}</p>
@@ -180,7 +213,7 @@ const BookingPage = () => {
           </p>
           <div className="w-auto flex flex-wrap items-center gap-3">
             <label>Select Size :</label>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {itemSize.map((size) => (
                 <Link
                   onClick={() => selectSizeHandler(size?._id)}
@@ -213,16 +246,14 @@ const BookingPage = () => {
             </div>
           </div>
           <div className="flex justify-between">
-          <p className="font-semibold text-center">
-            Price: {total} $
-          </p>
-          <p className="font-semibold text-center">
-            Delivery Charge: {total == 0 ? 0 : 10} $
-          </p>
+            <p className="font-semibold text-center">Price: {total} $</p>
+            <p className="font-semibold text-center">
+              Delivery Charge: {total == 0 ? 0 : 10} $
+            </p>
           </div>
 
           <div className="font-semibold text-center border input-bordered py-1">
-           Sub-Total : {quantity == 0 ? 0 : (total + 10) } $
+            Sub-Total : {quantity == 0 ? 0 : total + 10} $
           </div>
 
           <p className="break-words text-wrap text-amber-500">
