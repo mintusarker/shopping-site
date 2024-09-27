@@ -46,7 +46,7 @@ const BookingPage = () => {
 
   //increase quantity handler
   const handleIncrement = () => {
-    if (quantity <= parseInt(data[0]?.quantity) + 1) {
+    if (quantity <= parseInt(data[0]?.quantity) + 1 && quantity < 5) {
       setQuantity((prev) => prev + 1);
 
       //price update
@@ -58,6 +58,12 @@ const BookingPage = () => {
       const productQuantity = parseInt(data[0]?.quantity);
       const update = productQuantity - quantity;
       setUpdateQuantity(update);
+    }
+    if(quantity >= 5){
+      toast.error('max 5 items can be ordered in one time', {
+        position: "top-right",
+        duration: 1500,
+      })
     }
   };
 
