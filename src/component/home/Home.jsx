@@ -11,8 +11,8 @@ const Home = () => {
         <Banner></Banner>
         <TopSellingItems></TopSellingItems>
         <NewArrival></NewArrival>
-        <TopSellingBrand></TopSellingBrand>
-        <Service></Service>
+        {/* <TopSellingBrand></TopSellingBrand> */}
+        {/* <Service></Service> */}
        </div>
     );
 };

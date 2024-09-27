@@ -90,7 +90,6 @@ const BookingPage = () => {
     setSizeError(" ");
   };
 
-
   //store phone number handler
   const phoneStoreHandler = () => {
     const phone = document.getElementById("phone");
@@ -128,6 +127,7 @@ const BookingPage = () => {
       phone: phoneNumber,
       image: data[0]?.image,
       size: size,
+      // id: data[0]?._id,
     };
     setNumberError("");
     console.log(product);
@@ -137,7 +137,7 @@ const BookingPage = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        // authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(product),
     })
@@ -151,6 +151,27 @@ const BookingPage = () => {
         toast.success("Product Booked, Please ensure your payment", {
           duration: 1500,
         });
+      });
+
+    // update product quantity
+    const latestQuantity= {
+      quantity: updateQuantity,
+      id: data[0]?._id,
+    }
+    console.log(latestQuantity);
+    fetch("http://localhost:5000/product", {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(latestQuantity),
+    })
+      .then((res) => {
+        res.json();
+        console.log(res);
+      })
+      .then((result) => {
+        console.log(result);
       });
   };
 

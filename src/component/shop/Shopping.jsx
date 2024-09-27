@@ -345,7 +345,6 @@ const Shopping = () => {
         </div>
       </div>
 
-     
       {/* <div className="flex justify-end pb-12 px-16">
         <button className="btn btn-md text-lg rounded-sm btn-neutral">Load More</button>
       </div> */}

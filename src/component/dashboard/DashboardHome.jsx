@@ -61,7 +61,7 @@ const DashboardHome = () => {
         </p>
         <p>
           Email:
-          <span className="text-white text-sm bg-black mx-1 px-2 pb-1 rounded-sm">
+          <span className="text-white text-sm bg-black mx-1 px-2 pb-1 break-words rounded-sm">
             {user?.email}
           </span>
         </p>

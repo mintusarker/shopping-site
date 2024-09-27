@@ -39,10 +39,10 @@ const AllOrders = () => {
   };
   return (
     <div>
-      <h2 className="text-xl leading-6 my-4 border-b-4 border border-green-900 text-center w-52 rounded-sm">
+      <h2 className="text-xl leading-6 my-4 border-b-4 border border-green-900 text-center w-44 rounded-sm">
         Total Products: {orders?.length}
       </h2>
-      <div className=" mb-16">
+      <div className=" mb-16 overflow-x-auto">
         <table className="table">
           <thead>
             <tr>

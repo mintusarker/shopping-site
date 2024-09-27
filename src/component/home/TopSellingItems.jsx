@@ -34,7 +34,11 @@ const TopSellingItems = () => {
   // };
 
   if (loading) {
-    return <span className="loading loading-ring loading-lg"></span>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
   }
   return (
     <div className="mt-16 px-24">

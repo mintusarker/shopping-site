@@ -90,7 +90,6 @@ const BookingPage = () => {
     setSizeError(" ");
   };
 
-
   //store phone number handler
   const phoneStoreHandler = () => {
     const phone = document.getElementById("phone");

@@ -18,7 +18,7 @@ const AddProduct = () => {
   const handleAddProduct = (data) => {
     const product = {
       name: data.name,
-      quantity: data.quantity,
+      quantity: Number(data.quantity),
       price: parseInt(data.price),
       detail: data.detail,
       image: data.image,
@@ -27,21 +27,21 @@ const AddProduct = () => {
     console.log(product);
 
     // save product information to database
-    fetch("http://localhost:5000/products", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(product),
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        console.log(result);
-        toast.success("Product added successfully");
-        reset();
-        navigate("/dashboard/manage_products");
-      });
+    // fetch("http://localhost:5000/products", {
+    //   method: "POST",
+    //   headers: {
+    //     "content-type": "application/json",
+    //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
+    //   },
+    //   body: JSON.stringify(product),
+    // })
+    //   .then((res) => res.json())
+    //   .then((result) => {
+    //     console.log(result);
+    //     toast.success("Product added successfully");
+    //     reset();
+    //     navigate("/dashboard/manage_products");
+    //   });
   };
 
   return (
@@ -79,7 +79,7 @@ const AddProduct = () => {
               <input
                 type="text"
                 placeholder="Product Name"
-                className="input input-bordered rounded-sm w-60"
+                className="input input-bordered rounded-sm w-full"
                 {...register("name", {
                   required: "Name is required",
                 })}
@@ -99,7 +99,7 @@ const AddProduct = () => {
                 type="number"
                 min={1}
                 placeholder="Quantity"
-                className="input input-bordered rounded-sm w-60"
+                className="input input-bordered rounded-sm w-full"
                 {...register("quantity", {
                   required: "Quantity is required",
                 })}
@@ -116,7 +116,7 @@ const AddProduct = () => {
               <input
                 type="text"
                 placeholder="Price"
-                className="input input-bordered rounded-sm w-60"
+                className="input input-bordered rounded-sm"
                 {...register("price", {
                   required: "Price is required",
                 })}

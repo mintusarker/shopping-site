@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../auth/AuthProvider";
 
 const NewArrival = () => {
   const [newItems, setNewItems] = useState();
   console.log(newItems?.length);
   const [nextIndex, setNextIdex] = useState(4);
+
+  const { loading } = useContext(AuthContext);
 
   const [noMoreQuantity, setNoMoreQuantity] = useState();
   console.log(noMoreQuantity);
@@ -29,6 +32,14 @@ const NewArrival = () => {
   //   // setNextItems(items)
   //   setNextIdex(3);
   // };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-16 pb-20 px-24">
