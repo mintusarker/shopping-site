@@ -154,10 +154,10 @@ const BookingPage = () => {
       });
 
     // update product quantity
-    const latestQuantity= {
+    const latestQuantity = {
       quantity: updateQuantity,
       id: data[0]?._id,
-    }
+    };
     console.log(latestQuantity);
     fetch("http://localhost:5000/product", {
       method: "PATCH",
@@ -216,14 +216,17 @@ const BookingPage = () => {
           <p>Detail: {data[0]?.detail}</p>
           <p>
             {data[0]?.quantity >= 1 && (
-              <>
-                Only left {updateQuantity}
-                {data[0]?.quantity > 1
+              <p>
+                Only left{" "}
+                <span className="text-red-700 font-semibold">
+                  {updateQuantity}
+                </span>
+                {updateQuantity > 1
                   ? " items"
-                  : data[0]?.quantity == 1
+                  : updateQuantity == 1
                   ? " item"
                   : ""}
-              </>
+              </p>
             )}
 
             {data[0]?.quantity == 0 && (
@@ -250,7 +253,7 @@ const BookingPage = () => {
             <p className="text-red-600 text-sm">{sizeError}</p>
           </div>
           <div className="w-auto flex flex-wrap items-center gap-3">
-            <div>Quantity :</div>
+            <p>Quantity :</p>
             <div className="flex gap-2 items-center">
               <button onClick={handleDecrement}>
                 <FaMinus></FaMinus>

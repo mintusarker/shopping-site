@@ -7,15 +7,17 @@ const Products = ({ product, handleDeleteProduct }) => {
 
   //add new arrival products handler
   const newArrivalHandler = (product) => {
-    const { name, quantity, image, price, detail } = product;
+    console.log(product);
+    const { name, quantity, image, price, detail, category } = product;
     const newItem = {
       name,
       quantity,
       image,
       price,
       detail,
+      category
     };
-    // console.log(newItem);
+    console.log(newItem);
 
     fetch("http://localhost:5000/new-arrival", {
       method: "POST",
@@ -33,15 +35,16 @@ const Products = ({ product, handleDeleteProduct }) => {
 
   //add top selling products handler
   const topSellingHandler = (product) => {
-    const { name, quantity, image, price, detail } = product;
+    const { name, quantity, image, price, detail, category } = product;
     const topSell = {
       name,
       quantity,
       image,
       price,
       detail,
+      category
     };
-    console.log(topSell);
+    // console.log(topSell);
 
     fetch("http://localhost:5000/top-selling", {
       method: "POST",

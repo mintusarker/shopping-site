@@ -12,6 +12,7 @@ const NewProduct = ({ product, newArrivalDelete }) => {
         <p>Price: {product?.price} $</p>
         <p className="text-justify">Detail: {product?.detail}</p>
         <p className="text-justify">Quantity: {product?.quantity}</p>
+        <p className="text-justify">Quantity: {product?.category}</p>
         <div className="flex items-center flex-wrap gap-3">
           <button
             onClick={() => newArrivalDelete(product?._id)}

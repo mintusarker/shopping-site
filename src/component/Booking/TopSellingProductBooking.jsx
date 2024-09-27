@@ -16,7 +16,7 @@ const itemSize = [
 const BookingPage = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
-  console.log(data);
+  console.log('hhhhhhh',data);
   const navigate = useNavigate();
 
   //booking quantity
@@ -127,6 +127,7 @@ const BookingPage = () => {
       phone: phoneNumber,
       image: data[0]?.image,
       size: size,
+      // id: data[0]?._id,
     };
     setNumberError("");
     console.log(product);
@@ -136,7 +137,7 @@ const BookingPage = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        // authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(product),
     })
@@ -150,6 +151,27 @@ const BookingPage = () => {
         toast.success("Product Booked, Please ensure your payment", {
           duration: 1500,
         });
+      });
+
+    // update product quantity
+    const latestQuantity = {
+      quantity: updateQuantity,
+      id: data[0]?._id,
+    };
+    console.log(latestQuantity);
+    fetch("http://localhost:5000/product", {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(latestQuantity),
+    })
+      .then((res) => {
+        res.json();
+        console.log(res);
+      })
+      .then((result) => {
+        console.log(result);
       });
   };
 
@@ -194,14 +216,17 @@ const BookingPage = () => {
           <p>Detail: {data[0]?.detail}</p>
           <p>
             {data[0]?.quantity >= 1 && (
-              <>
-                Only left {updateQuantity}
-                {data[0]?.quantity > 1
+              <p>
+                Only left{" "}
+                <span className="text-red-700 font-semibold">
+                  {updateQuantity}
+                </span>
+                {updateQuantity > 1
                   ? " items"
-                  : data[0]?.quantity == 1
+                  : updateQuantity == 1
                   ? " item"
                   : ""}
-              </>
+              </p>
             )}
 
             {data[0]?.quantity == 0 && (
@@ -228,7 +253,7 @@ const BookingPage = () => {
             <p className="text-red-600 text-sm">{sizeError}</p>
           </div>
           <div className="w-auto flex flex-wrap items-center gap-3">
-            <div>Quantity :</div>
+            <p>Quantity :</p>
             <div className="flex gap-2 items-center">
               <button onClick={handleDecrement}>
                 <FaMinus></FaMinus>
