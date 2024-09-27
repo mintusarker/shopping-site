@@ -153,13 +153,13 @@ const BookingPage = () => {
         });
       });
 
-    // update product quantity
+    // update new arrival product quantity
     const latestQuantity = {
       quantity: updateQuantity,
       id: data[0]?._id,
     };
     console.log(latestQuantity);
-    fetch("http://localhost:5000/product", {
+    fetch("http://localhost:5000/product-newArrival", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
