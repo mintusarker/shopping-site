@@ -50,10 +50,10 @@ const AllUsers = () => {
   };
 
   return (
-    <div>
+    <div className="px-12 my-4">
       <div className="overflow-x-auto">
         <table className="table">
-          <thead>
+          <thead className="text-red-700 text-[15px]">
             <tr>
               <th></th>
               <th>Name</th>
@@ -68,14 +68,24 @@ const AllUsers = () => {
                 <th>{1 + i}</th>
                 <th>{user?.name}</th>
                 <td>{user?.email}</td>
-                <td>user</td>
+
+                {user?.role ? (
+                  <td className="text-md font-semibold bg-slate-600 inline-block text-white">
+                    Admin
+                  </td>
+                ) : (
+                  <td className="text-md font-semibold">user</td>
+                )}
+
                 <td>
-                  <button
-                    onClick={() => UserDelete(user?._id)}
-                    className="btn btn-xs btn-neutral text-white rounded-sm"
-                  >
-                    Delete
-                  </button>
+                  {!user?.role && (
+                    <button
+                      onClick={() => UserDelete(user?._id)}
+                      className="btn btn-xs btn-neutral text-white rounded-sm"
+                    >
+                      Delete
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

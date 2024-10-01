@@ -44,7 +44,7 @@ const MyOrders = () => {
   };
 
   return (
-    <div>
+    <div className="px-12">
       <h2 className="text-xl leading-6 my-5 border-b-4 border border-green-900 text-center w-36 rounded-sm">
         My Orders: {bookings?.length}
       </h2>

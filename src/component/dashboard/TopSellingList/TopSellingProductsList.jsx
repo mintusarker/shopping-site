@@ -33,11 +33,11 @@ const TopSellingProductsList = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl leading-6 my-6 border-b-4 border border-green-900 text-center w-48 rounded-sm">
+    <div className="px-12">
+      <h2 className="text-xl leading-6 my-6 border-b-4 border border-green-900 text-center w-44 rounded-sm">
         Top Sell Items: {topSells?.length}
       </h2>
-      <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 mt-7 pb-24">
+      <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 mt-7 pb-24">
         {topSells?.map((product) => (
           <TopSell
             key={product?._id}

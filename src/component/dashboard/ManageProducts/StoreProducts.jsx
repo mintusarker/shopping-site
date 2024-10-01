@@ -49,8 +49,8 @@ const StoreProducts = () => {
   };
 
   return (
-    <div className="">
-      <h2 className="text-xl leading-6 mt-5 border-b-4 border border-green-900 text-center w-52 rounded-sm">
+    <div className="px-16">
+      <h2 className="text-xl leading-6 border-b-4 border border-green-900 text-center w-44 mt-5 rounded-sm">
         Total Products: {products?.length}
       </h2>
 

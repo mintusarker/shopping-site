@@ -32,8 +32,8 @@ const NewArrivalProductsList = () => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl leading-6 mb-6 border-b-4 border border-green-900 text-center w-48 rounded-sm">
+    <div className="px-12 my-3">
+      <h2 className="text-xl leading-6 mb-6 border-b-4 border border-green-900 text-center w-40 rounded-sm">
         New Arrival: {newArrival?.length}
       </h2>
       <div className="grid gap-6 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 my-7 pb-24">

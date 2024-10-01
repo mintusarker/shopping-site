@@ -45,7 +45,7 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="mt-8 mb-28">
+    <div className="mt-8 mb-28 lg:w-1/2 md:w-1/2 mx-auto">
       <h2 className="text-xl leading-6 mb-6 border-b-4 border border-green-900 text-center w-48 mx-auto rounded-sm">
         Add Product
       </h2>
