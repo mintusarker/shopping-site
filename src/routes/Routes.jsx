@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../layout/Dashboard";
-import DashboardHome from "../component/dashboard/DashboardHome";
 import Main from "../layout/Main";
 import AddProduct from "../component/dashboard/AddProduct";
 import UpdateProduct from "../component/dashboard/update/UpdateProduct";
@@ -19,6 +18,7 @@ import NewArrivalProductsList from "../component/dashboard/NewArrivalList/NewArr
 import TopSellingProductsList from "../component/dashboard/TopSellingList/TopSellingProductsList";
 import NewArrivalBooking from "../component/Booking/NewArrivalBooking";
 import TopSellingProductBooking from "../component/Booking/TopSellingProductBooking";
+import DashboardHome from "../component/dashboard/DashboardHome";
 
 const router = createBrowserRouter([
   {

@@ -46,9 +46,12 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userInfo);
   };
 
-  const userDelete = ()=> {
-    return deleteUser(auth)
-  }
+  const deleteUserInfo = () => {
+    return deleteUser(auth.currentUser);
+  };
+  // const userDelete = ()=> {
+  //   return deleteUser(auth)
+  // }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -80,9 +83,9 @@ const AuthProvider = ({ children }) => {
     updateUser,
     loading,
     user,
-    userDelete,
+    deleteUserInfo,
     addToCart,
-    cart
+    cart,
   };
 
   return (

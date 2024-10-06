@@ -65,8 +65,7 @@ const BookingPage = () => {
         duration: 1500,
       })
     }
-  };
-
+  };                                                         
   //decrease quantity handler
   const handleDecrement = () => {
     if (quantity > 0) {
