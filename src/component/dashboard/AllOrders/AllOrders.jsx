@@ -38,7 +38,7 @@ const AllOrders = () => {
       });
   };
   return (
-    <div>
+    <div className="px-16">
       <h2 className="text-xl leading-6 my-4 border-b-4 border border-green-900 text-center w-44 rounded-sm">
         Total Products: {orders?.length}
       </h2>

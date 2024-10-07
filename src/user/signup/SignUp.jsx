@@ -21,7 +21,7 @@ const SignUp = () => {
   const from = location.state?.from?.pathname || "/dashboard";
 
   const handleSignUp = (data) => {
-    console.log(data);
+    console.log("data", data);
     setSignUpError("");
     createUser(data.email, data.password)
       .then((result) => {
@@ -30,14 +30,16 @@ const SignUp = () => {
         toast.success("User created successfully");
         const userInfo = {
           displayName: data.name,
+          // photoURL: data?.PhotoURL,
         };
 
         console.log(userInfo);
 
         updateUser(userInfo)
           .then(() => {
-            const email = data.email;
-            console.log(email);
+            const email = data?.email;
+            // const photoURL = data?.photoURL;
+            // console.log(email, photoURL);
 
             //save user to database
             saveUser(data.name, data.email);
@@ -124,6 +126,23 @@ const SignUp = () => {
               <p className="text-red-600">{errors.name.message}</p>
             )}
           </div>
+
+          {/* <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Photo URL</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Photo URL"
+              className="input border-stone-300 rounded-sm w-full focus:outline-none"
+              {...register("PhotoURL", {
+                required: "Photo URL is required",
+              })}
+            />
+            {errors.name && (
+              <p className="text-red-600">{errors.name.message}</p>
+            )}
+          </div> */}
 
           <div className="form-control w-full">
             <label className="label">

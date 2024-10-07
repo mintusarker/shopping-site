@@ -21,14 +21,6 @@ const AllUsers = () => {
 
   //user delete
   const UserDelete = (_id) => {
-    // deleteUser(auth.currentUser)
-    //   .then((result) => {
-    //     const user = result.user;
-    //     console.log(result);
-    //     console.log(user);
-    //   })
-    //   .catch((err) => console.log(err));
-
     fetch(`http://localhost:5000/user/${_id}`, {
       method: "DELETE",
       headers: {

@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { FaXmark } from "react-icons/fa6";
 import { SlSettings } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
+import useAdmin from "../../hooks/useAdmin";
 
 const UserProfileModal = ({ setModal, setProfile }) => {
-  const { user, logOut,  deleteUserInfo } = useContext(AuthContext);
-  console.log('user that are log in: And consol log only name',user);
+  const { user, logOut, deleteUserInfo } = useContext(AuthContext);
+
+  const [isAdmin, setAdmin] = useAdmin(user?.email);
+
+  // const [allUsers, setAllUsers] = useState();
+  // console.log("users all", allUsers);
+
+  // const data = allUsers.map((u) => u);
+  // console.log(data);
 
   //user logout
   const handleLogout = () => {
@@ -14,6 +22,42 @@ const UserProfileModal = ({ setModal, setProfile }) => {
       .then(() => {})
       .catch((err) => console.log(err));
     setModal(false);
+  };
+
+  //user own account delete
+  const userDeleteHandler = () => {
+    deleteUserInfo()
+      .then(() => {})
+      .catch((err) => console.log(err));
+    // UserDelete();
+    setModal(false);
+  };
+
+  // all users fetach from database
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/users")
+  //     .then((res) => res.json())
+  //     .then((data) => setAllUsers(data));
+  // }, []);
+
+  //user deleted from database
+  const UserDelete = (_id) => {
+    const data = users.map((u) => console.log(u));
+    fetch(`http://localhost:5000/user/${_id}`, {
+      method: "DELETE",
+      headers: {
+        content: "application/json",
+      },
+    })
+      .then((res) => {
+        res.json();
+        console.log(res);
+      })
+      .then((data) => {
+        console.log(data);
+        toast.success(`User deleted successfully`);
+      });
   };
 
   const modalOff = () => {
@@ -50,13 +94,19 @@ const UserProfileModal = ({ setModal, setProfile }) => {
           </button>
           <ul
             tabIndex={0}
-            className="dropdown-content menu rounded-md w-48 -left-6 bg-base-100 z-[1] shadow"
+            className="dropdown-content menu rounded-md flex flex-col -right-14 w-[150px] bg-base-100 z-[1] shadow"
           >
+            {isAdmin ? (
+              <li className="ml-4 font-semibold text-red-500">Admin Account</li>
+            ) : (
+              <li>
+                <button onClick={userDeleteHandler} className="text-red-500">
+                  Delete Account
+                </button>
+              </li>
+            )}
             <li>
-              <button onClick={deleteUserInfo} className="text-black">Delete Account</button>
-            </li>
-            <li>
-              <button className="text-black">Change Email</button>
+              <button className="text-green-500">Change Email</button>
             </li>
           </ul>
         </div>
