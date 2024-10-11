@@ -24,7 +24,11 @@ const MyOrders = () => {
   });
 
   if (isLoading) {
-    return <span className="loading loading-ring loading-lg"></span>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
   }
 
   const handleRemove = (id) => {
@@ -110,6 +114,7 @@ const MyOrders = () => {
           </tbody>
         </table>
       </div>
+      {!bookings?.length && <p className="text-center mt-24 text-lg font-semibold">No Active Orders</p> }
     </div>
   );
 };

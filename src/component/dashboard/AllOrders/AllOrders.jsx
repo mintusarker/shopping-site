@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../../auth/AuthProvider";
 
 const AllOrders = () => {
   const [orders, setOrders] = useState();
-  const [orderss, setOrderss] = useState();
-  console.log(orders?.length);
-  console.log(orders);
+
+  const { loading } = useContext(AuthContext);
 
   useEffect(() => {
     fetch(`http://localhost:5000/bookings`, {
@@ -19,6 +19,14 @@ const AllOrders = () => {
         setOrders(data);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <span className="loading loading-ring loading-lg"></span>
+      </div>
+    );
+  }
 
   //deleted order
   const handleRemove = (id) => {
@@ -37,6 +45,9 @@ const AllOrders = () => {
         toast.success("Order deleted");
       });
   };
+
+ 
+
   return (
     <div className="px-16">
       <h2 className="text-xl leading-6 my-4 border-b-4 border border-green-900 text-center w-44 rounded-sm">
@@ -57,35 +68,36 @@ const AllOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {orders?.map((order, i) => (
-              <tr key={order?._id}>
-                <th>{1 + i}</th>
-                <th>
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src={order?.image}
-                    alt=""
-                    srcSet=""
-                  />
-                </th>
-                <td>{order?.name} </td>
-                <td>Quantity : {order?.quantity} </td>
-                <td>Size : {order?.size} </td>
-                <td>{order?.phone} </td>
-                <td className="font-semibold text-green-500">
-                  {order?.paid === true ? "Paid" : "pending"}{" "}
-                </td>
+            {orders?.length &&
+              orders?.map((order, i) => (
+                <tr key={order?._id}>
+                  <th>{1 + i}</th>
+                  <th>
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src={order?.image}
+                      alt=""
+                      srcSet=""
+                    />
+                  </th>
+                  <td>{order?.name} </td>
+                  <td>Quantity : {order?.quantity} </td>
+                  <td>Size : {order?.size} </td>
+                  <td>{order?.phone} </td>
+                  <td className="font-semibold text-green-500">
+                    {order?.paid === true ? "Paid" : "pending"}{" "}
+                  </td>
 
-                <td>
-                  <button
-                    onClick={() => handleRemove(order?._id)}
-                    className="btn btn-xs btn-neutral text-white rounded-sm"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
+                  <td>
+                    <button
+                      onClick={() => handleRemove(order?._id)}
+                      className="btn btn-xs btn-neutral text-white rounded-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

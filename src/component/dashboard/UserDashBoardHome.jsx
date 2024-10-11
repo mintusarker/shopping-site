@@ -9,7 +9,9 @@ const UserDashboardHome = () => {
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/bookings/email?email=${user?.email}`);
+      const res = await fetch(
+        `http://localhost:5000/bookings/email?email=${user?.email}`
+      );
       const data = await res.json();
       return data;
     },

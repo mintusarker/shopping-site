@@ -57,7 +57,7 @@ const Dashboard = () => {
               {isAdmin && (
                 <>
                   <li className="text-slate-800 uppercase text-sm font-bold leading-6 mt-9 mb-3 border-b border-b-white text-center">
-                    Products
+                    Products Section
                   </li>
 
                   <li className="rounded-md text-base text-white">
@@ -99,9 +99,12 @@ const Dashboard = () => {
                     </Link>
                   </li>
 
-                  <li className="text-slate-800 uppercase text-sm font-bold leading-6 my-3 border-b border-b-white text-center">
+                  {isAdmin ? <li className="text-slate-800 uppercase text-sm font-bold leading-6 my-3 border-b border-b-white text-center">
+                    Orders Section
+                  </li> : <li className="text-slate-800 uppercase text-sm font-bold leading-6 my-3 border-b border-b-white text-center">
                     Orders
-                  </li>
+                  </li>}
+                  
                   <li className="rounded-md text-base text-white">
                     <Link
                       className="flex items-center gap-2"
@@ -111,9 +114,19 @@ const Dashboard = () => {
                       All Orders
                     </Link>
                   </li>
+                  
+                  <li className="text-base text-white rounded-md">
+                    <Link
+                      className="flex items-center gap-2"
+                      to="/dashboard/my_bookings"
+                    >
+                      <FaCartPlus></FaCartPlus>
+                      My Bookings
+                    </Link>
+                  </li>
 
                   <li className="text-slate-800 uppercase text-sm font-bold leading-6 my-3 border-b border-b-white text-center">
-                    Users
+                    Users Section
                   </li>
                   <li className="text-white text-base mt-1 rounded-md">
                     <Link

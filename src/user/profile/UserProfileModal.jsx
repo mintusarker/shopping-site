@@ -10,11 +10,6 @@ const UserProfileModal = ({ setModal, setProfile }) => {
 
   const [isAdmin, setAdmin] = useAdmin(user?.email);
 
-  // const [allUsers, setAllUsers] = useState();
-  // console.log("users all", allUsers);
-
-  // const data = allUsers.map((u) => u);
-  // console.log(data);
 
   //user logout
   const handleLogout = () => {
@@ -33,32 +28,25 @@ const UserProfileModal = ({ setModal, setProfile }) => {
     setModal(false);
   };
 
-  // all users fetach from database
 
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/users")
-  //     .then((res) => res.json())
-  //     .then((data) => setAllUsers(data));
-  // }, []);
-
-  //user deleted from database
-  const UserDelete = (_id) => {
-    const data = users.map((u) => console.log(u));
-    fetch(`http://localhost:5000/user/${_id}`, {
-      method: "DELETE",
-      headers: {
-        content: "application/json",
-      },
-    })
-      .then((res) => {
-        res.json();
-        console.log(res);
-      })
-      .then((data) => {
-        console.log(data);
-        toast.success(`User deleted successfully`);
-      });
-  };
+  // //user deleted from database
+  // const UserDelete = (_id) => {
+  //   const data = users.map((u) => console.log(u));
+  //   fetch(`http://localhost:5000/user/${_id}`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       content: "application/json",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       res.json();
+  //       console.log(res);
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //       toast.success(`User deleted successfully`);
+  //     });
+  // };
 
   const modalOff = () => {
     setModal(false);
@@ -105,9 +93,9 @@ const UserProfileModal = ({ setModal, setProfile }) => {
                 </button>
               </li>
             )}
-            <li>
+            {/* <li>
               <button className="text-green-500">Change Email</button>
-            </li>
+            </li> */}
           </ul>
         </div>
         <button

@@ -17,7 +17,7 @@ const Payment = () => {
   }
 
   return (
-    <div className="my-14">
+    <div className="my-14 lg:ml-24 md:ml-12 sm:ml-12 ml-4">
       <p>Enter your Card number </p>
       <h2 className="text-2xl">Payment for {booking?.name} </h2>
       <h2 className="text-xl">

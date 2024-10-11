@@ -15,7 +15,7 @@ const Products = ({ product, handleDeleteProduct }) => {
       image,
       price,
       detail,
-      category
+      category,
     };
     console.log(newItem);
 
@@ -42,7 +42,7 @@ const Products = ({ product, handleDeleteProduct }) => {
       image,
       price,
       detail,
-      category
+      category,
     };
     // console.log(topSell);
 

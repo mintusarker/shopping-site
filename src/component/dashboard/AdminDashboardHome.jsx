@@ -1,16 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
+import { PureComponent } from "react";
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
 
 const AdminDashboardHome = () => {
   const { user } = useContext(AuthContext);
 
+  const [pendingPayment, setPendingPayment] = useState();
+  console.log(pendingPayment);
+
+  const pending = pendingPayment?.filter((pen) => !pen?.transactionId);
+
   // booking
-  const { data: bookings = [] } = useQuery({
+  const { data: all_bookings } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/bookings`);
+      const res = await fetch(`http://localhost:5000/all_bookings`);
       const data = await res.json();
+      setPendingPayment(data);
+      // console.log(data);
       return data;
     },
   });
@@ -43,6 +52,7 @@ const AdminDashboardHome = () => {
       }
     },
   });
+
   const { data: topSell = [] } = useQuery({
     queryKey: ["topSell"],
     queryFn: async () => {
@@ -61,24 +71,20 @@ const AdminDashboardHome = () => {
     queryKey: ["payments"],
     queryFn: async () => {
       try {
-        const res = await fetch(
-          ` http://localhost:5000/paymentDone?email=${user?.email}`
-        );
+        const res = await fetch(` http://localhost:5000/payment`);
         const data = await res.json();
-        // console.log(data);
         return data;
       } catch (error) {
         console.log(error);
       }
     },
   });
+
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(
-          ` http://localhost:5000/users`
-        );
+        const res = await fetch(` http://localhost:5000/users`);
         const data = await res.json();
         // console.log(data);
         return data;
@@ -87,6 +93,16 @@ const AdminDashboardHome = () => {
       }
     },
   });
+
+  const data01 = [
+    { name: "Products", value: products?.length },
+    { name: "Top Selling", value: topSell?.length },
+    { name: "New Arrival", value: newProduct?.length },
+    { name: "Orders", value: all_bookings?.length },
+    { name: "payment", value: payments?.length },
+    { name: "Payment Pending", value: pending?.length },
+    { name: "Users", value: users?.length },
+  ];
 
   return (
     <div className="bg-gradient-to-t from-orange-100 to-orange-200 h-screen p-10">
@@ -121,7 +137,7 @@ const AdminDashboardHome = () => {
         </div>
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>Order</p>
-          <p>{bookings?.length} </p>
+          <p>{all_bookings?.length} </p>
         </div>
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>Payment Completed</p>
@@ -130,7 +146,7 @@ const AdminDashboardHome = () => {
 
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>Payment pending</p>
-          <p>{0} </p>
+          <p>{pending?.length} </p>
         </div>
 
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
@@ -138,6 +154,26 @@ const AdminDashboardHome = () => {
           <p>{users?.length} </p>
         </div>
       </div>
+
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className="w-full mx-auto -mt-[150px]"
+      >
+        <PieChart width={400} height={400}>
+          <Pie
+            dataKey="value"
+            isAnimationActive={false}
+            data={data01}
+            cx="50%"
+            cy="50%"
+            outerRadius={80}
+            fill="#8884d8"
+            label
+          />
+          <Tooltip />
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   );
 };

@@ -9,7 +9,7 @@
   /* position: relative; */
   width: 100%;
   background: white;
-  box-shadow: 0 10px  -5px rgba(118, 113, 113, 0.125);
+  box-shadow: 0 10px -5px rgba(118, 113, 113, 0.125);
 }
 
 .slide {
@@ -18,12 +18,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(203, 195, 195);
+  background-color: rgb(51 65 85);
   margin-left: 10px;
   margin-top: 5px;
   font-size: 22px;
   font-family: Arial, Helvetica, sans-serif;
-  color: #241c1c;
+  color: white;
 }
 
 .slider .slides-track {
@@ -38,13 +38,6 @@
   filter: grayscale(100);
   overflow: hidden;
 }
-
-/* .slider .slide img {
-  height: 100%;
-  width: auto;
-  max-width: 100%;
-  object-fit: contain;
-} */
 
 @keyframes scroll {
   0% {

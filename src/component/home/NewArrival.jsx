@@ -42,7 +42,7 @@ const NewArrival = () => {
   }
 
   return (
-    <div className="mt-16 pb-20 px-24">
+    <div className="mt-24 pb-20 px-24 border-t-2 border-slate-300">
       <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
         New Arrival Items
       </h2>
@@ -60,10 +60,6 @@ const NewArrival = () => {
               >
                 Buy
               </Link>
-
-              {/* <Link to={`/booking_product/${items?._id}`}>
-            <button className="btn btn-sm rounded-sm btn-outline">Buy</button>
-          </Link> */}
             </div>
           ))}
       </div>

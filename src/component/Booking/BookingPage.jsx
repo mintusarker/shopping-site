@@ -59,13 +59,13 @@ const BookingPage = () => {
       const update = productQuantity - quantity;
       setUpdateQuantity(update);
     }
-    if(quantity >= 5){
-      toast.error('max 5 items can be ordered in one time', {
+    if (quantity >= 5) {
+      toast.error("max 5 items can be ordered in one time", {
         position: "top-right",
         duration: 1500,
-      })
+      });
     }
-  };                                                         
+  };
   //decrease quantity handler
   const handleDecrement = () => {
     if (quantity > 0) {

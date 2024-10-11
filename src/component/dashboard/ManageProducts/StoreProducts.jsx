@@ -5,11 +5,8 @@ import { AuthContext } from "../../../auth/AuthProvider";
 import Products from "./Products";
 
 const StoreProducts = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
 
-  // if (loading) {
-  //   return <span className="loading loading-ring loading-lg"></span>;
-  // }
 
   const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
