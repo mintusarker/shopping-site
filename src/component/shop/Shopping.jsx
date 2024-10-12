@@ -16,15 +16,17 @@ const Shopping = () => {
   const { addToCart, user } = useContext(AuthContext);
 
   const { data, isLoading } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["product"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/products`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/products`
+        );
         const data = await res.json();
         setAllProducts(data);
         setItem(data);
-        // console.log(data);
         return data;
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -36,13 +38,13 @@ const Shopping = () => {
     e.preventDefault();
     const key = e.target.value;
     if (key) {
-      fetch(`http://localhost:5000/search/${key}`)
+      fetch(`https://user-dashboard-server-five.vercel.app/search/${key}`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
         });
     } else {
-      fetch(` http://localhost:5000/products`)
+      fetch(` https://user-dashboard-server-five.vercel.app/products`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
@@ -55,7 +57,7 @@ const Shopping = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings/email?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
       );
       const data = await res.json();
       console.log(data);
@@ -66,7 +68,7 @@ const Shopping = () => {
   // price sorting low to high
   const priceLowToHigh = () => {
     setProducts("");
-    fetch("http://localhost:5000/priceLow")
+    fetch("https://user-dashboard-server-five.vercel.app/priceLow")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };
@@ -74,7 +76,7 @@ const Shopping = () => {
   // price sorting high to low
   const priceHighToLow = () => {
     setProducts("");
-    fetch("http://localhost:5000/priceHigh")
+    fetch("https://user-dashboard-server-five.vercel.app/priceHigh")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };

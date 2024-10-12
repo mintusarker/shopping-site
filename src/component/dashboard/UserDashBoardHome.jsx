@@ -10,7 +10,7 @@ const UserDashboardHome = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings/email?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
       );
       const data = await res.json();
       return data;

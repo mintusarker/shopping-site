@@ -16,7 +16,9 @@ const AdminDashboardHome = () => {
   const { data: all_bookings } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/all_bookings`);
+      const res = await fetch(
+        `https://user-dashboard-server-five.vercel.app/all_bookings`
+      );
       const data = await res.json();
       setPendingPayment(data);
       // console.log(data);
@@ -29,7 +31,9 @@ const AdminDashboardHome = () => {
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/products`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/products`
+        );
         const data = await res.json();
         // console.log(data);
         return data;
@@ -43,7 +47,9 @@ const AdminDashboardHome = () => {
     queryKey: ["newProduct"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/new-arrival`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/new-arrival`
+        );
         const data = await res.json();
         // console.log(data);
         return data;
@@ -57,7 +63,9 @@ const AdminDashboardHome = () => {
     queryKey: ["topSell"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/top-selling`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/top-selling`
+        );
         const data = await res.json();
         // console.log(data);
         return data;
@@ -71,7 +79,9 @@ const AdminDashboardHome = () => {
     queryKey: ["payments"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/payment`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/payment`
+        );
         const data = await res.json();
         return data;
       } catch (error) {
@@ -84,7 +94,9 @@ const AdminDashboardHome = () => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/users`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/users`
+        );
         const data = await res.json();
         // console.log(data);
         return data;

@@ -37,19 +37,25 @@ const router = createBrowserRouter([
         path: "/booking_product/:id",
         element: <BookingPage></BookingPage>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/products/${params?.id}`),
+          fetch(
+            ` https://user-dashboard-server-five.vercel.app/products/${params?.id}`
+          ),
       },
       {
         path: "/new_arrival/:id",
         element: <NewArrivalBooking></NewArrivalBooking>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/newArrival/${params?.id}`),
+          fetch(
+            ` https://user-dashboard-server-five.vercel.app/newArrival/${params?.id}`
+          ),
       },
       {
         path: "/top_selling/:id",
         element: <TopSellingProductBooking></TopSellingProductBooking>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/topSelling/${params?.id}`),
+          fetch(
+            ` https://user-dashboard-server-five.vercel.app/topSelling/${params?.id}`
+          ),
       },
       {
         path: "/login",
@@ -105,13 +111,17 @@ const router = createBrowserRouter([
         path: "/dashboard/update-product/:id",
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(` http://localhost:5000/products/${params?.id}`),
+          fetch(
+            ` https://user-dashboard-server-five.vercel.app/products/${params?.id}`
+          ),
       },
       {
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(
+            `https://user-dashboard-server-five.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "/dashboard/users",

@@ -13,7 +13,7 @@ const TopSellingItems = () => {
   console.log(noMoreQuantity);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/top-selling`)
+    fetch(`https://user-dashboard-server-five.vercel.app/top-selling`)
       .then((res) => res.json())
       .then((data) => setTopSellItems(data));
   }, []);

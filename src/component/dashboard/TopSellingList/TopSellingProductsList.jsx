@@ -7,14 +7,14 @@ const TopSellingProductsList = () => {
   console.log(topSells);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/top-selling`)
+    fetch(`https://user-dashboard-server-five.vercel.app/top-selling`)
       .then((res) => res.json())
       .then((data) => setTopSells(data));
   }, []);
 
   //remove
   const handleRemoveTopSell = (_id) => {
-    fetch(`http://localhost:5000/top-selling/${_id}`, {
+    fetch(`https://user-dashboard-server-five.vercel.app/top-selling/${_id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

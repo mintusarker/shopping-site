@@ -15,7 +15,7 @@ const MyOrders = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/bookings/email?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
       );
       const data = await res.json();
       console.log(data);
@@ -32,7 +32,7 @@ const MyOrders = () => {
   }
 
   const handleRemove = (id) => {
-    fetch(`http://localhost:5000/bookings/${id}`, {
+    fetch(`https://user-dashboard-server-five.vercel.app/bookings/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
@@ -114,7 +114,11 @@ const MyOrders = () => {
           </tbody>
         </table>
       </div>
-      {!bookings?.length && <p className="text-center mt-24 text-lg font-semibold">No Active Orders</p> }
+      {!bookings?.length && (
+        <p className="text-center mt-24 text-lg font-semibold">
+          No Active Orders
+        </p>
+      )}
     </div>
   );
 };

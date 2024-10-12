@@ -58,7 +58,7 @@ const Login = () => {
 
   //jwt token
   const token = (email) => {
-    fetch("http://localhost:5000/jwt", {
+    fetch("https://user-dashboard-server-five.vercel.app/jwt", {
       method: "POST",
       headers: {
         "content-type": "application/json",

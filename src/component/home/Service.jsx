@@ -2,25 +2,25 @@ import React from "react";
 
 const Service = () => {
   return (
-    <div className="flex items-center justify-center px-0 mx-auto w-full border-t-2 border-slate-400 pt-28 pb-28">
-      <div className="bg-slate-700 h-24 w-48 flex justify-center items-center rounded-sm text-white text-center text-lg">
+    <div className="lg:flex md:flex sm:flex flex-warp justify-center items-center mx-auto w-full border-t-2 border-slate-400 pt-28 pb-28 px-12">
+      <div className="bg-slate-700 h-24 w-48 mx-auto m-0 p-2 flex justify-center items-center rounded-sm text-white text-center text-lg">
         Smart & Fashionable Design
       </div>
-      <div className="w-20 h-24 flex justify-center items-center divider divider-primary"></div>
-      <div className="bg-slate-700 h-24 w-48 flex justify-center items-center rounded-sm text-white text-center text-lg">
+      <div className="lg:w-40 md:w-20 sm:w-20 w-[2.5px] mx-auto m-0 lg:h-1 md:h-1 sm:h-1 h-24 my-auto lg:flex md:flex sm:flex flex-col justify-center items-center divider divider-primary"></div>
+      <div className="bg-slate-700 h-24 w-48 mx-auto m-0 p-2 flex justify-center items-center rounded-sm text-white text-center text-lg">
         Reliable products
       </div>
-      <div className="w-20 h-24 flex justify-center items-center divider divider-primary"></div>
-      <div className="bg-slate-700 h-24 w-48 flex justify-center items-center rounded-sm text-white text-center text-lg">
+      <div className="lg:w-40 md:w-20 sm:w-20 w-[2.5px] mx-auto m-0 lg:h-1 md:h-1 sm:h-1 h-24 my-auto lg:flex md:flex sm:flex flex-col justify-center items-center divider divider-primary"></div>
+      <div className="bg-slate-700 h-24 w-48 mx-auto m-0 p-2 flex justify-center items-center rounded-sm text-white text-center text-lg">
         Exchange & replacement
       </div>
-      <div className="w-20 h-24 flex justify-center items-center divider divider-primary"></div>
-      <div className="bg-slate-700 h-24 w-48 flex justify-center items-center rounded-sm text-white text-center text-lg">
+      <div className="lg:w-40 md:w-20 sm:w-20 w-[2.5px] mx-auto m-0 lg:h-1 md:h-1 sm:h-1 h-24 my-auto lg:flex md:flex sm:flex flex-col justify-center items-center divider divider-primary"></div>
+      <div className="bg-slate-700 h-24 w-48 mx-auto m-0 p-2 flex justify-center items-center rounded-sm text-white text-center text-lg">
         Online & Cash on Delivery
       </div>
-      <div className="w-20 h-24 flex justify-center items-center divider divider-primary"></div>
-      <div className="bg-slate-700 h-24 w-48 flex justify-center items-center rounded-sm text-white text-center text-lg">
-       Fresh Replace in 30 Days 
+      <div className="lg:w-40 md:w-20 sm:w-20 w-[2.5px] mx-auto m-0 lg:h-1 md:h-1 sm:h-1 h-24 my-auto lg:flex md:flex sm:flex flex-col justify-center items-center divider divider-primary"></div>
+      <div className="bg-slate-700 h-24 w-48 mx-auto m-0 p-2 flex justify-center items-center rounded-sm text-white text-center text-lg">
+        Fresh Replace in 30 Days
       </div>
     </div>
   );

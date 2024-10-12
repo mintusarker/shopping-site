@@ -19,7 +19,7 @@ const Products = ({ product, handleDeleteProduct }) => {
     };
     console.log(newItem);
 
-    fetch("http://localhost:5000/new-arrival", {
+    fetch("https://user-dashboard-server-five.vercel.app/new-arrival", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -46,7 +46,7 @@ const Products = ({ product, handleDeleteProduct }) => {
     };
     // console.log(topSell);
 
-    fetch("http://localhost:5000/top-selling", {
+    fetch("https://user-dashboard-server-five.vercel.app/top-selling", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -75,7 +75,7 @@ const SignUp = () => {
   //save user function
   const saveUser = (name, email) => {
     const user = { name, email };
-    fetch("http://localhost:5000/users", {
+    fetch("https://user-dashboard-server-five.vercel.app/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -88,7 +88,7 @@ const SignUp = () => {
 
   //jwt token
   const token = (email) => {
-    fetch("http://localhost:5000/jwt", {
+    fetch("https://user-dashboard-server-five.vercel.app/jwt", {
       method: "POST",
       headers: {
         "content-type": "application/json",

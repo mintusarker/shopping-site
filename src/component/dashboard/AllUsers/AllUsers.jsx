@@ -12,7 +12,7 @@ const AllUsers = () => {
   const auth = getAuth(app);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://user-dashboard-server-five.vercel.app/users")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -21,7 +21,7 @@ const AllUsers = () => {
 
   //user delete
   const UserDelete = (_id) => {
-    fetch(`http://localhost:5000/user/${_id}`, {
+    fetch(`https://user-dashboard-server-five.vercel.app/user/${_id}`, {
       method: "DELETE",
       headers: {
         content: "application/json",

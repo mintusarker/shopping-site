@@ -10,7 +10,6 @@ const UserProfileModal = ({ setModal, setProfile }) => {
 
   const [isAdmin, setAdmin] = useAdmin(user?.email);
 
-
   //user logout
   const handleLogout = () => {
     logOut()
@@ -28,11 +27,10 @@ const UserProfileModal = ({ setModal, setProfile }) => {
     setModal(false);
   };
 
-
   // //user deleted from database
   // const UserDelete = (_id) => {
   //   const data = users.map((u) => console.log(u));
-  //   fetch(`http://localhost:5000/user/${_id}`, {
+  //   fetch(`https://user-dashboard-server-five.vercel.app/user/${_id}`, {
   //     method: "DELETE",
   //     headers: {
   //       content: "application/json",

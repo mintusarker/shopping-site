@@ -13,7 +13,7 @@ const NewArrival = () => {
   console.log(noMoreQuantity);
 
   useEffect(() => {
-    fetch("http://localhost:5000/new-arrival")
+    fetch("https://user-dashboard-server-five.vercel.app/new-arrival")
       .then((res) => res.json())
       .then((data) => setNewItems(data));
   }, []);

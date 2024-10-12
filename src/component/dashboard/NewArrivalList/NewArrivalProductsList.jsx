@@ -7,14 +7,14 @@ const NewArrivalProductsList = () => {
   // console.log(newArrival);
 
   useEffect(() => {
-    fetch("http://localhost:5000/new-arrival")
+    fetch("https://user-dashboard-server-five.vercel.app/new-arrival")
       .then((res) => res.json())
       .then((data) => setNewArrival(data));
   }, []);
 
   //delete
   const newArrivalDelete = (id) => {
-    fetch(`http://localhost:5000/new-arrival/${id}`, {
+    fetch(`https://user-dashboard-server-five.vercel.app/new-arrival/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

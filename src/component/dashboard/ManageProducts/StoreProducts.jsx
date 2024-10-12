@@ -7,12 +7,13 @@ import Products from "./Products";
 const StoreProducts = () => {
   const { loading } = useContext(AuthContext);
 
-
   const { data: products = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       try {
-        const res = await fetch(` http://localhost:5000/products`);
+        const res = await fetch(
+          ` https://user-dashboard-server-five.vercel.app/products`
+        );
         const data = await res.json();
         console.log(data);
         return data;
@@ -28,7 +29,7 @@ const StoreProducts = () => {
 
   //delete product
   const handleDeleteProduct = (id) => {
-    fetch(` http://localhost:5000/products/${id}`, {
+    fetch(` https://user-dashboard-server-five.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

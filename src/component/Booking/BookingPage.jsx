@@ -138,7 +138,7 @@ const BookingPage = () => {
     console.log(product);
 
     // save product information to database
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://user-dashboard-server-five.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -164,7 +164,7 @@ const BookingPage = () => {
       id: data[0]?._id,
     };
     console.log(latestQuantity);
-    fetch("http://localhost:5000/product", {
+    fetch("https://user-dashboard-server-five.vercel.app/product", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
