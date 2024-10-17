@@ -8,7 +8,7 @@ const AllOrders = () => {
   const { loading } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`https://user-dashboard-server-five.vercel.app/bookings`, {
+    fetch(`https://user-dashboard-server-five.vercel.app/all_bookings`, {
       method: "GET",
       headers: {
         "content-type": "Application/json",

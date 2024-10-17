@@ -1,16 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 
 const UserDashboardHome = () => {
   const { user } = useContext(AuthContext);
+  const [userPayment, setUserPayment] = useState();
+  // console.log(userPayment);
 
-  // booking
+  const pending = userPayment?.filter((payment) => !payment?.transactionId);
+  // console.log(pending);
+
+  // booking/order
   const { data: bookings = [] } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
         `https://user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
+      );
+      const data = await res.json();
+      setUserPayment(data);
+      return data;
+    },
+  });
+
+  //get payment by user email
+  const { data: paymentByUser } = useQuery({
+    queryKey: ["paymentByUser"],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://user-dashboard-server-five.vercel.app/payment-by-user/email?email=${user?.email}`
       );
       const data = await res.json();
       return data;
@@ -41,8 +59,13 @@ const UserDashboardHome = () => {
         </div>
 
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Payment pending</p>
-          <p>{0} </p>
+          <p>Payment Complete</p>
+          <p>{paymentByUser?.length} </p>
+        </div>
+
+        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+          <p> Payment Pending</p>
+          <p>{pending?.length}</p>
         </div>
       </div>
     </div>
