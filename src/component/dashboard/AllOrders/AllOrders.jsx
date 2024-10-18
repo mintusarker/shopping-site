@@ -54,11 +54,12 @@ const AllOrders = () => {
       <div className=" mb-16 overflow-x-auto">
         <table className="table">
           <thead>
-            <tr>
+            <tr className="text-rose-500 text-[13px]">
               <th></th>
               <th>Picture</th>
               <th>Name</th>
               <th>Quantity</th>
+              <th>Price</th>
               <th>Size</th>
               <th>Phone No.</th>
               <th>Payment</th>
@@ -80,6 +81,7 @@ const AllOrders = () => {
                   </th>
                   <td>{order?.name} </td>
                   <td>Quantity : {order?.quantity} </td>
+                  <td>Price : {order?.price} </td>
                   <td>Size : {order?.size} </td>
                   <td>{order?.phone} </td>
                   <td className="font-semibold text-green-500">

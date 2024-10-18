@@ -1,15 +1,26 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../auth/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import { PureComponent } from "react";
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
 
 const AdminDashboardHome = () => {
   const { user } = useContext(AuthContext);
 
   const [pendingPayment, setPendingPayment] = useState();
-  console.log(pendingPayment);
 
+  const [paymentCount, setPaymentCount] = useState();
+  console.log(paymentCount);
+
+  //total payment calculate
+  const payment = paymentCount?.map((pay) => pay.price);
+  console.log(payment);
+  let sum = 0;
+  for (let i = 0; i < payment?.length; i++) {
+    sum += parseInt(payment[i]);
+  }
+  // console.log(sum);
+
+  //pending payment
   const pending = pendingPayment?.filter((pen) => !pen?.transactionId);
 
   // booking
@@ -83,6 +94,7 @@ const AdminDashboardHome = () => {
           ` https://user-dashboard-server-five.vercel.app/payment`
         );
         const data = await res.json();
+        setPaymentCount(data);
         return data;
       } catch (error) {
         console.log(error);
@@ -159,6 +171,11 @@ const AdminDashboardHome = () => {
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
           <p>Payment pending</p>
           <p>{pending?.length} </p>
+        </div>
+
+        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+          <p>Total Sell</p>
+          <p className="text-green-500 font-semibold">{sum} $ </p>
         </div>
 
         <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
