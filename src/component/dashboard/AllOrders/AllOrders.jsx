@@ -8,7 +8,7 @@ const AllOrders = () => {
   const { loading } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`https://user-dashboard-server-five.vercel.app/all_bookings`, {
+    fetch(`user-dashboard-server-five.vercel.app/all_bookings`, {
       method: "GET",
       headers: {
         "content-type": "Application/json",
@@ -30,7 +30,7 @@ const AllOrders = () => {
 
   //deleted order
   const handleRemove = (id) => {
-    fetch(`https://user-dashboard-server-five.vercel.app/bookings/${id}`, {
+    fetch(`user-dashboard-server-five.vercel.app/bookings/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

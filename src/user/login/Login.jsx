@@ -73,7 +73,7 @@ const Login = () => {
   };
 
   return (
-    <div className="hero w-full my-11 mx-auto">
+    <div className="w-full my-11 mx-auto">
       <div className="hero-content flex-col">
         <div className="card rounded-none py-8 shadow-2xl shadow-black">
           <h1 className="text-2xl text-center text-black font-semibold">
@@ -89,27 +89,27 @@ const Login = () => {
                 type="text"
                 name="email"
                 placeholder="email"
-                className="input border border-stone-300 rounded-sm w-72 focus:outline-none"
+                className="input border border-stone-300 rounded-sm focus:outline-none"
               />
             </div>
-            <div className="form-control">
+            <div className="">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <div className="flex border border-stone-300 w-72 rounded-sm">
+              <div className="flex justify-between pr-2 border border-stone-300 rounded-sm">
                 <input
                   type="password"
                   name="password"
                   placeholder="password"
                   className="input border-none focus:outline-none"
                 />
-                <a
+                <button
                   href="#"
                   onClick={handleResetPassword}
-                  className="label link link-hover text-sm opacity-85"
+                  className="link link-hover text-sm opacity-85"
                 >
                   Forgot?
-                </a>
+                </button>
               </div>
             </div>
             <div className="form-control mt-2">

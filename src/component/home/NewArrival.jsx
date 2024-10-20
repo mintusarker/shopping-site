@@ -13,7 +13,7 @@ const NewArrival = () => {
   console.log(noMoreQuantity);
 
   useEffect(() => {
-    fetch("https://user-dashboard-server-five.vercel.app/new-arrival")
+    fetch("user-dashboard-server-five.vercel.app/new-arrival")
       .then((res) => res.json())
       .then((data) => setNewItems(data));
   }, []);
@@ -42,8 +42,8 @@ const NewArrival = () => {
   }
 
   return (
-    <div className="mt-24 pb-20 px-24 border-t-2 border-slate-300">
-      <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-6">
+    <div className="mt-20 pb-12 px-24">
+      <h2 className="text-center font-semibold uppercase text-3xl leading-loose mb-11">
         New Arrival Items
       </h2>
       <div className="grid gap-12 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 w-full mx-auto">
@@ -93,7 +93,7 @@ const NewArrival = () => {
         )} */}
         <button
           onClick={loadMoreNewProduct}
-          className="btn btn-neutral btn-sm h-10 text-slate-200 uppercase text-sm font-semibold rounded-sm mt-4"
+          className="btn btn-neutral btn-sm h-10 text-slate-200 uppercase text-sm font-semibold rounded-sm mt-6"
         >
           Load More
         </button>

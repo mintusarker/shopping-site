@@ -28,7 +28,7 @@ const AdminDashboardHome = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `https://user-dashboard-server-five.vercel.app/all_bookings`
+        `user-dashboard-server-five.vercel.app/all_bookings`
       );
       const data = await res.json();
       setPendingPayment(data);
@@ -43,7 +43,7 @@ const AdminDashboardHome = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/products`
+          ` user-dashboard-server-five.vercel.app/products`
         );
         const data = await res.json();
         // console.log(data);
@@ -59,7 +59,7 @@ const AdminDashboardHome = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/new-arrival`
+          ` user-dashboard-server-five.vercel.app/new-arrival`
         );
         const data = await res.json();
         // console.log(data);
@@ -75,7 +75,7 @@ const AdminDashboardHome = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/top-selling`
+          ` user-dashboard-server-five.vercel.app/top-selling`
         );
         const data = await res.json();
         // console.log(data);
@@ -91,7 +91,7 @@ const AdminDashboardHome = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/payment`
+          ` user-dashboard-server-five.vercel.app/payment`
         );
         const data = await res.json();
         setPaymentCount(data);
@@ -106,9 +106,7 @@ const AdminDashboardHome = () => {
     queryKey: ["users"],
     queryFn: async () => {
       try {
-        const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/users`
-        );
+        const res = await fetch(` user-dashboard-server-five.vercel.app/users`);
         const data = await res.json();
         // console.log(data);
         return data;

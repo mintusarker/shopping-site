@@ -3,7 +3,7 @@ import "./TopSellingBrand.css";
 
 const TopSellingBrand = () => {
   return (
-    <div className="pb-32 pt-10 border-t-2 border-slate-400 mt-16">
+    <div className="pb-32 pt-10 border-t-2 border-slate-400 mt-16 ">
       <p className="text-center uppercase font-semibold text-2xl pb-14 -mt-6 mb-10">
         selling Brand
       </p>

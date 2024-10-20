@@ -12,7 +12,7 @@ const StoreProducts = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` https://user-dashboard-server-five.vercel.app/products`
+          ` user-dashboard-server-five.vercel.app/products`
         );
         const data = await res.json();
         console.log(data);
@@ -29,7 +29,7 @@ const StoreProducts = () => {
 
   //delete product
   const handleDeleteProduct = (id) => {
-    fetch(` https://user-dashboard-server-five.vercel.app/products/${id}`, {
+    fetch(` user-dashboard-server-five.vercel.app/products/${id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

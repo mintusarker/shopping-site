@@ -5,9 +5,7 @@ const useAdmin = (email) => {
   const [isAdminLoading, setIsAdminLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      fetch(
-        ` https://user-dashboard-server-five.vercel.app/users/admin/${email}`
-      )
+      fetch(` user-dashboard-server-five.vercel.app/users/admin/${email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

@@ -13,7 +13,7 @@ const TopSellingItems = () => {
   console.log(noMoreQuantity);
 
   useEffect(() => {
-    fetch(`https://user-dashboard-server-five.vercel.app/top-selling`)
+    fetch(`user-dashboard-server-five.vercel.app/top-selling`)
       .then((res) => res.json())
       .then((data) => setTopSellItems(data));
   }, []);
@@ -77,7 +77,7 @@ const TopSellingItems = () => {
       <div className="flex justify-end items-center">
         <button
           onClick={loadMore}
-          className="btn btn-neutral btn-sm h-10 text-slate-200 uppercase text-sm font-semibold rounded-sm mt-4"
+          className="btn btn-neutral btn-sm h-10 text-slate-200 uppercase text-sm font-semibold rounded-sm mt-6"
         >
           Load More
         </button>

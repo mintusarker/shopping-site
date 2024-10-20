@@ -27,7 +27,7 @@ const AddProduct = () => {
     console.log(product);
 
     // save product information to database
-    // fetch("https://user-dashboard-server-five.vercel.app/products", {
+    // fetch("user-dashboard-server-five.vercel.app/products", {
     //   method: "POST",
     //   headers: {
     //     "content-type": "application/json",

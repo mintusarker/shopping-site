@@ -12,17 +12,14 @@ const CheckoutForm = ({ booking }) => {
   const { price, email, name, _id } = booking;
 
   useEffect(() => {
-    fetch(
-      "https://user-dashboard-server-five.vercel.app/create-payment-intent",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify({ price }),
-      }
-    )
+    fetch("user-dashboard-server-five.vercel.app/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify({ price }),
+    })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, [price]);
@@ -77,7 +74,7 @@ const CheckoutForm = ({ booking }) => {
         bookingId: _id,
       };
 
-      fetch("https://user-dashboard-server-five.vercel.app/payments", {
+      fetch("user-dashboard-server-five.vercel.app/payments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
