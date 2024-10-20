@@ -30,7 +30,7 @@ const UserProfileModal = ({ setModal, setProfile }) => {
   // //user deleted from database
   // const UserDelete = (_id) => {
   //   const data = users.map((u) => console.log(u));
-  //   fetch(`user-dashboard-server-five.vercel.app/user/${_id}`, {
+  //   fetch(`https://user-dashboard-server-five.vercel.app/user/${_id}`, {
   //     method: "DELETE",
   //     headers: {
   //       content: "application/json",

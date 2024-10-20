@@ -29,14 +29,17 @@ const UpdateProduct = () => {
 
     console.log(updateProduct);
 
-    fetch(` user-dashboard-server-five.vercel.app/products/${data[0]?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-      body: JSON.stringify(updateProduct),
-    })
+    fetch(
+      ` https://user-dashboard-server-five.vercel.app/products/${data[0]?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(updateProduct),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

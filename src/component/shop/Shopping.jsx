@@ -20,7 +20,7 @@ const Shopping = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          ` user-dashboard-server-five.vercel.app/products`
+          ` https://user-dashboard-server-five.vercel.app/products`
         );
         const data = await res.json();
         setAllProducts(data);
@@ -38,13 +38,13 @@ const Shopping = () => {
     e.preventDefault();
     const key = e.target.value;
     if (key) {
-      fetch(`user-dashboard-server-five.vercel.app/search/${key}`)
+      fetch(`https://user-dashboard-server-five.vercel.app/search/${key}`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
         });
     } else {
-      fetch(` user-dashboard-server-five.vercel.app/products`)
+      fetch(` https://user-dashboard-server-five.vercel.app/products`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data);
@@ -57,7 +57,7 @@ const Shopping = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
       );
       const data = await res.json();
       console.log(data);
@@ -68,7 +68,7 @@ const Shopping = () => {
   // price sorting low to high
   const priceLowToHigh = () => {
     setProducts("");
-    fetch("user-dashboard-server-five.vercel.app/priceLow")
+    fetch("https://user-dashboard-server-five.vercel.app/priceLow")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };
@@ -76,7 +76,7 @@ const Shopping = () => {
   // price sorting high to low
   const priceHighToLow = () => {
     setProducts("");
-    fetch("user-dashboard-server-five.vercel.app/priceHigh")
+    fetch("https://user-dashboard-server-five.vercel.app/priceHigh")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
   };

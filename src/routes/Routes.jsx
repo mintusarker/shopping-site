@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <BookingPage></BookingPage>,
         loader: ({ params }) =>
           fetch(
-            ` user-dashboard-server-five.vercel.app/products/${params?.id}`
+            ` https://user-dashboard-server-five.vercel.app/products/${params?.id}`
           ),
       },
       {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         element: <NewArrivalBooking></NewArrivalBooking>,
         loader: ({ params }) =>
           fetch(
-            ` user-dashboard-server-five.vercel.app/newArrival/${params?.id}`
+            ` https://user-dashboard-server-five.vercel.app/newArrival/${params?.id}`
           ),
       },
       {
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         element: <TopSellingProductBooking></TopSellingProductBooking>,
         loader: ({ params }) =>
           fetch(
-            ` user-dashboard-server-five.vercel.app/topSelling/${params?.id}`
+            ` https://user-dashboard-server-five.vercel.app/topSelling/${params?.id}`
           ),
       },
       {
@@ -112,14 +112,16 @@ const router = createBrowserRouter([
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
           fetch(
-            ` user-dashboard-server-five.vercel.app/products/${params?.id}`
+            ` https://user-dashboard-server-five.vercel.app/products/${params?.id}`
           ),
       },
       {
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`user-dashboard-server-five.vercel.app/bookings/${params.id}`),
+          fetch(
+            `https://user-dashboard-server-five.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "/dashboard/users",

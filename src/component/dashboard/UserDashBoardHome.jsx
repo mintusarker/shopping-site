@@ -15,7 +15,7 @@ const UserDashboardHome = () => {
     queryKey: ["bookings"],
     queryFn: async () => {
       const res = await fetch(
-        `user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/bookings/email?email=${user?.email}`
       );
       const data = await res.json();
       setUserPayment(data);
@@ -28,7 +28,7 @@ const UserDashboardHome = () => {
     queryKey: ["paymentByUser"],
     queryFn: async () => {
       const res = await fetch(
-        `user-dashboard-server-five.vercel.app/payment-by-user/email?email=${user?.email}`
+        `https://user-dashboard-server-five.vercel.app/payment-by-user/email?email=${user?.email}`
       );
       const data = await res.json();
       return data;
