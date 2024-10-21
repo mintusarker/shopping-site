@@ -5,7 +5,7 @@ import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
 
 const AdminDashboardHome = () => {
   const { user } = useContext(AuthContext);
-
+ const [isAdmin, setIsAdmin] = useState(user?.email)
   const [pendingPayment, setPendingPayment] = useState();
 
   const [paymentCount, setPaymentCount] = useState();
@@ -133,13 +133,13 @@ const AdminDashboardHome = () => {
       <div className="flex flex-wrap justify-start gap-4">
         <div className="">
           <p className="">
-            Name:
+          <span className="font-semibold"> {isAdmin && 'Admin:'} </span>
             <span className="text-white text-sm bg-black opacity-60 mx-1 px-2 pb-1 rounded-sm">
               {user?.displayName ? user?.displayName : user?.name}
             </span>
           </p>
           <p>
-            Email:
+           <span className="font-semibold">Email:</span>
             <span className="text-white text-sm bg-black opacity-60 mx-1 px-2 pb-1 break-words rounded-sm">
               {user?.email}
             </span>
