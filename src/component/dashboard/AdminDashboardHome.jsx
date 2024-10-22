@@ -5,7 +5,7 @@ import { PieChart, Pie, Tooltip, ResponsiveContainer } from "recharts";
 
 const AdminDashboardHome = () => {
   const { user } = useContext(AuthContext);
- const [isAdmin, setIsAdmin] = useState(user?.email)
+  const [isAdmin, setIsAdmin] = useState(user?.email);
   const [pendingPayment, setPendingPayment] = useState();
 
   const [paymentCount, setPaymentCount] = useState();
@@ -129,67 +129,68 @@ const AdminDashboardHome = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-t from-orange-100 to-orange-200 h-screen p-10">
-      <div className="flex flex-wrap justify-start gap-4">
-        <div className="">
-          <p className="">
-          <span className="font-semibold"> {isAdmin && 'Admin:'} </span>
-            <span className="text-white text-sm bg-black opacity-60 mx-1 px-2 pb-1 rounded-sm">
-              {user?.displayName ? user?.displayName : user?.name}
-            </span>
-          </p>
-          <p>
-           <span className="font-semibold">Email:</span>
-            <span className="text-white text-sm bg-black opacity-60 mx-1 px-2 pb-1 break-words rounded-sm">
-              {user?.email}
-            </span>
-          </p>
-        </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Products</p>
-          <p>{products?.length} </p>
+    <div className="bg-gradient-to-t from-orange-100 to-orange-200 min-h-screen">
+      <div className="p-10">
+        <div className="flex flex-wrap justify-start gap-4">
+          <div className="">
+            <p className="">
+              <span className="font-semibold"> {isAdmin && "Admin:"} </span>
+              <span className="text-white text-sm bg-black opacity-60 mx-1 px-2 pb-1 rounded-sm">
+                {user?.displayName ? user?.displayName : user?.name}
+              </span>
+            </p>
+            <p>
+              <span className="font-semibold">Email:</span>
+              <span className="text-white text-sm bg-black opacity-60 mx-1 px-2 pb-1 break-words rounded-sm">
+                {user?.email}
+              </span>
+            </p>
+          </div>
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Products</p>
+            <p>{products?.length} </p>
+          </div>
+
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>New Products</p>
+            <p>{newProduct?.length} </p>
+          </div>
+
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Top selling Products</p>
+            <p>{topSell?.length} </p>
+          </div>
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Order</p>
+            <p>{all_bookings?.length} </p>
+          </div>
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Payment Completed</p>
+            <p>{payments?.length} </p>
+          </div>
+
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Payment pending</p>
+            <p>{pending?.length} </p>
+          </div>
+
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Total Sell</p>
+            <p className="text-green-500 font-semibold">{sum} $ </p>
+          </div>
+
+          <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
+            <p>Users</p>
+            <p>{users?.length} </p>
+          </div>
         </div>
 
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>New Products</p>
-          <p>{newProduct?.length} </p>
-        </div>
-
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Top selling Products</p>
-          <p>{topSell?.length} </p>
-        </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Order</p>
-          <p>{all_bookings?.length} </p>
-        </div>
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Payment Completed</p>
-          <p>{payments?.length} </p>
-        </div>
-
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Payment pending</p>
-          <p>{pending?.length} </p>
-        </div>
-
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Total Sell</p>
-          <p className="text-green-500 font-semibold">{sum} $ </p>
-        </div>
-
-        <div className="border border-b-4 border-orange-400 text-center rounded-md text-lg p-4">
-          <p>Users</p>
-          <p>{users?.length} </p>
-        </div>
-      </div>
-
-      <ResponsiveContainer
+        {/* <ResponsiveContainer
         width="100%"
         height="100%"
-        className="w-full mx-auto -mt-[150px]"
-      >
-        <PieChart width={400} height={400}>
+        className="w-full mx-auto"
+      > */}
+        <PieChart width={300} height={300} className="mx-auto">
           <Pie
             dataKey="value"
             isAnimationActive={false}
@@ -202,7 +203,8 @@ const AdminDashboardHome = () => {
           />
           <Tooltip />
         </PieChart>
-      </ResponsiveContainer>
+        {/* </ResponsiveContainer> */}
+      </div>
     </div>
   );
 };

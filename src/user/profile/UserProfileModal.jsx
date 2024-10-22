@@ -108,3 +108,5 @@ const UserProfileModal = ({ setModal, setProfile }) => {
 };
 
 export default UserProfileModal;
+
+
