@@ -74,9 +74,9 @@ const Login = () => {
 
   return (
     <div className="w-full my-11 mx-auto">
-      <div className="hero-content flex-col">
+      <div className="hero-content mx-auto flex-col">
         <div className="card rounded-none py-8 shadow-2xl shadow-black">
-          <h1 className="text-2xl text-center text-black font-semibold">
+          <h1 className="text-2xl text-center text-black font-semibold uppercase">
             Log in
           </h1>
           <form onSubmit={handleLogin} className="card-body">
@@ -114,7 +114,7 @@ const Login = () => {
             </div>
             <div className="form-control mt-2">
               <input
-                className="btn btn-neutral text-balance rounded-sm uppercase w-72"
+                className="btn btn-neutral text-balance rounded-sm uppercase"
                 type="submit"
                 value="Log in"
               />

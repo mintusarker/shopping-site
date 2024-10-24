@@ -83,7 +83,7 @@ const UserDashboardHome = () => {
           height="100%"
           className="w-full mx-auto -mt-[150px]"
         > */}
-        <PieChart width={300} height={300}>
+        <PieChart width={300} height={300} className="mx-auto">
           <Pie
             dataKey="value"
             isAnimationActive={false}

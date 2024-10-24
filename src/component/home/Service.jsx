@@ -20,7 +20,7 @@ const Service = () => {
       </div>
       <div className="lg:w-40 md:w-20 sm:w-20 w-[2.5px] mx-auto m-0 lg:h-[2px] md:h-1 sm:h-1 h-24 my-auto lg:flex md:flex sm:flex flex-col justify-center items-center divider divider-primary"></div>
       <div className="bg-slate-700 h-24 w-48 mx-auto m-0 px-2 flex justify-center items-center rounded-sm text-white text-center text-lg">
-        Fresh Replace in 30 Days
+        Fresh Replace in 30 Daysj
       </div>
     </div>
   );
